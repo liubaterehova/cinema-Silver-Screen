@@ -11,7 +11,9 @@
     "url": "https://gitlab.com/il-itech/lab-project"
   },
   "scripts": {
-    "lint": "eslint --ext js,jsx src"
+    "lint": "eslint --ext js,jsx src",
+    "start": "webpack-dev-server --open -w",
+    "build": "webpack --config ./webpack.config.js"
   },
   "dependencies": {
     "bootstrap": "^4.4.0",
