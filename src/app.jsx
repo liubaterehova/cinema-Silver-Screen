@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { MainPage } from './components/main-page/main-page';
+
 export const App = () => (
-  <div>Lab Porject</div>
+  <div>
+    <MainPage />
+  </div>
 );
