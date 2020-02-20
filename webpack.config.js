@@ -2,15 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-<<<<<<< HEAD
-const LinkTypePlugin = require('html-webpack-link-type-plugin')
-  .HtmlWebpackLinkTypePlugin;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-=======
 const { HtmlWebpackLinkTypePlugin } = require('html-webpack-link-type-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
->>>>>>> db6d92c8723e0be15e3c7f7b56f5a3d15674bd82
 
 module.exports = {
   target: 'web',
