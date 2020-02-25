@@ -12,12 +12,14 @@
   },
   "scripts": {
     "lint": "eslint --ext js,jsx src",
-    "start": "webpack-dev-server --open -w",
-    "build": "webpack --config ./webpack.config.js"
+    "build:client:dev": "webpack --config ./resources/webpack/webpack.client.js -w",
+    "build:server:dev": "webpack --config ./resources/webpack/webpack.server.js -w",
+    "start:server": "node ./dist/server.js"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
+    "cookie-parser": "^1.4.4",
     "html-webpack-link-type-plugin": "^1.0.3",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.1",
@@ -85,6 +87,7 @@
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "mini-css-extract-plugin": "^0.8.0",
+    "morgan": "^1.9.1",
     "node-sass": "^4.13.0",
     "open-browser-webpack-plugin": "^0.0.5",
     "postcss-loader": "^3.0.0",
@@ -105,7 +108,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
-    "webpack-node-externals": "1.7.2"
+    "webpack-node-externals": "^1.7.2"
   },
   "husky": {
     "hooks": {

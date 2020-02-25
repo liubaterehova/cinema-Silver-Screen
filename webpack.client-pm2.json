@@ -1,0 +1,18 @@
+{
+  "script": "./resources/webpack/webpack.client.js",
+  "name": "webpack.client",
+  "namespace": "default",
+  "env": {},
+  "merge_logs": true,
+  "vizion": true,
+  "autorestart": true,
+  "watch": false,
+  "instance_var": "NODE_APP_INSTANCE",
+  "pmx": true,
+  "automation": true,
+  "treekill": true,
+  "username": "luba",
+  "windowsHide": true,
+  "kill_retry_time": 100,
+  "write": true
+}

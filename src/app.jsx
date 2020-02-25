@@ -1,9 +1,13 @@
 import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { HomePage } from './pages/home/home';
+import { rootReducer } from './reducers/index';
 
-import { MainPage } from './components/main-page/main-page';
+const store = createStore(rootReducer);
 
 export const App = () => (
-  <div>
-    <MainPage />
-  </div>
+  <Provider store={store}>
+    <HomePage />
+  </Provider>
 );
