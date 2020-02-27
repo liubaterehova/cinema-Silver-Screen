@@ -1,4 +1,5 @@
 @import './customizations/colors/backgrounds.scss';
+@import './customizations/colors/colors.scss';
 
 html {
   margin: 0;
@@ -9,5 +10,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: $main-background-color;
+  background-color: $shark-color;
+  color: black;
 }
