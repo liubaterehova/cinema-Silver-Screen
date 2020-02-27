@@ -1,0 +1,22 @@
+{
+  "apps" : [
+    {
+      "name": "app-server-watch",
+      "exec_mode": "fork_mode",
+      "script": "./node_modules/.bin/webpack",
+      "args": "--config ./resources/webpack/webpack.server.js --watch -d"
+    },
+    {
+      "name": "app-client-watch",
+      "exec_mode": "fork_mode",
+      "script": "./node_modules/.bin/webpack",
+      "args": "--config ./resources/webpack/webpack.client.js --watch -d"
+    },
+    {
+      "name": "lab-app",
+      "exec_mode": "fork_mode",
+      "script": "dist/server.js",
+      "watch": ["dist"]
+    }
+  ]
+}

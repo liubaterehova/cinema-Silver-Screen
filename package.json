@@ -14,7 +14,11 @@
     "lint": "eslint --ext js,jsx src",
     "build:client:dev": "webpack --config ./resources/webpack/webpack.client.js -w",
     "build:server:dev": "webpack --config ./resources/webpack/webpack.server.js -w",
-    "start:server": "node ./dist/server.js"
+    "start:server": "node ./dist/server.js",
+    "pm2:start": "pm2 start ./resources/pm2/development.json",
+    "pm2:stop": "pm2 stop resources/pm2/development.json",
+    "pm2:restart": "yarn pm2:stop && yarn pm2:start",
+    "logs": "pm2 logs"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -90,6 +94,7 @@
     "morgan": "^1.9.1",
     "node-sass": "^4.13.0",
     "open-browser-webpack-plugin": "^0.0.5",
+    "pm2": "^4.2.3",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
     "prop-types": "^15.7.2",
