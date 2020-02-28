@@ -1,11 +1,3 @@
-import React from 'react';
-
-import {
-  Col, Card, CardTitle, Button,
-} from 'reactstrap';
-
-import './cards-add-inf.scss';
-
 export const cards = [
   {
     id: 1,
