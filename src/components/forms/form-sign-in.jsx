@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Form } from 'reactstrap';
 
-import { makeFormElements } from './form-element';
+import { FormElement } from './form-element';
 
 const elementsOfFormSignIn = [
   {
@@ -23,6 +23,17 @@ const elementsOfFormSignIn = [
 
 export const FormSignIn = () => (
   <Form>
-    {makeFormElements(elementsOfFormSignIn)}
+    {elementsOfFormSignIn.map(({
+      id, name, label, placeholder, type,
+    }) => (
+      <FormElement
+        id={id}
+        key={id}
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        type={type}
+      />
+    ))}
   </Form>
 );
