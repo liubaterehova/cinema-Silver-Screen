@@ -4,6 +4,8 @@ import {
   Col, Card, CardTitle, Button,
 } from 'reactstrap';
 
+import './card-add-inf.scss';
+
 const cards = [
   {
     id: 1,
@@ -24,9 +26,9 @@ const cards = [
 ];
 
 export const CardAddInf = cards.map(({ id, name }) => (
-  <Col key={id}>
-    <Card body>
-      <CardTitle>
+  <Col key={id} className="p-5">
+    <Card body className="p-2">
+      <CardTitle className="p-3 text-center">
         <h4>{name}</h4>
       </CardTitle>
       <Button color="info">добавить</Button>
