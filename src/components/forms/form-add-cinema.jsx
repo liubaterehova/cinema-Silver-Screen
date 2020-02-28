@@ -41,21 +41,20 @@ const elementsOfFormAddCinema = [
     type: 'text',
   },
 ];
-const formElements = elementsOfFormAddCinema.map(({
-  id, name, label, placeholder, type,
-}) => (
-  <FormElement
-    id={id}
-    key={id}
-    name={name}
-    label={label}
-    placeholder={placeholder}
-    type={type}
-  />
-));
 
 export const FormAddCinema = () => (
   <Form>
-    {formElements}
+    {elementsOfFormAddCinema.map(({
+      id, name, label, placeholder, type,
+    }) => (
+      <FormElement
+        id={id}
+        key={id}
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        type={type}
+      />
+    ))}
   </Form>
 );
