@@ -1,7 +1,7 @@
-import { ModalAddCinema } from '../modals/modal-add-cinema';
-import { ModalAddFilm } from '../modals/modal-add-film';
-import { ModalAddServices } from '../modals/modal-add-services';
-import { ModalAddSession } from '../modals/modal-add-session';
+import { ModalAddCinema } from '../../modals/modal-add-cinema';
+import { ModalAddFilm } from '../../modals/modal-add-film';
+import { ModalAddServices } from '../../modals/modal-add-services';
+import { ModalAddSession } from '../../modals/modal-add-session';
 
 export const cards = [
   {

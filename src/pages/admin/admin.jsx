@@ -2,10 +2,11 @@ import React from 'react';
 
 import { Row } from 'reactstrap';
 
-import { cards } from '../../components/cards-add-inf/cards-add-inf';
+import { cards } from '../../components/cards/cards-add-inf/cards-add-inf';
+
+import { CardAdmin } from '../../components/cards/card-admin/card-admin';
 
 import './admin.scss';
-import { CardAdmin } from '../../components/card-admin/card-admin';
 
 export const AdminPage = () => (
   <Row>
