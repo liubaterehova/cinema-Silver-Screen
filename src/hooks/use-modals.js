@@ -12,7 +12,6 @@ export const useModals = (modalId) => {
     dispatch(closeAllModals());
     dispatch(openModal({ modalId }));
   };
-
   const dispatchToggleModal = () => dispatch(toggleModal({ modalId }));
 
   const closeAllModalWindows = () => dispatch(closeAllModals());

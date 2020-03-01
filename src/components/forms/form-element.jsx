@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 
 export const FormElement = (({
-  id, name, label, placeholder, type,
+  name, label, type, id, placeholder,
 }) => (
   <FormGroup>
     <Label for={name}>{label}</Label>

@@ -2,26 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ModalWindow } from './modals';
-import { FormAddFilm } from '../forms/form-add-film';
+import { FormAddSession } from '../forms/form-add-session';
 
-export const ModalAddFilm = ({
+export const ModalAddSession = ({
   isOpen, toggle, onClickSignUp, onClose,
 }) => (
   <ModalWindow
     isOpen={isOpen}
     toggleInModal={toggle}
-    header="ФИЛЬМ"
+    header="СЕАНС"
     toggleInHeader={onClose}
     buttonLeft="закрыть"
     buttonLeftHandleClick={onClose}
     buttonRight="добавить"
     buttonRightHandleClick={onClickSignUp}
   >
-    <FormAddFilm />
+    <FormAddSession />
   </ModalWindow>
 );
 
-ModalAddFilm.propTypes = {
+ModalAddSession.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
   onClickSignUp: PropTypes.func.isRequired,

@@ -4,4 +4,6 @@ export const MODAL_WINDOW = {
   SIGN_UP: 'signUp',
   ADD_CINEMA: 'addCinema',
   ADD_FILM: 'addFilm',
+  ADD_SESSION: 'addSession',
+  ADD_SERVICES: 'addServices',
 };
