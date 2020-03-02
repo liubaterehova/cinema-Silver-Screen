@@ -1,4 +1,3 @@
-@import '../../customizations/colors/backgrounds.scss';
 @import '../../customizations/colors/colors.scss';
 
 .header-main-page {
@@ -10,7 +9,7 @@
     }
 
     .btn.btn-link {
-      color: $text-color;
+      color: $french-gray;
       text-decoration: none;
     }
 
