@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'reactstrap';
 
-import { makeFormElements } from './form-element';
+import { FormElement } from './form-element';
 
 const elementsOfFormSignUp = [
   {
@@ -43,6 +43,17 @@ const elementsOfFormSignUp = [
 
 export const FormSignUp = () => (
   <Form>
-    {makeFormElements(elementsOfFormSignUp)}
+    {elementsOfFormSignUp.map(({
+      id, name, label, placeholder, type,
+    }) => (
+      <FormElement
+        id={id}
+        key={id}
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        type={type}
+      />
+    ))}
   </Form>
 );
