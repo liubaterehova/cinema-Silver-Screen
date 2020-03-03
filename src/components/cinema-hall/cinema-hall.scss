@@ -1,0 +1,9 @@
+@import '../../customizations/colors/colors.scss';
+@import '../../customizations/typography.scss';
+
+.hall {
+  .number-row {
+    color: $french-gray;
+    font-weight: $font-weight-bold;
+  }
+}
