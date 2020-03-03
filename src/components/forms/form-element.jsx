@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import R from 'ramda';
 
 import {
   FormGroup, Label, Input,
@@ -29,15 +28,3 @@ FormElement.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-export const makeFormElements = R.map(({
-  id, name, label, placeholder, type,
-}) => (
-  <FormElement
-    id={id}
-    key={id}
-    name={name}
-    label={label}
-    placeholder={placeholder}
-    type={type}
-  />
-));
