@@ -1,1 +1,40 @@
+@import "../../customizations/colors/colors.scss";
+@import "../../customizations/colors/backgrounds.scss";
+@import "../../customizations/typography.scss";
+
+.main-content {
+  color: $french-gray;
+
+  .filter-films {
+
+    table {
+      font-size: $text-size-header-table;
+
+      td {
+        color: $french-gray;
+        width: 20%;
+      }
+    }
+  }
+
+  .list-films {
+
+    .col {
+
+      .card {
+        border: none;
+        background-color: $shark-color;
+
+        .card-img {
+            height: 360px;
+            border-radius: 15px;
+        }
+
+        .card-body {
+          color: $french-gray;
+        }
+      }
+    }
+  }
+}
 

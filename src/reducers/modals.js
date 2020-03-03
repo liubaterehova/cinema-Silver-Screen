@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+
 import {
   openModal, toggleModal, closeAllModals,
 } from '../actions/modals';
