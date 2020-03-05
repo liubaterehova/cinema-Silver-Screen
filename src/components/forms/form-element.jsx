@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {
   FormGroup, Label, Input,
 } from 'reactstrap';
@@ -27,4 +26,3 @@ FormElement.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
-

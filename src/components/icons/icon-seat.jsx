@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Seat = () => (
+export const IconSeat = () => (
   <svg x="583" y="1300" width="37" height="45" type="standard" id="seat-7453242">
     <rect fill="transparent" stroke="none" width="69" height="82.5" />
     <g transform="rotate(0 41.25 34.5)" height="82.5" width="69">
