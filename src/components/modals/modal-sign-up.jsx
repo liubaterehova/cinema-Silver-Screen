@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { ModalWindow } from './modals';
 import { FormSignUp } from '../forms/form-sign-up';
 

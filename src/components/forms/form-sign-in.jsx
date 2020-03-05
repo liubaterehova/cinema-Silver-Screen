@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Form } from 'reactstrap';
 
 import { FormElement } from './form-element';

@@ -1,0 +1,20 @@
+@import '../../customizations/colors/colors.scss';
+
+.header {
+  color: $french-gray;
+}
+
+.icon-close {
+  width: 30px;
+  height: 30px;
+  background: url('/assets/public/png/close.png') no-repeat;
+  background-size: cover;
+}
+
+.icon-left-arrow {
+  width: 30px;
+  height: 30px;
+  background: url('/assets/public/png/icon-left.png') no-repeat;
+  background-size: cover;
+}
+
