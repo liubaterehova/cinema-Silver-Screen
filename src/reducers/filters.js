@@ -3,22 +3,45 @@ import { handleActions } from 'redux-actions';
 import {
   filterFilms,
 } from '../actions/filters';
-import { films } from '../constants';
+import { films, cinemas } from '../constants';
 
 const defaultState = {
-  films,
+  allFilms: films,
+  films: [...films],
 };
 
-const selectFilms = (selectedMenu) => films.filter(film => {
-  if (selectedMenu[1] === 'Город' || film.city === selectedMenu[1]) return true;
+const selectFilmByProperty = (filmsArr, selectedMenu, property) =>
+  (!selectedMenu[property])
+    ? filmsArr
+    : filmsArr.filter(film =>
+      film[property] === selectedMenu[property]);
 
-  return false;
-});
+const sortFilmsByCinema = (filmsArr, cinemaName) =>
+  (!cinemaName)
+    ? filmsArr
+    : filmsArr.filter(film =>
+      cinemas[film.cinemaId].name === cinemaName);
+
+const selectFilms = (state, selectedMenu) => {
+  const selectedByCity = selectFilmByProperty(state.allFilms, selectedMenu, 'city');
+
+  const selectedByDate = selectFilmByProperty(selectedByCity, selectedMenu, 'date');
+
+  const selectedByFilms = sortFilmsByCinema(selectedByDate, selectedMenu.cinema);
+
+  return [...selectedByFilms];
+};
+
+//     const selectFilms = (state, selectedMenu) =>
+// (!selectedMenu.city)
+//   ? state.allFilms
+//   : state.allFilms.filter(film =>
+//     film.city === selectedMenu.city);
 
 export const filters = handleActions(
   {
     [filterFilms]: (state, { payload: { selectedMenu } }) => ({
-      ...state, films: selectFilms(selectedMenu),
+      ...state, films: selectFilms(state, selectedMenu),
     }),
   }, defaultState,
 );

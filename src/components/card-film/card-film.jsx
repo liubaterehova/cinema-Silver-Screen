@@ -19,11 +19,9 @@ export const CardFilm = ({
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
-        <Button>
-          <Link to={`/films/${id}`}>
-            Купить
-          </Link>
-        </Button>
+        <Link to={`/films/${id}`} component={Button}>
+          Купить
+        </Link>
       </CardBody>
     </Card>
   </CardBody>

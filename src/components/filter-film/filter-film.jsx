@@ -7,20 +7,47 @@ import { IconArrow } from '../icons/icon-arrow';
 import { filters } from '../../constants';
 import { useFilms } from '../../hooks/use-films';
 
+const defaultStateSelectedMenu = {
+  city: '',
+  cinema: '',
+  date: '',
+  time: '',
+  availableSeats: '',
+};
+
+const getDefaultFilterValue = (filterName) => {
+  switch (filterName) {
+    case 'city':
+      return 'Город';
+
+    case 'cinema':
+      return 'Все кинотеатры';
+
+    case 'date':
+      return 'Сегодня';
+
+    case 'time':
+      return 'Все сеансы';
+
+    case 'availableSeats':
+      return 'Свободные места';
+    default:
+      return null;
+  }
+};
+
 export const FilterFilms = () => {
-  const [selectedMenu, selectMenu] = useState({
-    1: 'Город', 2: 'Все кинотеатры', 3: 'Сегодня', 4: 'Все сеансы', 5: 'Свободные места',
-  });
-  const { dispatchFilterFilms } = useFilms(selectedMenu);
+  const [selectedMenu, selectMenu] = useState(defaultStateSelectedMenu);
+  const { dispatchFilterFilms } = useFilms();
   const [dropdownOpen, setDropdownOpen] = useState({});
 
-  const toggle = (id) => {
-    setDropdownOpen((state) => ({ ...state, [id]: !state[id] }));
+  const toggle = (filterName) => {
+    setDropdownOpen((state) => ({ ...state, [filterName]: !state[filterName] }));
   };
 
-  const selectItem = (id, item) => {
-    dispatchFilterFilms(selectedMenu);
-    selectMenu((state) => ({ ...state, [id]: item }));
+  const selectItem = (filterName, item) => {
+    dispatchFilterFilms({ ...selectedMenu, [filterName]: item });
+    selectMenu((state) => ({ ...state, [filterName]: item }));
   };
 
   return (
@@ -33,24 +60,25 @@ export const FilterFilms = () => {
       >
         <tbody>
           <tr>
-            {filters.map(({ id, items }) => (
-              <td key={id}>
+            {filters.map(({ filterName, items }) => (
+              <td key={filterName}>
                 <Row className="justify-content-md-center">
                   <Col md={8} className="w-25">
-                    {selectedMenu[id]}
+                    {selectedMenu[filterName] || getDefaultFilterValue(filterName)}
                   </Col>
                   <Col md={4}>
-                    <Dropdown isOpen={dropdownOpen[id]} toggle={() => toggle(id)}>
+                    <Dropdown isOpen={dropdownOpen[filterName]} toggle={() => toggle(filterName)}>
                       <DropdownToggle caret>
                         <IconArrow />
                       </DropdownToggle>
                       <DropdownMenu>
                         {
-                          items.map((item) => (
+                          items.map(({ id, name }) => (
                             <DropdownItem
-                              key={item}
-                              onClick={() => { selectItem(id, item); }}
-                            >{item}
+                              key={id}
+                              onClick={() => { selectItem(filterName, name); }}
+                            >
+                              <p>{name}</p>
                             </DropdownItem>
                           ))
                         }
@@ -66,4 +94,3 @@ export const FilterFilms = () => {
     </div>
   );
 };
-

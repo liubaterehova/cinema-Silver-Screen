@@ -4,12 +4,12 @@ import {
   filterFilms,
 } from '../actions/filters';
 
-export const useFilms = (selectedMenu) => {
+export const useFilms = () => {
   const filmsSelected = useSelector(state => state.filters.films);
 
   const dispatch = useDispatch();
 
-  const dispatchFilterFilms = () => {
+  const dispatchFilterFilms = (selectedMenu) => {
     dispatch(filterFilms({ selectedMenu }));
   };
 
