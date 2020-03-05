@@ -1,6 +1,6 @@
 @import '../../customizations/colors/colors.scss';
 
-.position-relative {
+.selected-film {
 
   &:after {
     content: '';
@@ -23,7 +23,6 @@
   .icon-film-img {
     width: 55px;
     height: 80px;
-    background-image: url('/assets/public/png/harlyQuin.png');
     background-size: cover;
   }
 }

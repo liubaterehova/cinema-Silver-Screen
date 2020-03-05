@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-
 import {
   Button, Col, Form, Row, NavbarBrand,
 } from 'reactstrap';
