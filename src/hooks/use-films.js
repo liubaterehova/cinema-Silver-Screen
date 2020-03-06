@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -7,6 +8,7 @@ import {
 export const useFilms = () => {
   const filmsSelected = useSelector(state => state.filters.films);
 
+  console.log(filmsSelected);
   const dispatch = useDispatch();
 
   const dispatchFilterFilms = (selectedMenu) => {

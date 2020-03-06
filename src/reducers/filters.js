@@ -14,7 +14,7 @@ const selectFilmByProperty = (filmsArr, selectedMenu, property) =>
   (!selectedMenu[property])
     ? filmsArr
     : filmsArr.filter(film =>
-      film[property] === selectedMenu[property]);
+      film[property] === selectedMenu[property].name);
 
 const sortFilmsByCinema = (filmsArr, cinemaName) =>
   (!cinemaName)

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 
@@ -10,6 +11,7 @@ export const Films = () => {
   return (
     <div className="list-films w-100">
       <Row>
+        {console.log('filmsSelectedInFilms', filmsSelected)}
         {filmsSelected.map(({
           name, type, id, src, cinemaId,
         }) => (

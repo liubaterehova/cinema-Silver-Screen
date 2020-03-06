@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, Button,
+  CardTitle,
 } from 'reactstrap';
 
 import './card-film.scss';
@@ -21,7 +21,7 @@ export const CardFilm = ({
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
-        <Link component={Button} to={`/films/${id}`}>
+        <Link to={`/films/${id}`}>
           Купить
         </Link>
       </CardBody>

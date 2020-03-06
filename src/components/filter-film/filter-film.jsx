@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import {
   Table, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
@@ -37,17 +38,15 @@ const getDefaultFilterValue = (filterName) => {
 };
 
 export const FilterFilms = () => {
-  const [selectedMenu, selectMenu] = useState(defaultStateSelectedMenu);
   const { dispatchFilterFilms } = useFilms();
+  const [selectedMenu, selectMenu] = useState(defaultStateSelectedMenu);
   const [dropdownOpen, setDropdownOpen] = useState({});
-
-  const toggle = (filterName) => {
-    setDropdownOpen((state) => ({ ...state, [filterName]: !state[filterName] }));
-  };
-
   const selectItem = (filterName, item) => {
     dispatchFilterFilms({ ...selectedMenu, [filterName]: item });
     selectMenu((state) => ({ ...state, [filterName]: item }));
+  };
+  const toggle = (filterName) => {
+    setDropdownOpen((state) => ({ ...state, [filterName]: !state[filterName] }));
   };
 
   return (
@@ -60,6 +59,7 @@ export const FilterFilms = () => {
       >
         <tbody>
           <tr>
+            { console.log('filters', filters)}
             {filters.map(({ filterName, items }) => (
               <td key={filterName}>
                 <Row className="justify-content-md-center">
@@ -73,12 +73,12 @@ export const FilterFilms = () => {
                       </DropdownToggle>
                       <DropdownMenu>
                         {
-                          items.map(({ id, name }) => (
+                          items.map((item) => (
                             <DropdownItem
-                              key={id}
-                              onClick={() => { selectItem(filterName, name); }}
+                              key={item.id}
+                              onClick={() => { selectItem(filterName, item); }}
                             >
-                              <p>{name}</p>
+                              <p>{item.name}</p>
                             </DropdownItem>
                           ))
                         }
