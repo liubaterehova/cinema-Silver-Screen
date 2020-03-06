@@ -22,21 +22,22 @@ const sortFilmsByCinema = (filmsArr, cinemaName) =>
     : filmsArr.filter(film =>
       cinemas[film.cinemaId].name === cinemaName);
 
+const sortFilmsByTime = (filmsArr, selectedTime) =>
+  (!selectedTime)
+    ? filmsArr
+    : filmsArr.filter(film =>
+      (film.hour > selectedTime.from) && (film.time <= selectedTime.to));
+
 const selectFilms = (state, selectedMenu) => {
   const selectedByCity = selectFilmByProperty(state.allFilms, selectedMenu, 'city');
 
   const selectedByDate = selectFilmByProperty(selectedByCity, selectedMenu, 'date');
 
   const selectedByFilms = sortFilmsByCinema(selectedByDate, selectedMenu.cinema);
+  const selectedByTime = sortFilmsByTime(selectedByFilms, selectedMenu.time);
 
-  return [...selectedByFilms];
+  return [...selectedByTime];
 };
-
-//     const selectFilms = (state, selectedMenu) =>
-// (!selectedMenu.city)
-//   ? state.allFilms
-//   : state.allFilms.filter(film =>
-//     film.city === selectedMenu.city);
 
 export const filters = handleActions(
   {

@@ -6,6 +6,8 @@ import {
   CardTitle, Button,
 } from 'reactstrap';
 
+import './card-film.scss';
+
 export const CardFilm = ({
   name, type, src, id,
 }) => (
@@ -19,7 +21,7 @@ export const CardFilm = ({
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
-        <Link to={`/films/${id}`} component={Button}>
+        <Link component={Button} to={`/films/${id}`}>
           Купить
         </Link>
       </CardBody>
