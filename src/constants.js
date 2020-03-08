@@ -4,6 +4,24 @@ export const MODAL_WINDOW = {
   SIGN_UP: 'signUp',
 };
 
+export const CITY_CODE = {
+  ALL: 'ALL',
+  MSK: 'MSK',
+  VTB: 'VTB',
+};
+
+export const CINEMA_CODE = {
+  ALL: 'ALL',
+  GALILEO: 'GALILEO',
+  VOKA: 'VOKA',
+};
+
+export const DATE_CODE = {
+  ALL: 'ALL',
+  TOMORROW: 'TOMORROW',
+  DAY_AFTER_TOMORROW: 'DAYAFTERTOMORROW',
+};
+
 export const films = [
   {
     id: 1,
@@ -11,7 +29,9 @@ export const films = [
     name: 'Форест Гамп',
     type: 'Драма',
     city: 'Минск',
-    date: 'Завтра',
+    cityCode: CITY_CODE.MSK,
+    date: 'завтра',
+    dateCode: DATE_CODE.TOMORROW,
     description: `От лица главного героя Форреста Гампа, слабоумного безобидного человека с благородным и открытым сердцем,
     рассказывается история его необыкновенной жизни.
     Фантастическим образом превращается он в известного футболиста, героя войны,
@@ -29,7 +49,9 @@ export const films = [
     name: 'Харли Квинн',
     type: 'Комедия',
     city: 'Минск',
-    date: 'Завтра',
+    cityCode: CITY_CODE.MSK,
+    date: 'завтра',
+    dateCode: DATE_CODE.TOMORROW,
     description: `Харли Квинн — персонаж, суперзлодейка,
     позже антигерой вселенной DC Comics, первоначально появившаяся в мультсериале «Бэтмен» 1992 года,
     позже была перенесена в комиксы. Она является главной сподвижницей Джокера, по этой же причине ненавидит
@@ -46,7 +68,9 @@ export const films = [
     name: 'Офицер и шпион',
     type: 'Драма',
     city: 'Минск',
-    date: 'Послезавтра',
+    cityCode: CITY_CODE.MSK,
+    date: 'послезавтра',
+    dateCode: DATE_CODE.DAY_AFTER_TOMORROW,
     description: `Сотрудник французской спецслужбы капитан Дрейфус объявлен особо опасным преступником.
     Официальное обвинение — государственная измена и шпионаж в пользу Германии. Бывший наставник Дрейфуса
     Жорж Пикар ведет собственное расследование:
@@ -64,7 +88,9 @@ export const films = [
     name: 'Паразиты',
     type: 'Драма',
     city: 'Витебск',
+    cityCode: CITY_CODE.VTB,
     date: 'завтра',
+    dateCode: DATE_CODE.TOMORROW,
     description: `Обычное корейское семейство Кимов жизнь не балует. Приходится жить в сыром грязном полуподвале,
     воровать интернет у соседей и перебиваться случайными подработками. Однажды друг сына семейства, уезжая на
     стажировку за границу, предлагает тому заменить его и поработать репетитором у старшеклассницы в богатой семье Пак.
@@ -83,12 +109,14 @@ export const cinemas = {
     name: 'Galileo',
     cinemaName: 'Silver Screen cinemas в ТРЦ "Galileo',
     address: 'г.Минск, ул. Бобруйская, 6',
+    cinemaCode: CINEMA_CODE.GALILEO,
   },
   2: {
     id: 2,
     name: 'VOKA CINEMA',
     cinemaName: 'VOKA CINEMA by SilverScreen в ТРЦ Dana Mall',
     address: 'г.Минск, ул. Петра Мстиславца, 11',
+    cinemaCode: CINEMA_CODE.VOKA,
   },
 };
 
@@ -96,41 +124,63 @@ export const filters = [
   {
     id: 1,
     filterName: 'city',
-    filter: 'Город',
-    items: [{ id: 1, name: 'Минск' }, { id: 2, name: 'Витебск' }],
+    defaultValue: 'Город',
+    items: [
+      { id: 1, name: 'Все города', code: CITY_CODE.ALL },
+      { id: 2, name: 'Минск', code: CITY_CODE.MSK },
+      { id: 3, name: 'Витебск', code: CITY_CODE.VTB },
+    ],
   },
   {
     id: 2,
     filterName: 'cinema',
-    filter: 'Все кинотеатры',
-    items: [{ id: 1, name: 'Galileo' }, { id: 2, name: 'VOKA CINEMA' }],
+    defaultValue: 'Все кинотеатры',
+    items: [
+      { id: 1, name: 'Все кинотеатры', code: CINEMA_CODE.ALL },
+      { id: 2, name: 'Galileo', code: CINEMA_CODE.GALILEO },
+      { id: 3, name: 'VOKA CINEMA', code: CINEMA_CODE.VOKA },
+    ],
   },
   {
     id: 3,
     filterName: 'date',
-    filter: 'Сегодня',
-    items: [{ id: 1, name: 'Завтра' }, { id: 2, name: 'Послезавтра' }],
+    defaultValue: 'Всегда',
+    items: [
+      { id: 1, name: 'Всегда', code: DATE_CODE.ALL },
+      { id: 2, name: 'Послезавтра', code: DATE_CODE.DAY_AFTER_TOMORROW },
+      { id: 3, name: 'Завтра', code: DATE_CODE.TOMORROW },
+    ],
   },
   {
     id: 4,
     filterName: 'time',
-    filter: 'Все сеансы',
-    items: [{
-      id: 1,
-      from: 7,
-      to: 16,
-      name: '07:00 - 16:00',
-    }, {
-      id: 2,
-      from: 16,
-      to: 22,
-      name: '16:00 - 22:00',
-    }],
+    defaultValue: 'Все сеансы',
+    items: [
+      {
+        id: 1,
+        from: 0,
+        to: 24,
+        name: 'Все время',
+      },
+      {
+        id: 2,
+        from: 7,
+        to: 16,
+        name: '07:00 - 16:00',
+      }, {
+        id: 3,
+        from: 16,
+        to: 22,
+        name: '16:00 - 22:00',
+      }],
   },
   {
     id: 5,
     filterName: 'availableSeats',
-    filter: 'Свободные места',
-    items: [{ id: 1, name: '>1' }, { id: 2, name: '>4' }],
+    defaultValue: 'Свободные места',
+    items: [
+      { id: 1, name: '>=1', number: 1 },
+      { id: 2, name: '>4', number: 4 },
+    ],
   },
 ];
