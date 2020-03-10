@@ -9,7 +9,7 @@ export const ModalSignUp = ({
   isOpen, onClose, toggle,
 }) => {
   const {
-    register, errors, handleSubmit, control, formState,
+    register, errors, handleSubmit, control, formState, watch,
   } = useForm({ mode: 'onBlur' });
 
   return (
@@ -24,7 +24,7 @@ export const ModalSignUp = ({
       isButtonRightDisable={!(formState.touched && formState.isValid)}
       buttonRightHandleClick={onClose}
     >
-      <FormSignUp onSubmit={handleSubmit(() => {})} register={register} errors={errors} control={control} />
+      <FormSignUp onSubmit={handleSubmit(() => {})} register={register} errors={errors} control={control} watch={watch} />
     </ModalWindow>
   );
 };

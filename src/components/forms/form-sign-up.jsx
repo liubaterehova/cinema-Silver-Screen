@@ -1,10 +1,9 @@
 import React from 'react';
 import { Form } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
 import { FormElement } from './form-element';
 
-const elementsOfFormSignUp = [
+const makeElementsOfFormSignUp = (watch) => [
   {
     id: 0,
     name: 'name',
@@ -47,49 +46,41 @@ const elementsOfFormSignUp = [
     label: 'Повторите пароль',
     placeholder: 'password',
     type: 'password',
-    rulesValidation: false,
+    rulesValidation: {
+      required: true,
+      validate: value => value === watch('signUpPassword'),
+    },
     errorMessage: 'Please repeat password',
   },
 ];
 
 export const FormSignUp = ({
-  errors, onSubmit, register, control,
-}) => {
-  const { watch } = useForm();
-  const validationForPassword = {
-    validate: value => {
-      // eslint-disable-next-line no-console
-      console.log(value);
-
-      return value === watch('signUpPassword');
-    },
-  };
-
-  return (
-    <Form onSubmit={onSubmit}>
-      {elementsOfFormSignUp.map(({
-        id, name, label, placeholder, type, errorMessage, rulesValidation,
-      }) => (
-        <FormElement
-          id={id}
-          rules={rulesValidation || validationForPassword}
-          key={id}
-          name={name}
-          label={label}
-          placeholder={placeholder}
-          type={type}
-          error={errors[name]}
-          errorMessage={errorMessage}
-          register={register}
-          control={control}
-          watch={watch}
-        />
-      ))}
-    </Form>
-  );
-};
+  errors, onSubmit, register, control, watch,
+}) => (
+  <Form onSubmit={onSubmit}>
+    {makeElementsOfFormSignUp(watch).map(({
+      id, name, label, placeholder, type, errorMessage, rulesValidation,
+    }) => (
+      <FormElement
+        id={id}
+        rules={rulesValidation}
+        key={id}
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        type={type}
+        error={errors[name]}
+        errorMessage={errorMessage}
+        register={register}
+        control={control}
+        watch={watch}
+      />
+    ))}
+  </Form>
+);
 
 FormSignUp.propTypes = {
+  watch: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   control: PropTypes.object.isRequired,
