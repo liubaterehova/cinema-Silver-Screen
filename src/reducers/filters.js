@@ -96,3 +96,26 @@ console.log('sorted', sorted.length);
 //     sorted.push(item);
 //   }
 // }, films);
+const whereObj = {};
+
+if (selectedMenu.city) {
+  whereObj.city = R.equals(selectedMenu.city);
+}
+
+if (selectedMenu.date) {
+  whereObj.date = R.equals(selectedMenu.date);
+}
+
+if (selectedMenu.hour) {
+  whereObj.hour = R.both(R.gt(R.__, selectedMenu.from),  R.lte(R.__, selectedMenu.to));
+}
+
+const sorted = [];
+const filterByCityDate = R.forEach((film) => {
+    const sortFilm = R.where(whereObj);
+    if (sortFilm(film)) {
+      sorted.push(film);
+    }
+
+});
+filterByCityDate(films);
