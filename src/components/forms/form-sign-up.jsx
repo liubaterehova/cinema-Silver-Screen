@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import { FormElement } from './form-element';
 
@@ -41,20 +42,28 @@ const elementsOfFormSignUp = [
   },
 ];
 
-export const FormSignUp = () => (
-  <Form>
+export const FormSignUp = ({ errors, onSubmit, ...other }) => (
+  <Form onSubmit={onSubmit}>
     {elementsOfFormSignUp.map(({
       id, name, label, placeholder, type,
     }) => (
       <FormElement
         id={id}
+        rules={{ required: true }}
         key={id}
         name={name}
         label={label}
         placeholder={placeholder}
         type={type}
+        error={errors[name]}
+        {...other}
       />
     ))}
   </Form>
 );
+
+FormSignUp.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.shape({ signInEmail: PropTypes.bool, signUpEmail: PropTypes.bool }).isRequired,
+};
 

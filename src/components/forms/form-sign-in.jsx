@@ -21,26 +21,28 @@ const elementsOfFormSignIn = [
   },
 ];
 
-export const FormSignIn = ({ register, errors }) => (
-  <Form>
+export const FormSignIn = ({ errors, onSubmit, ...other }) => (
+  <Form onSubmit={onSubmit}>
     {elementsOfFormSignIn.map(({
       id, name, label, placeholder, type,
     }) => (
       <FormElement
         id={id}
-        register={register}
+        rules={{ required: true }}
         key={id}
         name={name}
         label={label}
         placeholder={placeholder}
         type={type}
-        errors={errors}
+        error={errors[name]}
+        {...other}
       />
     ))}
   </Form>
 );
 
 FormSignIn.propTypes = {
-  errors: PropTypes.string.isRequired,
-  register: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.shape({ signInEmail: PropTypes.bool, signUpEmail: PropTypes.bool }).isRequired,
 };
+
