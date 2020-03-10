@@ -32,10 +32,3 @@ export const seatsFilterType = PropTypes.exact({
   number: PropTypes.number,
 });
 
-export const anyFilterType = PropTypes.oneOfType([
-  cityFilterType,
-  cinemaFilterType,
-  dateFilterType,
-  timeFilterType,
-  seatsFilterType,
-]);

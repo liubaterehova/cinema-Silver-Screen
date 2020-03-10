@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 
 import {
   filterFilms,
-} from '../actions/filters';
+} from '../actions/film-filters';
 import { films } from '../constants';
 import {
   sortFilmsBySeats, sortFilmsByTime, sortFilmsByCinema, sortFilmsByCity, sortFilmsByDate,
@@ -10,7 +10,7 @@ import {
 
 const defaultState = {
   allFilms: films,
-  sortedFilms: films,
+  sortedFilms: [],
 };
 
 const selectFilms = (state, selectedMenu) => {

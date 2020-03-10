@@ -2,10 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   filterFilms,
-} from '../actions/filters';
+} from '../actions/film-filters';
 
 export const useFilms = () => {
-  const filmsSelected = useSelector(state => state.filters.sortedFilms);
+  const selectedFilms = useSelector(({ filters: { sortedFilms } }) => sortedFilms);
 
   const dispatch = useDispatch();
 
@@ -13,8 +13,8 @@ export const useFilms = () => {
     dispatch(filterFilms({ selectedMenu }));
   };
 
-  return ({
+  return {
     dispatchFilterFilms,
-    filmsSelected,
-  });
+    selectedFilms,
+  };
 };

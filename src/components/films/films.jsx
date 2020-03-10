@@ -3,14 +3,16 @@ import { Row, Col } from 'reactstrap';
 
 import { useFilms } from '../../hooks/use-films';
 import { CardFilm } from '../card-film/card-film';
+import { films } from '../../constants';
 
 export const Films = () => {
-  const { filmsSelected } = useFilms();
+  const { selectedFilms } = useFilms();
+  const sortedFilms = selectedFilms.length || films;
 
   return (
     <div className="list-films w-100">
       <Row>
-        {filmsSelected.map(({
+        {sortedFilms.map(({
           name, type, id, src, cinemaId,
         }) => (
           <Col key={id}>

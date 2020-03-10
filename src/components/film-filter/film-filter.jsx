@@ -4,7 +4,6 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { anyFilterType } from '../../types/filterTypes';
 import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
 import { IconArrow } from '../icons/icon-arrow';
 
@@ -43,8 +42,8 @@ export const FilmFilter = ({
 
 FilmFilter.propTypes = {
   defaultValue: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(anyFilterType).isRequired,
-  selectedFilterItem: anyFilterType,
+  items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  selectedFilterItem: PropTypes.arrayOf(PropTypes.shape({})),
   selectItem: PropTypes.func.isRequired,
 };
 
