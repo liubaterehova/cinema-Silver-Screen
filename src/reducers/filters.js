@@ -10,7 +10,7 @@ import {
 
 const defaultState = {
   allFilms: films,
-  films: [...films],
+  sortedFilms: films,
 };
 
 const selectFilms = (state, selectedMenu) => {
@@ -26,7 +26,7 @@ const selectFilms = (state, selectedMenu) => {
 export const filters = handleActions(
   {
     [filterFilms]: (state, { payload: { selectedMenu } }) => ({
-      ...state, films: selectFilms(state, selectedMenu),
+      ...state, sortedFilms: selectFilms(state, selectedMenu),
     }),
   }, defaultState,
 );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
 import { useFilms } from '../../hooks/use-films';
-import { FilterFilm } from '../filter-film/filter-film';
+import { FilmFilter } from '../film-filter/film-filter';
 import { filters } from '../../constants';
 
 const defaultStateSelectedMenu = {
@@ -13,7 +13,7 @@ const defaultStateSelectedMenu = {
   availableSeats: null,
 };
 
-export const FiltersFilms = () => {
+export const MenuFilters = () => {
   const [selectedMenu, selectMenu] = useState(defaultStateSelectedMenu);
   const { dispatchFilterFilms } = useFilms();
   // made nested function to closure filterName
@@ -36,7 +36,7 @@ export const FiltersFilms = () => {
               id, filterName, defaultValue, items,
             }) => (
               <td key={id}>
-                <FilterFilm
+                <FilmFilter
                   selectedFilterItem={selectedMenu[filterName]}
                   defaultValue={defaultValue}
                   selectItem={makeItemSelector(filterName)}

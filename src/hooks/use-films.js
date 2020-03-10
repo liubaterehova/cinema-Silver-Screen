@@ -5,7 +5,7 @@ import {
 } from '../actions/filters';
 
 export const useFilms = () => {
-  const filmsSelected = useSelector(state => state.filters.films);
+  const filmsSelected = useSelector(state => state.filters.sortedFilms);
 
   const dispatch = useDispatch();
 

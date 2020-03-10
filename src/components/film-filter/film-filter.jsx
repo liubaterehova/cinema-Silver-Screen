@@ -8,7 +8,7 @@ import { anyFilterType } from '../../types/filterTypes';
 import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
 import { IconArrow } from '../icons/icon-arrow';
 
-export const FilterFilm = ({
+export const FilmFilter = ({
   items, selectedFilterItem, defaultValue, selectItem,
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -41,13 +41,13 @@ export const FilterFilm = ({
   );
 };
 
-FilterFilm.propTypes = {
+FilmFilter.propTypes = {
   defaultValue: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(anyFilterType).isRequired,
   selectedFilterItem: anyFilterType,
   selectItem: PropTypes.func.isRequired,
 };
 
-FilterFilm.defaultProps = {
+FilmFilter.defaultProps = {
   selectedFilterItem: null,
 };
