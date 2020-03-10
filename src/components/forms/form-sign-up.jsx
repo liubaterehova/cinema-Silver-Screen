@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { watch } from 'react-hook-form';
 
 import { FormElement } from './form-element';
 
@@ -11,6 +12,8 @@ const elementsOfFormSignUp = [
     label: 'Ваше имя',
     placeholder: 'имя',
     type: 'text',
+    rulesValidation: { required: true },
+    errorMessage: 'Please enter name',
   },
   {
     id: 1,
@@ -18,6 +21,8 @@ const elementsOfFormSignUp = [
     label: 'Номер телефона',
     placeholder: 'number',
     type: 'number',
+    rulesValidation: { required: true },
+    errorMessage: 'Please enter number',
   },
   {
     id: 2,
@@ -25,6 +30,8 @@ const elementsOfFormSignUp = [
     label: 'Email',
     placeholder: 'email',
     type: 'email',
+    rulesValidation: { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ },
+    errorMessage: 'Please enter correct email',
   },
   {
     id: 3,
@@ -32,38 +39,51 @@ const elementsOfFormSignUp = [
     label: 'Пароль',
     placeholder: 'password',
     type: 'password',
+    rulesValidation: { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/ },
+    errorMessage: 'Please enter password that contain at least 1 lowercase, 1 uppercase, 1 numeric, minimum  8 symbols',
   },
   {
     id: 4,
-    name: 'signUpPassword',
+    name: 'signUpPasswordRepeat',
     label: 'Повторите пароль',
     placeholder: 'password',
     type: 'password',
+    rulesValidation: { required: true, validate: (value) => watch('signUpPassword') === value },
+    errorMessage: 'Please repeat password',
   },
 ];
 
-export const FormSignUp = ({ errors, onSubmit, ...other }) => (
+export const FormSignUp = ({
+  errors, onSubmit, register, control,
+}) => (
   <Form onSubmit={onSubmit}>
     {elementsOfFormSignUp.map(({
-      id, name, label, placeholder, type,
+      id, name, label, placeholder, type, errorMessage, rulesValidation,
     }) => (
       <FormElement
         id={id}
-        rules={{ required: true }}
+        rules={rulesValidation}
         key={id}
         name={name}
         label={label}
         placeholder={placeholder}
         type={type}
         error={errors[name]}
-        {...other}
+        errorMessage={errorMessage}
+        register={register}
+        control={control}
       />
     ))}
   </Form>
 );
 
 FormSignUp.propTypes = {
+  register: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  control: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  errors: PropTypes.shape({ signInEmail: PropTypes.bool, signUpEmail: PropTypes.bool }).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  errors: PropTypes.any.isRequired,
+  // errors: PropTypes.shape({ signInEmail: PropTypes.object, signUpEmail: PropTypes.object }).isRequired,
 };
 

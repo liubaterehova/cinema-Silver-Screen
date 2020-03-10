@@ -10,7 +10,7 @@ export const ModalSignUp = ({
 }) => {
   const {
     register, errors, handleSubmit, control, formState,
-  } = useForm({ mode: 'onChange' });
+  } = useForm({ mode: 'onBlur' });
 
   return (
     <ModalWindow

@@ -11,6 +11,8 @@ const elementsOfFormSignIn = [
     label: 'Email',
     placeholder: 'email',
     type: 'email',
+    rulesValidation: { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ },
+    errorMessage: 'Please enter correct email',
   },
   {
     id: 1,
@@ -18,24 +20,30 @@ const elementsOfFormSignIn = [
     label: 'Пароль',
     placeholder: 'password',
     type: 'password',
+    rulesValidation: { required: true },
+    errorMessage: 'Please enter password',
   },
 ];
 
-export const FormSignIn = ({ errors, onSubmit, ...other }) => (
+export const FormSignIn = ({
+  errors, onSubmit, register, control,
+}) => (
   <Form onSubmit={onSubmit}>
     {elementsOfFormSignIn.map(({
-      id, name, label, placeholder, type,
+      id, name, label, placeholder, type, rulesValidation, errorMessage,
     }) => (
       <FormElement
         id={id}
-        rules={{ required: true }}
+        rules={rulesValidation}
         key={id}
         name={name}
         label={label}
         placeholder={placeholder}
         type={type}
         error={errors[name]}
-        {...other}
+        register={register}
+        control={control}
+        errorMessage={errorMessage}
       />
     ))}
   </Form>
@@ -44,5 +52,8 @@ export const FormSignIn = ({ errors, onSubmit, ...other }) => (
 FormSignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.shape({ signInEmail: PropTypes.bool, signUpEmail: PropTypes.bool }).isRequired,
+  register: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  control: PropTypes.object.isRequired,
 };
 

@@ -6,7 +6,7 @@ import {
 import { Controller } from 'react-hook-form';
 
 export const FormElement = ({
-  id, name, label, placeholder, type, rules, error, control,
+  id, name, label, placeholder, type, rules, error, control, errorMessage,
 }) => (
   <FormGroup>
     <Label for={name}>{label}</Label>
@@ -19,12 +19,14 @@ export const FormElement = ({
       placeholder={placeholder}
       rules={rules}
     />
-    {error && 'Field is required'}
+    {error && errorMessage}
   </FormGroup>
 );
 
 FormElement.propTypes = {
-  error: PropTypes.bool,
+  errorMessage: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  error: PropTypes.any.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   rules: PropTypes.object.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
@@ -36,6 +38,3 @@ FormElement.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-FormElement.defaultProps = {
-  error: false,
-};
