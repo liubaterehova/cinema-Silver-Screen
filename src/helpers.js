@@ -56,3 +56,24 @@ export const sortFilmsBySeats = (filmsArr, seats) =>
     ? filmsArr
     : filmsArr.filter(film =>
       (film.emptySeats >= seats.number));
+
+const sortValues = [
+  { sortType: 'city', value: 'Мнск' },
+  { sortType: 'cinema', value: 'Voka' },
+];
+
+const sorted = [];
+
+const tes = R.forEach((item) => {
+  const result = sortValues.every(({ sortType, value }) => {
+    const val = R.where({ [sortType]: R.equals(value) }, item);
+
+    console.log({ [sortType]: value }, '');
+    console.log(item, 'item');
+    console.log(val, 'val');
+  });
+
+  if (result) {
+    sorted.push(item);
+  }
+}, films);

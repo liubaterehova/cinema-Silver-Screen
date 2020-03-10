@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import * as R from 'ramda';
 
 import {
   filterFilms,
@@ -30,3 +31,34 @@ export const filters = handleActions(
     }),
   }, defaultState,
 );
+
+const selectedMenu = [{ city: 'Витебск' }];
+
+const sorted = [];
+
+const filterByCityDate = R.forEach((film) => {
+  selectedMenu.every(item => {
+    const val = R.where({
+      city: R.equals(item.city),
+    });
+
+    if (val(film)) {
+      sorted.push(film);
+    }
+  });
+}, films);
+
+console.log('sorted', sorted.length);
+// const tes = R.forEach((item) => {
+//   const result = sortValues.every(({ sortType, value }) => {
+//     const val = R.where({ [sortType]: R.equals(value) }, item);
+
+//     console.log({ [sortType]: value }, '');
+//     console.log(item, 'item');
+//     console.log(val, 'val');
+//   });
+
+//   if (result) {
+//     sorted.push(item);
+//   }
+// }, films);
