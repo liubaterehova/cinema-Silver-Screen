@@ -1,8 +1,7 @@
 import React from 'react';
 import { Form } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { watch } from 'react-hook-form';
-
+import { useForm } from 'react-hook-form';
 import { FormElement } from './form-element';
 
 const elementsOfFormSignUp = [
@@ -21,7 +20,7 @@ const elementsOfFormSignUp = [
     label: 'Номер телефона',
     placeholder: 'number',
     type: 'number',
-    rulesValidation: { required: true },
+    rulesValidation: { required: true, minLength: 8 },
     errorMessage: 'Please enter number',
   },
   {
@@ -48,34 +47,47 @@ const elementsOfFormSignUp = [
     label: 'Повторите пароль',
     placeholder: 'password',
     type: 'password',
-    rulesValidation: { required: true, validate: (value) => watch('signUpPassword') === value },
+    rulesValidation: false,
     errorMessage: 'Please repeat password',
   },
 ];
 
 export const FormSignUp = ({
   errors, onSubmit, register, control,
-}) => (
-  <Form onSubmit={onSubmit}>
-    {elementsOfFormSignUp.map(({
-      id, name, label, placeholder, type, errorMessage, rulesValidation,
-    }) => (
-      <FormElement
-        id={id}
-        rules={rulesValidation}
-        key={id}
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        type={type}
-        error={errors[name]}
-        errorMessage={errorMessage}
-        register={register}
-        control={control}
-      />
-    ))}
-  </Form>
-);
+}) => {
+  const { watch } = useForm();
+  const validationForPassword = {
+    validate: value => {
+      // eslint-disable-next-line no-console
+      console.log(value);
+
+      return value === watch('signUpPassword');
+    },
+  };
+
+  return (
+    <Form onSubmit={onSubmit}>
+      {elementsOfFormSignUp.map(({
+        id, name, label, placeholder, type, errorMessage, rulesValidation,
+      }) => (
+        <FormElement
+          id={id}
+          rules={rulesValidation || validationForPassword}
+          key={id}
+          name={name}
+          label={label}
+          placeholder={placeholder}
+          type={type}
+          error={errors[name]}
+          errorMessage={errorMessage}
+          register={register}
+          control={control}
+          watch={watch}
+        />
+      ))}
+    </Form>
+  );
+};
 
 FormSignUp.propTypes = {
   register: PropTypes.func.isRequired,
