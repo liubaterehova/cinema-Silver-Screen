@@ -14,8 +14,20 @@ export const ModalWindow = ({
       {children}
     </ModalBody>
     <ModalFooter>
-      <Button color="primary" type="submit" onClick={buttonLeftHandleClick} disabled={isButtonRightDisable}>{buttonLeft}</Button>
-      <Button color="secondary" onClick={buttonRightHandleClick}>{buttonRight}</Button>
+      <Button
+        color="primary"
+        type="submit"
+        onClick={buttonLeftHandleClick}
+        disabled={isButtonRightDisable}
+      >
+        {buttonLeft}
+      </Button>
+      <Button
+        color="secondary"
+        onClick={buttonRightHandleClick}
+      >
+        {buttonRight}
+      </Button>
     </ModalFooter>
   </Modal>
 );

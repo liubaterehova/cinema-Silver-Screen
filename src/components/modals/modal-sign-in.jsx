@@ -24,7 +24,12 @@ export const ModalSignIn = ({
       isButtonRightDisable={!(formState.touched && formState.isValid)}
       buttonRightHandleClick={onClickSignUp}
     >
-      <FormSignIn onSubmit={handleSubmit(() => {})} register={register} errors={errors} control={control} />
+      <FormSignIn
+        onSubmit={handleSubmit(() => {})}
+        register={register}
+        errors={errors}
+        control={control}
+      />
     </ModalWindow>
   );
 };
