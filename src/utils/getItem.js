@@ -1,4 +1,4 @@
-import { films, cinemas } from './constants';
+import { films, cinemas } from '../constants';
 
 export const getFilm = (filmId) => {
   const {

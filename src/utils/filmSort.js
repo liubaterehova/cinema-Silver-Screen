@@ -4,8 +4,6 @@ import { CITY_CODE, DATE_CODE, CINEMA_CODE } from '../constants';
 export const filterFilmByParams = (allFilms, selectedMenu) => {
   const whereObj = {};
 
-  if (!selectedMenu) return allFilms;
-
   if (selectedMenu.city && (selectedMenu.city.code !== CITY_CODE.ALL)) {
     whereObj.cityCode = R.equals(selectedMenu.city.code);
   }

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { HeaderFilm } from '../../components/header-film/header';
 import { FilmDescription } from '../../components/film-description/film-description';
-import { getFilm, getCinema } from '../../helpers';
+import { getFilm, getCinema } from '../../utils/getItem';
 
 export const Film = () => {
   const { filmId } = useParams();

@@ -16,9 +16,7 @@ export const FormElement = (({
       placeholder={placeholder}
     />
   </FormGroup>
-)
-
-);
+));
 
 FormElement.propTypes = {
   name: PropTypes.string.isRequired,
