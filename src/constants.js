@@ -146,9 +146,9 @@ export const filters = [
     filterName: 'date',
     defaultValue: 'Всегда',
     items: [
-      { id: 1, name: 'Всегда', code: DATE_CODE.ALL },
-      { id: 2, name: 'Послезавтра', code: DATE_CODE.DAY_AFTER_TOMORROW },
-      { id: 3, name: 'Завтра', code: DATE_CODE.TOMORROW },
+      { id: 1, name: 'всегда', code: DATE_CODE.ALL },
+      { id: 2, name: 'послезавтра', code: DATE_CODE.DAY_AFTER_TOMORROW },
+      { id: 3, name: 'завтра', code: DATE_CODE.TOMORROW },
     ],
   },
   {

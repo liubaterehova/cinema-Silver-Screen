@@ -16,6 +16,7 @@ const defaultStateSelectedMenu = {
 export const MenuFilters = () => {
   const [selectedMenu, selectMenu] = useState(defaultStateSelectedMenu);
   const { dispatchFilterFilms } = useFilms();
+
   // made nested function to closure filterName
   const makeItemSelector = (filterName) => (item) => {
     dispatchFilterFilms({ ...selectedMenu, [filterName]: item });

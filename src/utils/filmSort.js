@@ -1,71 +1,42 @@
+import * as R from 'ramda';
+import { CITY_CODE, DATE_CODE, CINEMA_CODE } from '../constants';
 
-const films = [
-  {
-    id: 1,
-    name: 'Форест Гамп',
-    type: 'Драма',
-    city: 'Минск',
-    date: 'завтра',
-    cinemaId: 1,
-    cinema: 'Galileo',
-    time: '19:00',
-    hour: 19,
-    emptySeats: 10,
-  },
-  {
-    id: 2,
-    name: 'Харли Квинн',
-    type: 'Комедия',
-    city: 'Минск',
-    date: 'завтра',
-    cinemaId: 2,
-    cinema: 'Voka',
-    time: '12:00',
-    hour: 12,
-    emptySeats: 10,
+export const filterFilmByParams = (allFilms, selectedMenu) => {
+  const whereObj = {};
 
-  },
-  {
-    id: 3,
-    name: 'Офицер и шпион',
-    type: 'Драма',
-    city: 'Минск',
-    date: 'послезавтра',
-    cinemaId: 1,
-    time: '17:00',
-    hour: 17,
-    emptySeats: 2,
+  if (!selectedMenu) return allFilms;
 
-  },
-  {
-    id: 4,
-    name: 'Паразиты',
-    type: 'Драма',
-    city: 'Витебск',
-    date: 'завтра',
-    cinemaId: 2,
-    time: '15:00',
-    hour: 15,
-    emptySeats: 1,
-  },
-];
-const sortValues = [
-  { sortType: 'city', value: 'Мнск' },
-  { sortType: 'cinema', value: 'Voka' },
-];
+  if (selectedMenu.city && (selectedMenu.city.code !== CITY_CODE.ALL)) {
+    whereObj.cityCode = R.equals(selectedMenu.city.code);
+  }
 
-const sorted = [];
+  if (selectedMenu.date && (selectedMenu.date.code !== DATE_CODE.ALL)) {
+    whereObj.dateCode = R.equals(selectedMenu.date.code);
+  }
 
-const tes = R.forEach((item) => {
-  const result = sortValues.every(({ sortType, value }) => {
-    const val = R.where({ [sortType]: R.equals(value) }, item);
+  if (selectedMenu.time) {
+    whereObj.hour = R.both(R.gt(R.__, selectedMenu.time.from), R.lte(R.__, selectedMenu.time.to));
+  }
 
-    console.log({ [sortType]: value }, '');
-    console.log(item, 'item');
-    console.log(val, 'val');
+  if (selectedMenu.cinema && (selectedMenu.cinema.code !== CINEMA_CODE.ALL)) {
+    whereObj.cinemaId = R.equals(selectedMenu.cinema.code);
+  }
+
+  if (selectedMenu.availableSeats) {
+    whereObj.emptySeats = R.gte(R.__, selectedMenu.availableSeats.number);
+  }
+
+  const sorted = [];
+  const filterByParams = R.forEach((film) => {
+    const sortFilm = R.where(whereObj);
+
+    if (sortFilm(film)) {
+      sorted.push(film);
+    }
   });
 
-  if (result) {
-    sorted.push(item);
-  }
-}, films);
+  filterByParams(allFilms);
+
+  return sorted;
+};
+
