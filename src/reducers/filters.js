@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import * as R from 'ramda';
 
 import { filterFilmByParams } from '../utils/filmSort';
 import {

@@ -43,7 +43,7 @@ export const FilmFilter = ({
 FilmFilter.propTypes = {
   defaultValue: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  selectedFilterItem: PropTypes.shape({}),
+  selectedFilterItem: PropTypes.shape({ name: PropTypes.string.isRequired }),
   selectItem: PropTypes.func.isRequired,
 };
 
