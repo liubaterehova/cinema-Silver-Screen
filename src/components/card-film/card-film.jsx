@@ -17,6 +17,7 @@ export const CardFilm = ({
         variant="top"
         alt="img"
         src={src}
+        className="m-auto"
       />
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>

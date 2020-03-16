@@ -7,7 +7,7 @@ export const DropDownMenu = ({ items, selectItem }) => (
     {items.map((item) => (
       <DropdownItem
         key={item.id}
-        onClick={() => { selectItem(item); }}
+        onClick={() => selectItem(item)}
       >
         <p>{item.name}</p>
       </DropdownItem>

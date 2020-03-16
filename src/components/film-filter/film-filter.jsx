@@ -16,17 +16,13 @@ export const FilmFilter = ({
     ? selectedFilterItem.name
     : defaultValue;
 
-  const toggleDropdown = () => {
-    setDropdownOpen(val => !val);
-  };
-
   return (
     <Row className="justify-content-md-center">
       <Col md={8} className="w-25">
         {getFilterValue()}
       </Col>
       <Col md={4}>
-        <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+        <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen(value => !value)}>
           <DropdownToggle tag="div">
             <IconArrow />
           </DropdownToggle>
