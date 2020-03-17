@@ -1,20 +1,18 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  filterFilms,
+  addNewFilter,
 } from '../actions/film-filters';
 
 export const useFilms = () => {
-  const selectedFilms = useSelector(({ filters: { sortedFilms } }) => sortedFilms);
+  const selectedFilters = useSelector(({ filters }) => filters);
 
   const dispatch = useDispatch();
 
-  const dispatchFilterFilms = (selectedMenu) => {
-    dispatch(filterFilms({ selectedMenu }));
-  };
+  const dispatchAddNewFilter = (filter) => dispatch(addNewFilter({ filter }));
 
   return {
-    dispatchFilterFilms,
-    selectedFilms,
+    dispatchAddNewFilter,
+    selectedFilters,
   };
 };

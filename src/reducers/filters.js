@@ -1,22 +1,29 @@
+/* eslint-disable no-console */
 import { handleActions } from 'redux-actions';
 
-import { filterFilmByParams } from '../utils/filmSort';
 import {
-  filterFilms,
+  addNewFilter,
 } from '../actions/film-filters';
-import { films } from '../constants';
 
 const defaultState = {
-  allFilms: films,
-  sortedFilms: [...films],
+  filters: [],
+};
+
+const addFilter = (filters, newFilter) => {
+  const existFilterIndex = filters.findIndex(filter => filter.type === newFilter.type);
+
+  if (existFilterIndex === -1) {
+    return [...filters, newFilter];
+  }
+
+  return [...filters.slice(0, existFilterIndex), newFilter, ...filters.slice(existFilterIndex + 1)];
 };
 
 export const filters = handleActions(
   {
-    [filterFilms]: (state, { payload: { selectedMenu } }) =>
-      ({
-        ...state, sortedFilms: filterFilmByParams(state.allFilms, selectedMenu),
-      })
+    [addNewFilter]: (state, { payload: { filter } }) => ({
+      ...state, filters: addFilter([...state.filters], filter),
+    })
     ,
   }, defaultState,
 );

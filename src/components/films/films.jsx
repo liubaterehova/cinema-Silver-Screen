@@ -3,14 +3,22 @@ import { Row, Col } from 'reactstrap';
 
 import { useFilms } from '../../hooks/use-films';
 import { CardFilm } from '../card-film/card-film';
+import { films } from '../../constants';
+import { filterFilmByParams } from '../../utils/filmSort';
 
 export const Films = () => {
-  const { selectedFilms } = useFilms();
+  const { selectedFilters } = useFilms();
+
+  const sortedFilms = selectedFilters.filters.length
+    ? filterFilmByParams(films, selectedFilters)
+    : films;
+
+  debugger;
 
   return (
     <div className="list-films w-100">
       <Row>
-        {selectedFilms.map(({
+        {sortedFilms.map(({
           name, type, id, src, cinemaId,
         }) => (
           <Col key={id}>

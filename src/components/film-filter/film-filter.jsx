@@ -19,16 +19,17 @@ const defaultStateSelectedMenu = {
 export const FilmFilter = ({
   items, defaultValue, filterName,
 }) => {
-  const [selectedMenu, selectMenu] = useState(defaultStateSelectedMenu);
-  const { dispatchFilterFilms } = useFilms();
+  const [filters, addNewFilter] = useState(defaultStateSelectedMenu);
+  const { dispatchAddNewFilter } = useFilms();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const getFilterValue = () => selectedMenu[filterName]
-    ? selectedMenu[filterName].name
+  const getFilterValue = () => filters[filterName]
+    ? filters[filterName].name
     : defaultValue;
+
   const selectItem = (item) => {
-    dispatchFilterFilms({ ...selectedMenu, [filterName]: item });
-    selectMenu((state) => ({ ...state, [filterName]: item }));
+    addNewFilter({ ...filters, [filterName]: item.code });
+    dispatchAddNewFilter({ value: item.name, type: filterName });
   };
 
   return (

@@ -1,3 +1,3 @@
 import { createAction } from 'redux-actions';
 
-export const filterFilms = createAction('FILTER_FILMS');
+export const addNewFilter = createAction('ADD_NEW_FILTER');
