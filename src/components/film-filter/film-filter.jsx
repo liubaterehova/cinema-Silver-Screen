@@ -4,17 +4,32 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
+import { useFilms } from '../../hooks/use-films';
 import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
 import { IconArrow } from '../icons/icon-arrow';
 
+const defaultStateSelectedMenu = {
+  city: null,
+  cinema: null,
+  date: null,
+  time: null,
+  availableSeats: null,
+};
+
 export const FilmFilter = ({
-  items, selectedFilterItem, defaultValue, selectItem,
+  items, defaultValue, filterName,
 }) => {
+  const [selectedMenu, selectMenu] = useState(defaultStateSelectedMenu);
+  const { dispatchFilterFilms } = useFilms();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const getFilterValue = () => selectedFilterItem
-    ? selectedFilterItem.name
+  const getFilterValue = () => selectedMenu[filterName]
+    ? selectedMenu[filterName].name
     : defaultValue;
+  const selectItem = (item) => {
+    dispatchFilterFilms({ ...selectedMenu, [filterName]: item });
+    selectMenu((state) => ({ ...state, [filterName]: item }));
+  };
 
   return (
     <Row className="justify-content-md-center">
@@ -37,10 +52,10 @@ export const FilmFilter = ({
 };
 
 FilmFilter.propTypes = {
+  filterName: PropTypes.string.isRequired,
   defaultValue: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectedFilterItem: PropTypes.shape({ name: PropTypes.string.isRequired }),
-  selectItem: PropTypes.func.isRequired,
 };
 
 FilmFilter.defaultProps = {
