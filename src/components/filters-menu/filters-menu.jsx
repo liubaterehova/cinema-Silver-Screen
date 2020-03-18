@@ -24,7 +24,7 @@ export const FiltersMenu = () => {
 
   return (
     <div className="filter-films">
-      <h1 className="my-5">Афиша кино</h1>
+      <h1 className="my-5">Movies poster</h1>
       <Table
         responsive="sm"
         className="w-100"

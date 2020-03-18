@@ -1,11 +1,11 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 
-import { useFilms } from '../../hooks/use-films';
+import { useFilmFiltering } from '../../hooks/use-film-filtering';
 import { CardFilm } from '../card-film/card-film';
 
 export const Films = () => {
-  const { films } = useFilms();
+  const { films } = useFilmFiltering();
 
   return (
     <div className="list-films w-100">
