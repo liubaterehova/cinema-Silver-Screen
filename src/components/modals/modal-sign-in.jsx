@@ -1,25 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 
 import { ModalWindow } from './modals';
 import { FormSignIn } from '../forms/form-sign-in';
 
 export const ModalSignIn = ({
   isOpen, toggle, onClickSignUp, onClose,
-}) => (
-  <ModalWindow
-    isOpen={isOpen}
-    toggleInModal={toggle}
-    header="Войти"
-    toggleInHeader={onClose}
-    buttonLeft="Войти"
-    buttonLeftHandleClick={onClose}
-    buttonRight="Зарегистрироваться"
-    buttonRightHandleClick={onClickSignUp}
-  >
-    <FormSignIn />
-  </ModalWindow>
-);
+}) => {
+  const {
+    register, errors, handleSubmit, control, formState,
+  } = useForm({ mode: 'onChange' });
+
+  return (
+    <ModalWindow
+      isOpen={isOpen}
+      toggleInModal={toggle}
+      header="Sign in"
+      toggleInHeader={onClose}
+      primaryButton="Sign in"
+      primaryButtonHandleClick={onClose}
+      secondaryButton="Sign up"
+      isPrimaryButtonDisable={!(formState.touched && formState.isValid)}
+      secondaryButtonHandleClick={onClickSignUp}
+    >
+      <FormSignIn
+        onSubmit={handleSubmit(() => { })}
+        register={register}
+        errors={errors}
+        control={control}
+      />
+    </ModalWindow>
+  );
+};
 
 ModalSignIn.propTypes = {
   isOpen: PropTypes.bool.isRequired,
