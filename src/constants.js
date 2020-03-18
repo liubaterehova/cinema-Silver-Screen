@@ -169,7 +169,7 @@ export const FILTERS = [
   },
   {
     id: 4,
-    filterName: 'Time',
+    filterName: 'time',
     defaultValue: 'All sessions',
     items: [
       {
@@ -192,7 +192,7 @@ export const FILTERS = [
   },
   {
     id: 5,
-    filterName: 'AvailableSeats',
+    filterName: 'availableSeats',
     defaultValue: 'Available seats',
     items: [
       { id: 1, name: '>=1', number: 1 },

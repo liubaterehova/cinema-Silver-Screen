@@ -8,24 +8,14 @@ import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
 import { IconArrow } from '../icons/icon-arrow';
 
 export const FilmFilter = ({
-  items, defaultValue, filterName, selectItem, filters,
+  filter: { items, filterName }, selectItem, filterValue,
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const getFilterValue = () => {
-    const selectedItem = filters.find(filter => filter.type === filterName);
-
-    if (selectedItem) {
-      return selectedItem.name;
-    }
-
-    return defaultValue;
-  };
 
   return (
     <Row className="justify-content-md-center">
       <Col md={8} className="w-25">
-        {getFilterValue()}
+        <p>{filterValue}</p>
       </Col>
       <Col md={4}>
         <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen(value => !value)}>
@@ -33,9 +23,8 @@ export const FilmFilter = ({
             <IconArrow />
           </DropdownToggle>
           <DropDownMenu
-            filterName={filterName}
             items={items}
-            selectItem={selectItem}
+            selectItem={(item) => selectItem(item, filterName)}
           />
         </Dropdown>
       </Col>
@@ -45,10 +34,8 @@ export const FilmFilter = ({
 
 FilmFilter.propTypes = {
   selectItem: PropTypes.func.isRequired,
-  filters: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  filterName: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  filter: PropTypes.shape({ items: PropTypes.arrayOf(PropTypes.shape({})), filterName: PropTypes.string }).isRequired,
+  filterValue: PropTypes.string.isRequired,
   selectedFilterItem: PropTypes.shape({ name: PropTypes.string.isRequired }),
 };
 

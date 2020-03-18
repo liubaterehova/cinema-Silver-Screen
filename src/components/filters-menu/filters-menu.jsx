@@ -16,6 +16,12 @@ export const FiltersMenu = () => {
     }
   };
 
+  const getFilterValue = ({ filterName, defaultValue }) => {
+    const selectedItem = filters.find(filter => filter.type === filterName);
+
+    return selectedItem ? selectedItem.name : defaultValue;
+  };
+
   return (
     <div className="filter-films">
       <h1 className="my-5">Афиша кино</h1>
@@ -26,16 +32,12 @@ export const FiltersMenu = () => {
       >
         <tbody>
           <tr>
-            {FILTERS.map(({
-              id, filterName, defaultValue, items,
-            }) => (
-              <td key={id}>
+            {FILTERS.map((filter) => (
+              <td key={filter.id}>
                 <FilmFilter
+                  filter={filter}
                   selectItem={selectItem}
-                  defaultValue={defaultValue}
-                  filterName={filterName}
-                  items={items}
-                  filters={filters}
+                  filterValue={getFilterValue(filter)}
                 />
               </td>
             ))}
