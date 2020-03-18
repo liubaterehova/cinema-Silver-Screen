@@ -4,14 +4,14 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { useFilters } from '../../hooks/use-filters';
+// import { useFilters } from '../../hooks/use-filters';
 import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
 import { IconArrow } from '../icons/icon-arrow';
 
 export const FilmFilter = ({
-  items, defaultValue, filterName,
+  items, defaultValue, filterName, selectItem, filters,
 }) => {
-  const { dispatchAddNewFilter, dispatchRemoveFilter, filters } = useFilters();
+  // const { dispatchAddNewFilter, dispatchRemoveFilter, filters } = useFilters();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const getFilterValue = () => {
@@ -24,13 +24,13 @@ export const FilmFilter = ({
     return defaultValue;
   };
 
-  const selectItem = ({ value, name }) => {
-    if (value === 'ALL') {
-      dispatchRemoveFilter({ type: filterName });
-    } else {
-      dispatchAddNewFilter({ value, type: filterName, name });
-    }
-  };
+  // const selectItem = ({ value, name }) => {
+  //   if (value === 'ALL') {
+  //     dispatchRemoveFilter({ type: filterName });
+  //   } else {
+  //     dispatchAddNewFilter({ value, type: filterName, name });
+  //   }
+  // };
 
   return (
     <Row className="justify-content-md-center">
@@ -43,6 +43,7 @@ export const FilmFilter = ({
             <IconArrow />
           </DropdownToggle>
           <DropDownMenu
+            filterName={filterName}
             items={items}
             selectItem={selectItem}
           />
@@ -53,6 +54,8 @@ export const FilmFilter = ({
 };
 
 FilmFilter.propTypes = {
+  selectItem: PropTypes.func.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   filterName: PropTypes.string.isRequired,
   defaultValue: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,

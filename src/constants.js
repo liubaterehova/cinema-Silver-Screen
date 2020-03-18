@@ -136,7 +136,7 @@ export const cinemas = {
   },
 };
 
-export const filters = [
+export const FILTERS = [
   {
     id: 1,
     filterName: 'cityCode',
