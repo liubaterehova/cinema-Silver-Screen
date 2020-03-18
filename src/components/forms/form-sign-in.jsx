@@ -17,7 +17,7 @@ const elementsOfFormSignIn = [
   {
     id: 1,
     name: 'signInPassword',
-    label: 'Пароль',
+    label: 'Password',
     placeholder: 'password',
     type: 'password',
     rulesValidation: { required: true },
@@ -51,9 +51,8 @@ export const FormSignIn = ({
 
 FormSignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  errors: PropTypes.shape({ signInEmail: PropTypes.bool, signUpEmail: PropTypes.bool }).isRequired,
+  errors: PropTypes.shape({ signInEmail: PropTypes.shape({}), signUpEmail: PropTypes.shape({}) }).isRequired,
   register: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  control: PropTypes.object.isRequired,
+  control: PropTypes.shape({}).isRequired,
 };
 

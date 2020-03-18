@@ -10,8 +10,8 @@ export const FormSignUp = ({
     {
       id: 0,
       name: 'name',
-      label: 'Ваше имя',
-      placeholder: 'имя',
+      label: 'Your name',
+      placeholder: 'name',
       type: 'text',
       rulesValidation: { required: true },
       errorMessage: 'Please enter name',
@@ -19,7 +19,7 @@ export const FormSignUp = ({
     {
       id: 1,
       name: 'number',
-      label: 'Номер телефона',
+      label: 'Phone number',
       placeholder: 'number',
       type: 'number',
       rulesValidation: { required: true, minLength: 8 },
@@ -37,7 +37,7 @@ export const FormSignUp = ({
     {
       id: 3,
       name: 'signUpPassword',
-      label: 'Пароль',
+      label: 'Password',
       placeholder: 'password',
       type: 'password',
       rulesValidation: { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/ },
@@ -46,8 +46,8 @@ export const FormSignUp = ({
     {
       id: 4,
       name: 'signUpPasswordRepeat',
-      label: 'Повторите пароль',
-      placeholder: 'password',
+      label: 'Repeat password',
+      placeholder: 'repeat password',
       type: 'password',
       rulesValidation: {
         required: true,
@@ -58,8 +58,6 @@ export const FormSignUp = ({
   ];
 
   return (
-  // put arr into Form cause i need "watch" function from library react-hook-form
-
     <Form onSubmit={onSubmit}>
       {makeElementsOfFormSignUp(watch).map(({
         id, name, label, placeholder, type, errorMessage, rulesValidation,
@@ -86,10 +84,7 @@ export const FormSignUp = ({
 FormSignUp.propTypes = {
   watch: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  control: PropTypes.object.isRequired,
+  control: PropTypes.shape({}).isRequired,
   onSubmit: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  errors: PropTypes.any.isRequired,
-  // errors: PropTypes.shape({ signInEmail: PropTypes.object, signUpEmail: PropTypes.object }).isRequired,
+  errors: PropTypes.shape({ signInEmail: PropTypes.shape({}), signUpEmail: PropTypes.shape({}) }).isRequired,
 };

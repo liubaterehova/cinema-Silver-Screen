@@ -25,12 +25,9 @@ export const FormElement = ({
 
 FormElement.propTypes = {
   errorMessage: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  error: PropTypes.any.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  rules: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  control: PropTypes.object.isRequired,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  rules: PropTypes.shape({}).isRequired,
+  control: PropTypes.shape({}).isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
@@ -38,3 +35,6 @@ FormElement.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
+FormElement.defaultProps = {
+  error: false,
+};

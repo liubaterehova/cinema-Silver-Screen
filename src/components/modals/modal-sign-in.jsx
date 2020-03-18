@@ -16,16 +16,16 @@ export const ModalSignIn = ({
     <ModalWindow
       isOpen={isOpen}
       toggleInModal={toggle}
-      header="Войти"
+      header="Sign in"
       toggleInHeader={onClose}
-      buttonLeft="Войти"
-      buttonLeftHandleClick={onClose}
-      buttonRight="Зарегистрироваться"
-      isButtonRightDisable={!(formState.touched && formState.isValid)}
-      buttonRightHandleClick={onClickSignUp}
+      primaryButton="Sign in"
+      primaryButtonHandleClick={onClose}
+      secondaryButton="Sign up"
+      isPrimaryButtonDisable={!(formState.touched && formState.isValid)}
+      secondaryButtonHandleClick={onClickSignUp}
     >
       <FormSignIn
-        onSubmit={handleSubmit(() => {})}
+        onSubmit={handleSubmit(() => { })}
         register={register}
         errors={errors}
         control={control}

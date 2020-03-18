@@ -5,8 +5,8 @@ import {
 } from 'reactstrap';
 
 export const ModalWindow = ({
-  isOpen, toggleInModal, header, toggleInHeader, buttonLeft,
-  buttonRight, buttonLeftHandleClick, buttonRightHandleClick, children, isButtonRightDisable,
+  isOpen, toggleInModal, header, toggleInHeader, primaryButton,
+  secondaryButton, primaryButtonHandleClick, secondaryButtonHandleClick, children, isPrimaryButtonDisable,
 }) => (
   <Modal isOpen={isOpen} toggle={toggleInModal}>
     <ModalHeader toggle={toggleInHeader}>{header}</ModalHeader>
@@ -17,34 +17,34 @@ export const ModalWindow = ({
       <Button
         color="primary"
         type="submit"
-        onClick={buttonLeftHandleClick}
-        disabled={isButtonRightDisable}
+        onClick={primaryButtonHandleClick}
+        disabled={isPrimaryButtonDisable}
       >
-        {buttonLeft}
+        {primaryButton}
       </Button>
       <Button
         color="secondary"
-        onClick={buttonRightHandleClick}
+        onClick={secondaryButtonHandleClick}
       >
-        {buttonRight}
+        {secondaryButton}
       </Button>
     </ModalFooter>
   </Modal>
 );
 
 ModalWindow.propTypes = {
-  isButtonRightDisable: PropTypes.bool,
+  isPrimaryButtonDisable: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
   toggleInModal: PropTypes.func.isRequired,
   header: PropTypes.string.isRequired,
   toggleInHeader: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  buttonLeft: PropTypes.string.isRequired,
-  buttonRight: PropTypes.string.isRequired,
-  buttonLeftHandleClick: PropTypes.func.isRequired,
-  buttonRightHandleClick: PropTypes.func.isRequired,
+  primaryButton: PropTypes.string.isRequired,
+  secondaryButton: PropTypes.string.isRequired,
+  primaryButtonHandleClick: PropTypes.func.isRequired,
+  secondaryButtonHandleClick: PropTypes.func.isRequired,
 };
 
 ModalWindow.defaultProps = {
-  isButtonRightDisable: false,
+  isPrimaryButtonDisable: false,
 };
