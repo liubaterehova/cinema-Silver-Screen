@@ -3,7 +3,7 @@ import { FILMS, CINEMAS } from '../constants';
 export const getFilm = (filmId) => {
   const {
     id, name, type, cinema, time, src, description,
-  } = FILMS.find((element) => element.id === Number(filmId));
+  } = FILMS.find((element) => element.id === +filmId);
 
   return {
     id,

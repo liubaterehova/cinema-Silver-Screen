@@ -12,9 +12,7 @@ export const Films = () => {
       <Row>
         {films.map((film) => (
           <Col key={film.id}>
-            <CardFilm
-              film={film}
-            />
+            <CardFilm film={film} />
           </Col>
         ))}
       </Row>
