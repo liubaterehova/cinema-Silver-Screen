@@ -2,7 +2,7 @@ import { films, cinemas } from '../constants';
 
 export const getFilm = (filmId) => {
   const {
-    id, name, type, cinemaId, time, src, description,
+    id, name, type, cinema, time, src, description,
   } = films.find((element) => element.id === Number(filmId));
 
   return {
@@ -12,12 +12,12 @@ export const getFilm = (filmId) => {
     type,
     time,
     src,
-    cinemaId,
+    cinema,
   };
 };
 
-export const getCinema = (cinemaId) => {
-  const { cinemaName, address } = cinemas[cinemaId];
+export const getCinema = (cinema) => {
+  const { cinemaName, address } = cinemas[cinema];
 
   return {
     cinemaName,

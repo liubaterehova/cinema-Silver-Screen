@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { SelectedFilmBriefInformation } from '../../components/selected-film-brief-information/selected-film-brief-information';
 import { CinemaHall } from '../../components/cinema-hall/cinema-hall';
-import { getFilm, getCinema } from '../../utils/getItem';
+import { getFilm, getCinema } from '../../utils/get-item';
 
 import './seat-selection.scss';
 

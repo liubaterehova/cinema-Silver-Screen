@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Header } from '../../components/header/header';
-import { MenuFilters } from '../../components/menu-filters/menu-filters';
+import { FiltersMenu } from '../../components/filters-menu/filters-menu';
 import { Films } from '../../components/films/films';
 import { Information } from '../../components/information-silver-screen/information-silver-screen';
 
@@ -11,7 +11,7 @@ export const Home = () => (
   <div className="container">
     <Header />
     <div className="main-content">
-      <MenuFilters />
+      <FiltersMenu />
       <Films />
       <Information />
     </div>

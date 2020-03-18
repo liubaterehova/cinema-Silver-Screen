@@ -9,7 +9,9 @@ import {
 import './card-film.scss';
 
 export const CardFilm = ({
-  name, type, src, id,
+  film: {
+    name, type, src, id,
+  },
 }) => (
   <CardBody>
     <Card>
@@ -23,7 +25,7 @@ export const CardFilm = ({
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
         <Link to={`/films/${id}`}>
-          Купить
+          Buy
         </Link>
       </CardBody>
     </Card>
@@ -31,8 +33,10 @@ export const CardFilm = ({
 );
 
 CardFilm.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  film: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.number,
+    type: PropTypes.string,
+    src: PropTypes.string,
+  }).isRequired,
 };

@@ -7,23 +7,23 @@ import {
 const defaultState = [];
 
 const addFilterReducer = (filters, newFilter) => {
-  const existFilterIndex = filters.findIndex(filter => filter.type === newFilter.type);
+  const filterIndex = filters.findIndex(filter => filter.type === newFilter.type);
 
-  if (existFilterIndex === -1) {
+  if (filterIndex === -1) {
     return [...filters, newFilter];
   }
 
-  return [...filters.slice(0, existFilterIndex), newFilter, ...filters.slice(existFilterIndex + 1)];
+  return [...filters.slice(0, filterIndex), newFilter, ...filters.slice(filterIndex + 1)];
 };
 
 const removeFilterReducer = (filters, { type }) => {
-  const existFilterIndex = filters.findIndex(filter => filter.type === type);
+  const filterIndex = filters.findIndex(filter => filter.type === type);
 
-  if (existFilterIndex === -1) {
+  if (filterIndex === -1) {
     return [...filters];
   }
 
-  return [...filters.slice(0, existFilterIndex), ...filters.slice(existFilterIndex + 1)];
+  return [...filters.slice(0, filterIndex), ...filters.slice(filterIndex + 1)];
 };
 
 export const filters = handleActions(

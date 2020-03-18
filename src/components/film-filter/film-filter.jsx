@@ -26,7 +26,7 @@ export const FilmFilter = ({
 
   const selectItem = ({ value, name }) => {
     if (value === 'ALL') {
-      dispatchRemoveFilter({ value, type: filterName });
+      dispatchRemoveFilter({ type: filterName });
     } else {
       dispatchAddNewFilter({ value, type: filterName, name });
     }

@@ -10,16 +10,10 @@ export const Films = () => {
   return (
     <div className="list-films w-100">
       <Row>
-        {films.map(({
-          name, type, id, src, cinema,
-        }) => (
-          <Col key={id}>
+        {films.map((film) => (
+          <Col key={film.id}>
             <CardFilm
-              name={name}
-              type={type}
-              src={src}
-              id={id}
-              cinema={cinema}
+              film={film}
             />
           </Col>
         ))}

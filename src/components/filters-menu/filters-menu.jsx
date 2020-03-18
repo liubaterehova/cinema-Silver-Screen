@@ -4,7 +4,7 @@ import { Table } from 'reactstrap';
 import { FilmFilter } from '../film-filter/film-filter';
 import { filters } from '../../constants';
 
-export const MenuFilters = () => (
+export const FiltersMenu = () => (
   <div className="filter-films">
     <h1 className="my-5">Афиша кино</h1>
     <Table
