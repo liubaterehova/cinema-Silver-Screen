@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Table } from 'reactstrap';
 
 import { FilmFilter } from '../film-filter/film-filter';

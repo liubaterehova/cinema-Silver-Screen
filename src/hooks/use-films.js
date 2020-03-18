@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
-import { films } from '../constants';
+import { FILMS } from '../constants';
 import { filterFilms } from '../utils/filter-films';
 
 export const useFilms = () => {
-  const filteredFilms = useSelector(({ filters }) => filterFilms(films, filters));
+  const filteredFilms = useSelector(({ filters }) => filterFilms(FILMS, filters));
 
   return {
     films: filteredFilms,

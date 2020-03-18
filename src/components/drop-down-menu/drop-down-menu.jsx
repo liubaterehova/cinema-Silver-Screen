@@ -16,6 +16,7 @@ export const DropDownMenu = ({ items, selectItem, filterName }) => (
 );
 
 DropDownMenu.propTypes = {
+  filterName: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectItem: PropTypes.func.isRequired,
 };

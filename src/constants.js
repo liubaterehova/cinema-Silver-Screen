@@ -22,7 +22,7 @@ export const DATE_CODE = {
   DAY_AFTER_TOMORROW: 'DAYAFTERTOMORROW',
 };
 
-export const films = [
+export const FILMS = [
   {
     id: 1,
     src: '/assets/public/png/forrest-gamp.png',
@@ -119,7 +119,7 @@ export const films = [
   },
 ];
 
-export const cinemas = {
+export const CINEMAS = {
   [CINEMA_CODE.GALILEO]: {
     id: 1,
     filterName: 'Galileo',
