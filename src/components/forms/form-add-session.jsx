@@ -1,53 +1,48 @@
 import React from 'react';
+import {
+  Form, Input, Label, FormGroup, InputGroupAddon, Col, InputGroupText, InputGroup,
+} from 'reactstrap';
+import TimePicker from 'react-time-picker';
 
-import { Form } from 'reactstrap';
-
-import { FormElement } from './form-element';
-
-const elementsOfFormAddSession = [
-  {
-    id: 1,
-    name: 'nameCinema',
-    label: 'Название кинотеатра',
-    placeholder: 'cimena',
-    type: 'text',
-  },
-  {
-    id: 2,
-    name: 'time',
-    label: 'Время сеанса',
-    placeholder: 'time',
-    type: 'text',
-  },
-  {
-    id: 3,
-    name: 'numberHall',
-    label: 'Номер зала',
-    placeholder: 'number of cinema hall',
-    type: 'number',
-  },
-  {
-    id: 4,
-    name: 'price',
-    label: 'Цена за место',
-    placeholder: 'price',
-    type: 'number',
-  },
-];
+import { CINEMAS, FILMS } from '../../constants';
 
 export const FormAddSession = () => (
   <Form>
-    {elementsOfFormAddSession.map(({
-      id, name, label, placeholder, type,
-    }) => (
-      <FormElement
-        id={id}
-        key={id}
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        type={type}
-      />
-    ))}
+    <FormGroup row>
+      <Label for="selectCinema" sm={2}>Cinema</Label>
+      <Col sm={10}>
+        <Input type="select" name="selectCinema" id="cinemaSelect">
+          { Object.values(CINEMAS).map(cinema => <option key={cinema.id}>{cinema.filterName}</option>)}
+        </Input>
+      </Col>
+    </FormGroup>
+    <br />
+    <FormGroup row>
+      <Label for="selectFilm" sm={2}>Film</Label>
+      <Col sm={10}>
+        <Input type="select" name="selectFilm" id="filmSelect">
+          { FILMS.map(film => <option key={film.id}>{film.name}</option>)}
+        </Input>
+      </Col>
+    </FormGroup>
+    <br />
+    <FormGroup row>
+      <Label for="time" sm={2}>Time</Label>
+      <Col sm={10}>
+        <TimePicker clearIcon={null} />
+      </Col>
+    </FormGroup>
+    <br />
+    <FormGroup row>
+      <Label for="price" sm={2}>price</Label>
+      <Col sm={10}>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>$</InputGroupText>
+          </InputGroupAddon>
+          <Input placeholder="price" type="number" />
+        </InputGroup>
+      </Col>
+    </FormGroup>
   </Form>
 );

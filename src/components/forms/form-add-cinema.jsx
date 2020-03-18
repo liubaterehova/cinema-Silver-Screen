@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Form } from 'reactstrap';
 
 import { FormElement } from './form-element';
@@ -21,24 +20,15 @@ const elementsOfFormAddCinema = [
   },
   {
     id: 3,
-    name: 'numberHalls',
-    label: 'Количество залов',
-    placeholder: 'number of cinema halls',
-    type: 'number',
+    name: 'popcorn',
+    label: 'Попкорн',
+    type: 'checkbox',
   },
   {
-    id: 4,
-    name: 'numberSeats',
-    label: 'Количество мест',
-    placeholder: 'number of seats',
-    type: 'number',
-  },
-  {
-    id: 5,
-    name: 'typeSeats',
-    label: 'Виды сидений',
-    placeholder: 'type of seats',
-    type: 'text',
+    id: 3,
+    name: 'drinks',
+    label: 'Напитки',
+    type: 'checkbox',
   },
 ];
 

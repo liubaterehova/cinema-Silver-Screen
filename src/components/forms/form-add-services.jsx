@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Form } from 'reactstrap';
 
 import { FormElementCheckbox } from './form-element-checkbox';
