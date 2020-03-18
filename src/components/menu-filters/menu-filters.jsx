@@ -19,7 +19,6 @@ export const MenuFilters = () => (
           }) => (
             <td key={id}>
               <FilmFilter
-                // selectedFilterItem={selectedFilter[filterName]}
                 defaultValue={defaultValue}
                 filterName={filterName}
                 items={items}

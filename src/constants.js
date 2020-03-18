@@ -106,14 +106,14 @@ export const films = [
 export const cinemas = {
   [CINEMA_CODE.GALILEO]: {
     id: 1,
-    name: 'Galileo',
+    filterName: 'Galileo',
     cinemaName: 'Silver Screen cinemas в ТРЦ "Galileo',
     address: 'г.Минск, ул. Бобруйская, 6',
     cinemaCode: CINEMA_CODE.GALILEO,
   },
   [CINEMA_CODE.VOKA]: {
     id: 2,
-    name: 'VOKA CINEMA',
+    filterName: 'VOKA CINEMA',
     cinemaName: 'VOKA CINEMA by SilverScreen в ТРЦ Dana Mall',
     address: 'г.Минск, ул. Петра Мстиславца, 11',
     cinemaCode: CINEMA_CODE.VOKA,
@@ -126,9 +126,9 @@ export const filters = [
     filterName: 'cityCode',
     defaultValue: 'Город',
     items: [
-      { id: 1, name: 'Все города', code: CITY_CODE.ALL },
-      { id: 2, name: 'Минск', code: CITY_CODE.MSK },
-      { id: 3, name: 'Витебск', code: CITY_CODE.VTB },
+      { id: 1, name: 'Все города', value: CITY_CODE.ALL },
+      { id: 2, name: 'Минск', value: CITY_CODE.MSK },
+      { id: 3, name: 'Витебск', value: CITY_CODE.VTB },
     ],
   },
   {
@@ -136,9 +136,9 @@ export const filters = [
     filterName: 'cinema',
     defaultValue: 'Все кинотеатры',
     items: [
-      { id: 1, name: 'Все кинотеатры', code: CINEMA_CODE.ALL },
-      { id: 2, name: 'Galileo', code: CINEMA_CODE.GALILEO },
-      { id: 3, name: 'VOKA CINEMA', code: CINEMA_CODE.VOKA },
+      { id: 1, name: 'Все кинотеатры', value: CINEMA_CODE.ALL },
+      { id: 2, name: 'Galileo', value: CINEMA_CODE.GALILEO },
+      { id: 3, name: 'VOKA CINEMA', value: CINEMA_CODE.VOKA },
     ],
   },
   {
@@ -146,9 +146,9 @@ export const filters = [
     filterName: 'dateCode',
     defaultValue: 'Всегда',
     items: [
-      { id: 1, name: 'всегда', code: DATE_CODE.ALL },
-      { id: 2, name: 'послезавтра', code: DATE_CODE.DAY_AFTER_TOMORROW },
-      { id: 3, name: 'завтра', code: DATE_CODE.TOMORROW },
+      { id: 1, name: 'всегда', value: DATE_CODE.ALL },
+      { id: 2, name: 'послезавтра', value: DATE_CODE.DAY_AFTER_TOMORROW },
+      { id: 3, name: 'завтра', value: DATE_CODE.TOMORROW },
     ],
   },
   {

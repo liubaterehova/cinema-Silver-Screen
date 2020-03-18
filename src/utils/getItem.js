@@ -24,4 +24,3 @@ export const getCinema = (cinemaId) => {
     address,
   };
 };
-

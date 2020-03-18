@@ -4,40 +4,31 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { useFilms } from '../../hooks/use-films';
+import { useFilters } from '../../hooks/use-filters';
 import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
 import { IconArrow } from '../icons/icon-arrow';
-
-const defaultStateSelectedMenu = {
-  city: null,
-  cinema: null,
-  date: null,
-  time: null,
-  availableSeats: null,
-};
 
 export const FilmFilter = ({
   items, defaultValue, filterName,
 }) => {
-  const [filters, addNewFilter] = useState(defaultStateSelectedMenu);
-  const { dispatchAddNewFilter, dispatchRemoveFilter } = useFilms();
+  const { dispatchAddNewFilter, dispatchRemoveFilter, filters } = useFilters();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const getFilterValue = () => {
-    if (filters[filterName]) {
-      return filters[filterName];
+    const selectedItem = filters.find(filter => filter.type === filterName);
+
+    if (selectedItem) {
+      return selectedItem.name;
     }
 
     return defaultValue;
   };
 
-  const selectItem = ({ name, code }) => {
-    addNewFilter({ ...filters, [filterName]: name });
-
-    if (code === 'ALL') {
-      dispatchRemoveFilter({ value: code, type: filterName });
+  const selectItem = ({ value, name }) => {
+    if (value === 'ALL') {
+      dispatchRemoveFilter({ value, type: filterName });
     } else {
-      dispatchAddNewFilter({ value: code, type: filterName });
+      dispatchAddNewFilter({ value, type: filterName, name });
     }
   };
 
