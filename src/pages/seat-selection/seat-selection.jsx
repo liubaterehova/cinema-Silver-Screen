@@ -17,13 +17,13 @@ export const SeatSelection = () => {
     type,
     time,
     src,
-    cinemaId,
+    cinema,
   } = getFilm(selectedFilmId);
 
   const {
     cinemaName,
     address,
-  } = getCinema(cinemaId);
+  } = getCinema(cinema);
 
   return (
     <Container>

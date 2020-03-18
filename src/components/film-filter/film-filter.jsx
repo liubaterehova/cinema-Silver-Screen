@@ -20,16 +20,25 @@ export const FilmFilter = ({
   items, defaultValue, filterName,
 }) => {
   const [filters, addNewFilter] = useState(defaultStateSelectedMenu);
-  const { dispatchAddNewFilter } = useFilms();
+  const { dispatchAddNewFilter, dispatchRemoveFilter } = useFilms();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const getFilterValue = () => filters[filterName]
-    ? filters[filterName].name
-    : defaultValue;
+  const getFilterValue = () => {
+    if (filters[filterName]) {
+      return filters[filterName];
+    }
 
-  const selectItem = (item) => {
-    addNewFilter({ ...filters, [filterName]: item.code });
-    dispatchAddNewFilter({ value: item.name, type: filterName });
+    return defaultValue;
+  };
+
+  const selectItem = ({ name, code }) => {
+    addNewFilter({ ...filters, [filterName]: name });
+
+    if (code === 'ALL') {
+      dispatchRemoveFilter({ value: code, type: filterName });
+    } else {
+      dispatchAddNewFilter({ value: code, type: filterName });
+    }
   };
 
   return (

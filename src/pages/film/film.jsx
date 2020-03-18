@@ -15,14 +15,14 @@ export const Film = () => {
     type,
     time,
     src,
-    cinemaId,
+    cinema,
     description,
   } = getFilm(filmId);
 
   const {
     cinemaName,
     address,
-  } = getCinema(cinemaId);
+  } = getCinema(cinema);
 
   return (
     <Container>

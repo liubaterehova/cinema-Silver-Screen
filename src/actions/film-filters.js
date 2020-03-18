@@ -1,3 +1,3 @@
-import { createAction } from 'redux-actions';
+import { createActions } from 'redux-actions';
 
-export const addNewFilter = createAction('ADD_NEW_FILTER');
+export const { addNewFilter, removeFilter } = createActions('ADD_NEW_FILTER', 'REMOVE_FILTER');

@@ -38,7 +38,7 @@ export const films = [
     преуспевающего бизнесмена. Он становится миллиардером, но остается таким же бесхитростным,
     глупым и добрым. Форреста ждет постоянный успех во всем, а он любит девочку, с которой дружил
     в детстве, но взаимность приходит слишком поздно.`,
-    cinemaId: CINEMA_CODE.GALILEO,
+    cinema: CINEMA_CODE.GALILEO,
     time: '19:00',
     hour: 19,
     emptySeats: 10,
@@ -56,7 +56,7 @@ export const films = [
     позже антигерой вселенной DC Comics, первоначально появившаяся в мультсериале «Бэтмен» 1992 года,
     позже была перенесена в комиксы. Она является главной сподвижницей Джокера, по этой же причине ненавидит
     Бэтмена и его помощников`,
-    cinemaId: CINEMA_CODE.VOKA,
+    cinema: CINEMA_CODE.VOKA,
     time: '12:00',
     hour: 12,
     emptySeats: 10,
@@ -76,7 +76,7 @@ export const films = [
     Жорж Пикар ведет собственное расследование:
     ему необходимо найти таинственную «секретную папку», чтобы доказать невиновность своего подзащитного.
     Но охотится за ней не только он.`,
-    cinemaId: CINEMA_CODE.GALILEO,
+    cinema: CINEMA_CODE.GALILEO,
     time: '17:00',
     hour: 17,
     emptySeats: 2,
@@ -96,7 +96,7 @@ export const films = [
     стажировку за границу, предлагает тому заменить его и поработать репетитором у старшеклассницы в богатой семье Пак.
     Подделав диплом о высшем образовании, парень отправляется в шикарный дизайнерский особняк и производит на хозяйку дома
     хорошее впечатление. Тут же ему в голову приходит необычный план по трудоустройству сестры.`,
-    cinemaId: CINEMA_CODE.VOKA,
+    cinema: CINEMA_CODE.VOKA,
     time: '15:00',
     hour: 15,
     emptySeats: 1,
@@ -123,7 +123,7 @@ export const cinemas = {
 export const filters = [
   {
     id: 1,
-    filterName: 'city',
+    filterName: 'cityCode',
     defaultValue: 'Город',
     items: [
       { id: 1, name: 'Все города', code: CITY_CODE.ALL },
@@ -143,7 +143,7 @@ export const filters = [
   },
   {
     id: 3,
-    filterName: 'date',
+    filterName: 'dateCode',
     defaultValue: 'Всегда',
     items: [
       { id: 1, name: 'всегда', code: DATE_CODE.ALL },

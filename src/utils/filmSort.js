@@ -1,22 +1,17 @@
-import * as R from 'ramda';
+export const filterFilms = (films, filters) => {
+  const isSuitableFilm = film => {
+    let isSuitable = true;
 
-export const filterFilmByParams = (allFilms, filters) => {
-  debugger;
-  // const tes = R.forEach((film) => {
-  //   const result = filters.every(({ type, value }) => {
-  //     const val = R.where({ [type]: R.equals(value) }, film);
-  //   });
+    debugger;
+    filters.forEach(({ type, value }) => {
+      if (film[type] !== value) {
+        isSuitable = false;
+      }
+    });
 
-  //   if (result) {
-  //     sorted.push(film);
-  //   }
-  // }, allFilms);
-  const ff = allFilms.filter(film => filters.filters.map(({ type, value }) => {
-    if (R.equals(film[type], value)) return true;
+    return isSuitable;
+  };
 
-    return false;
-  }));
-
-  return ff;
+  return films.filter(isSuitableFilm);
 };
 
