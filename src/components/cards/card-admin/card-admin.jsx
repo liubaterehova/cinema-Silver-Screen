@@ -24,7 +24,7 @@ export const CardAdmin = ({
         <CardTitle className="p-3 text-center">
           <h4>{name}</h4>
         </CardTitle>
-        <Button color="info" onClick={dispatchOpenModal}>добавить</Button>
+        <Button color="info" onClick={dispatchOpenModal}>add</Button>
       </Card>
       <ModalComponent
         isOpen={isModalOpen}

@@ -10,11 +10,11 @@ export const ModalAddSession = ({
   <ModalWindow
     isOpen={isOpen}
     toggleInModal={toggle}
-    header="СЕАНС"
+    header="SESSION"
     toggleInHeader={onClose}
-    buttonLeft="закрыть"
+    buttonLeft="close"
     buttonLeftHandleClick={onClose}
-    buttonRight="добавить"
+    buttonRight="add"
     buttonRightHandleClick={onClickSignUp}
   >
     <FormAddSession />

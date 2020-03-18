@@ -10,11 +10,11 @@ export const ModalAddCinema = ({
   <ModalWindow
     isOpen={isOpen}
     toggleInModal={toggle}
-    header="КИНОТЕАТР"
+    header="CINEMA"
     toggleInHeader={onClose}
-    buttonLeft="закрыть"
+    buttonLeft="close"
     buttonLeftHandleClick={onClose}
-    buttonRight="добавить"
+    buttonRight="add"
     buttonRightHandleClick={onClickSignUp}
   >
     <FormAddCinema />

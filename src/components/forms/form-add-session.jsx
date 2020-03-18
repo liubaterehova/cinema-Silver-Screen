@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Form, Input, Label, FormGroup, InputGroupAddon, Col, InputGroupText, InputGroup,
 } from 'reactstrap';
-import TimePicker from 'react-time-picker';
 
 import { CINEMAS, FILMS } from '../../constants';
 
@@ -29,7 +28,12 @@ export const FormAddSession = () => (
     <FormGroup row>
       <Label for="time" sm={2}>Time</Label>
       <Col sm={10}>
-        <TimePicker clearIcon={null} />
+        <Input
+          type="time"
+          name="time"
+          id="time"
+          placeholder="time placeholder"
+        />
       </Col>
     </FormGroup>
     <br />

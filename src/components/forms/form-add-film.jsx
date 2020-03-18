@@ -1,59 +1,47 @@
 import React from 'react';
-import { Form } from 'reactstrap';
-
-import { FormElement } from './form-element';
-
-const elementsOfFormAddFilm = [
-  {
-    id: 1,
-    name: 'nameFilm',
-    label: 'Название фильма',
-    placeholder: 'film',
-    type: 'text',
-  },
-  {
-    id: 2,
-    name: 'dataBeginFilm',
-    label: 'Начало показа фильма',
-    placeholder: 'data',
-    type: 'text',
-  },
-  {
-    id: 3,
-    name: 'dataEndFilm',
-    label: 'Конец показа фильма',
-    placeholder: 'data',
-    type: 'data',
-  },
-  {
-    id: 4,
-    name: 'filmDescription',
-    label: 'Описание фильма',
-    placeholder: 'description',
-    type: 'text',
-  },
-  {
-    id: 5,
-    name: 'filmType',
-    label: 'Жанр фильма',
-    placeholder: 'type',
-    type: 'text',
-  },
-];
+import {
+  Form, Input, Label, FormGroup, InputGroupAddon, Col, InputGroupText, InputGroup,
+} from 'reactstrap';
 
 export const FormAddFilm = () => (
   <Form>
-    {elementsOfFormAddFilm.map(({
-      id, name, label, placeholder, type,
-    }) => (
-      <FormElement
-        id={id}
-        key={id}
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        type={type}
-      />
-    ))}
+    <FormGroup row>
+      <Label for="filmName" sm={4}>Movie title</Label>
+      <Col sm={10}>
+        <Input type="text" name="filmName" id="filmName" />
+      </Col>
+    </FormGroup>
+    <br />
+    <FormGroup row>
+      <Label for="duration" sm={4}>Movie duration</Label>
+      <Col sm={10}>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>minutes</InputGroupText>
+          </InputGroupAddon>
+          <Input placeholder="duration" type="number" />
+        </InputGroup>
+      </Col>
+    </FormGroup>
+    <br />
+    <FormGroup row>
+      <Label for="description" sm={4}>Description</Label>
+      <Col sm={10}>
+        <Input type="text" name="description" id="description" />
+      </Col>
+    </FormGroup>
+    <br />
+    <FormGroup row>
+      <Label for="type" sm={4}>film genre</Label>
+      <Col sm={10}>
+        <Input type="type" name="type" id="type" />
+      </Col>
+    </FormGroup>
+    <FormGroup row>
+      <Label for="exampleFile" sm={4}>File</Label>
+      <Col sm={10}>
+        <Input type="file" name="file" id="exampleFile" />
+      </Col>
+    </FormGroup>
   </Form>
 );

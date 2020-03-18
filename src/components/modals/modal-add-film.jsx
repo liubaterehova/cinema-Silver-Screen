@@ -10,11 +10,11 @@ export const ModalAddFilm = ({
   <ModalWindow
     isOpen={isOpen}
     toggleInModal={toggle}
-    header="ФИЛЬМ"
+    header="FILM"
     toggleInHeader={onClose}
-    buttonLeft="закрыть"
+    buttonLeft="close"
     buttonLeftHandleClick={onClose}
-    buttonRight="добавить"
+    buttonRight="add"
     buttonRightHandleClick={onClickSignUp}
   >
     <FormAddFilm />
