@@ -2,14 +2,13 @@ import React from 'react';
 import {
   Form, Input, Label, FormGroup, Col,
 } from 'reactstrap';
-import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
+import { Controller } from 'react-hook-form';
 
-export const FormAddCinema = () => {
-  const {
-    register, handleSubmit, watch, errors,
-  } = useForm();
-  const { register, handleSubmit } = useForm()
-  const onSubmit = data => console.log(data)
+export const FormAddCinema = ({
+  handleSubmit, errors, control,
+}) => {
+  const onSubmit = () => {};
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -17,23 +16,48 @@ export const FormAddCinema = () => {
         <FormGroup row>
           <Label for="cinemaName" sm={8}>Cinema title</Label>
           <Col sm={10}>
-            <Input type="text" name="cinemaName" id="cinemaName" ref={register({ required })}/>
+            <Controller
+              as={Input}
+              control={control}
+              type="text"
+              name="cinemaName"
+              id="cinemaName"
+              rules={{ required: true }}
+            />
+            {errors.cinemaName && 'This field is required'}
           </Col>
         </FormGroup>
         <br />
         <FormGroup row>
           <Label for="description" sm={8}>Description</Label>
           <Col sm={10}>
-            <Input type="text" name="description" id="description" ref={register({ required })}/>
+            <Controller
+              as={Input}
+              control={control}
+              type="text"
+              name="description"
+              id="description"
+              rules={{ required: true }}
+            />
+            {errors.description && 'This field is required'}
           </Col>
         </FormGroup>
         <br />
         <FormGroup row>
           <Label for="address" sm={8}>Address</Label>
           <Col sm={10}>
-            <Input address="address" name="address" id="address" ref={register({ required })}/>
+            <Controller
+              as={Input}
+              control={control}
+              address="address"
+              name="address"
+              id="address"
+              rules={{ required: true }}
+            />
+            {errors.address && 'This field is required'}
           </Col>
         </FormGroup>
+        <br />
         <FormGroup row>
           <Label for="type" sm={8}>Additional services</Label>
           <Col sm={10} className="mx-3">
@@ -48,4 +72,20 @@ export const FormAddCinema = () => {
       </FormGroup>
     </Form>
   );
+};
+
+FormAddCinema.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    cinemaName: PropTypes.shape({}),
+    description: PropTypes.shape({}),
+    address: PropTypes.shape({}),
+  }),
+  rules: PropTypes.shape({}),
+  control: PropTypes.shape({}).isRequired,
+};
+
+FormAddCinema.defaultProps = {
+  errors: {},
+  rules: {},
 };
