@@ -36,7 +36,7 @@ export const Header = () => {
           <NavbarBrand href="#home" />
         </Col>
         <Col xs={1}>
-          <Button color="link" onClick={clickSignIn}>Вход</Button>
+          <Button color="link" onClick={clickSignIn}>Enter</Button>
           <ModalSignIn
             isOpen={isModalSignInOpen}
             toggle={toggleSignIn}
