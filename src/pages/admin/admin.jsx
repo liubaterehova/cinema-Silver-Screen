@@ -6,7 +6,7 @@ import { CardAdmin } from '../../components/cards/card-admin/card-admin';
 
 import './admin.scss';
 
-export const AdminPage = () => (
+export const Admin = () => (
   <Row className="row">
     {cards.map(({
       id, name, modalId, modalComponent,

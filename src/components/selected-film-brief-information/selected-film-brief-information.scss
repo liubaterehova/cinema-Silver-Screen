@@ -1,0 +1,28 @@
+@import '../../customizations/colors/colors.scss';
+
+.selected-film {
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    height: 1px;
+    width: 100%;
+    background-color: $french-gray;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    height: 1px;
+    width: 100%;
+    background-color: $french-gray;
+  }
+
+  .icon-film-img {
+    width: 55px;
+    height: 80px;
+    background-size: cover;
+  }
+}
