@@ -3,21 +3,19 @@ export const MODAL_WINDOW = {
   SIGN_IN: 'signIn',
   SIGN_UP: 'signUp',
 };
+export const VALUE_ALL = 'ALL';
 
 export const CITY_CODE = {
-  ALL: 'ALL',
   MSK: 'MSK',
   VTB: 'VTB',
 };
 
 export const CINEMA_CODE = {
-  ALL: 'ALL',
   GALILEO: 'GALILEO',
   VOKA: 'VOKA',
 };
 
 export const DATE_CODE = {
-  ALL: 'ALL',
   TOMORROW: 'TOMORROW',
   DAY_AFTER_TOMORROW: 'DAYAFTERTOMORROW',
 };
@@ -140,9 +138,10 @@ export const FILTERS = [
   {
     id: 1,
     filterName: 'cityCode',
+    method: 'equal',
     defaultValue: 'City',
     items: [
-      { id: 1, name: 'All cities', value: CITY_CODE.ALL },
+      { id: 1, name: 'All cities', value: VALUE_ALL },
       { id: 2, name: 'Minsk', value: CITY_CODE.MSK },
       { id: 3, name: 'Vitebsk', value: CITY_CODE.VTB },
     ],
@@ -150,9 +149,10 @@ export const FILTERS = [
   {
     id: 2,
     filterName: 'cinema',
+    method: 'equal',
     defaultValue: 'All cinemas',
     items: [
-      { id: 1, name: 'All cinemas', value: CINEMA_CODE.ALL },
+      { id: 1, name: 'All cinemas', value: VALUE_ALL },
       { id: 2, name: 'Galileo', value: CINEMA_CODE.GALILEO },
       { id: 3, name: 'VOKA CINEMA', value: CINEMA_CODE.VOKA },
     ],
@@ -160,22 +160,23 @@ export const FILTERS = [
   {
     id: 3,
     filterName: 'dateCode',
+    method: 'equal',
     defaultValue: 'All time',
     items: [
-      { id: 1, name: 'All time', value: DATE_CODE.ALL },
+      { id: 1, name: 'All time', value: VALUE_ALL },
       { id: 2, name: 'Day after tomorow', value: DATE_CODE.DAY_AFTER_TOMORROW },
       { id: 3, name: 'Tomorrow', value: DATE_CODE.TOMORROW },
     ],
   },
   {
     id: 4,
-    filterName: 'time',
+    filterName: 'hour',
+    method: 'inRange',
     defaultValue: 'All sessions',
     items: [
       {
         id: 1,
-        from: 0,
-        to: 24,
+        value: VALUE_ALL,
         name: 'All time',
       },
       {
@@ -192,11 +193,12 @@ export const FILTERS = [
   },
   {
     id: 5,
-    filterName: 'availableSeats',
+    filterName: 'emptySeats',
     defaultValue: 'Available seats',
+    method: 'less',
     items: [
-      { id: 1, name: '>=1', number: 1 },
-      { id: 2, name: '>4', number: 4 },
+      { id: 1, name: '>=1', value: VALUE_ALL },
+      { id: 2, name: '>4', value: 4 },
     ],
   },
 ];

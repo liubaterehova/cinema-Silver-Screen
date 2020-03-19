@@ -8,7 +8,7 @@ import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
 import { IconArrow } from '../icons/icon-arrow';
 
 export const FilmFilter = ({
-  filter: { items, filterName }, selectItem, filterValue,
+  items, selectItem, filterValue,
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -24,7 +24,7 @@ export const FilmFilter = ({
           </DropdownToggle>
           <DropDownMenu
             items={items}
-            selectItem={(item) => selectItem(item, filterName)}
+            selectItem={selectItem}
           />
         </Dropdown>
       </Col>
@@ -34,7 +34,7 @@ export const FilmFilter = ({
 
 FilmFilter.propTypes = {
   selectItem: PropTypes.func.isRequired,
-  filter: PropTypes.shape({ items: PropTypes.arrayOf(PropTypes.shape({})), filterName: PropTypes.string }).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   filterValue: PropTypes.string.isRequired,
   selectedFilterItem: PropTypes.shape({ name: PropTypes.string.isRequired }),
 };
