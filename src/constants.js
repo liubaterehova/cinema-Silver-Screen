@@ -1,30 +1,20 @@
-export const MODAL_WINDOW = {
-  CLOSE_ALL_MODALS: 'closeAllModals',
-  SIGN_IN: 'signIn',
-  SIGN_UP: 'signUp',
-  ADD_CINEMA: 'addCinema',
-  ADD_FILM: 'addFilm',
-  ADD_SESSION: 'addSession',
-  ADD_SERVICES: 'addServices',
-};
+export const VALUE_ALL = 'ALL';
 
 export const CITY_CODE = {
-  ALL: 'ALL',
   MSK: 'MSK',
   VTB: 'VTB',
 };
 
 export const CINEMA_CODE = {
-  ALL: 'ALL',
   GALILEO: 'GALILEO',
   VOKA: 'VOKA',
 };
 
 export const DATE_CODE = {
-  ALL: 'ALL',
   TOMORROW: 'TOMORROW',
   DAY_AFTER_TOMORROW: 'DAYAFTERTOMORROW',
 };
+
 export const FILMS = [
   {
     id: 1,
@@ -68,7 +58,8 @@ export const FILMS = [
     hour: 12,
     emptySeats: 10,
 
-  }, {
+  },
+  {
     id: 3,
     src: '/assets/public/png/spion.jpg',
     name: 'Officer and Spy',
@@ -105,9 +96,16 @@ export const FILMS = [
     Bong Joon-ho, who also co-wrote the screenplay with Han Jin-won. It stars Song Kang-ho, Lee Sun-kyun, Cho Yeo-jeong, 
     Choi Woo-shik, Park So-dam, Jang Hye-jin, and Lee Jung-eun and follows the members of a poor family who scheme to 
     become employed by a wealthy family by infiltrating their household and posing as unrelated, highly qualified individuals.
+
     Parasite premiered at the 2019 Cannes Film Festival on 21 May 2019, where it became the first South Korean film to 
     win the Palme d'Or and the first film to win with a unanimous vote since Blue Is the Warmest Colour at the 2013 Festival. 
-    It was then released in South Korea by CJ Entertainment on 30 May 2019.cinema: CINEMA_CODE.VOKA,`,
+    It was then released in South Korea by CJ Entertainment on 30 May 2019.
+    
+    The film received widespread critical acclaim, with praise directed towards its screenplay, Bong's direction, acting, 
+    social commentary, cinematography, editing and production values, and has featured in multiple listings of the best 
+    films of the 2010s. It has grossed over $269.4 million worldwide on a production budget of about $11 million, becoming 
+    the highest-grossing South Korean film.`,
+    cinema: CINEMA_CODE.VOKA,
     time: '15:00',
     hour: 15,
     emptySeats: 1,
@@ -117,110 +115,85 @@ export const FILMS = [
 export const CINEMAS = {
   [CINEMA_CODE.GALILEO]: {
     id: 1,
-    filterName: 'Galileo',
+    label: 'Galileo',
     cinemaName: 'Silver Screen cinemas in "Galileo',
     address: 'city Minsk, str. Bobryiskay, 6',
     cinemaCode: CINEMA_CODE.GALILEO,
   },
   [CINEMA_CODE.VOKA]: {
     id: 2,
-    filterName: 'VOKA CINEMA',
+    label: 'VOKA CINEMA',
     cinemaName: 'VOKA CINEMA by SilverScreen in Dana Mall',
     address: 'сity Vitebsk, str. Mstislavca, 11',
     cinemaCode: CINEMA_CODE.VOKA,
   },
 };
 
-export const films = [
+export const FILTERS = [
   {
     id: 1,
-    src: '/assets/public/png/forrest-gamp.png',
-    name: 'Форест Гамп',
-    type: 'Драма',
-    description: `От лица главного героя Форреста Гампа, слабоумного безобидного человека с благородным и открытым сердцем,
-    рассказывается история его необыкновенной жизни.
-    Фантастическим образом превращается он в известного футболиста, героя войны,
-    преуспевающего бизнесмена. Он становится миллиардером, но остается таким же бесхитростным,
-    глупым и добрым. Форреста ждет постоянный успех во всем, а он любит девочку, с которой дружил
-    в детстве, но взаимность приходит слишком поздно.`,
-    cinemaId: 1,
-    time: '14:00',
+    label: 'cityCode',
+    filterType: 'equal',
+    defaultValue: 'All cities',
+    items: [
+      { id: 1, name: 'All cities', value: VALUE_ALL },
+      { id: 2, name: 'Minsk', value: CITY_CODE.MSK },
+      { id: 3, name: 'Vitebsk', value: CITY_CODE.VTB },
+    ],
   },
   {
     id: 2,
-    src: '/assets/public/png/harly-queen.png',
-    name: 'Харли Квинн',
-    type: 'Комедия',
-    description: `Харли Квинн — персонаж, суперзлодейка,
-    позже антигерой вселенной DC Comics, первоначально появившаяся в мультсериале «Бэтмен» 1992 года,
-    позже была перенесена в комиксы. Она является главной сподвижницей Джокера, по этой же причине ненавидит
-    Бэтмена и его помощников`,
-    cinemaId: 2,
-    time: '12:00',
-
+    label: 'cinema',
+    filterType: 'equal',
+    defaultValue: 'All cinemas',
+    items: [
+      { id: 1, name: 'All cinemas', value: VALUE_ALL },
+      { id: 2, name: 'Galileo', value: CINEMA_CODE.GALILEO },
+      { id: 3, name: 'VOKA CINEMA', value: CINEMA_CODE.VOKA },
+    ],
   },
   {
     id: 3,
-    src: '/assets/public/png/spion.jpg',
-    name: 'Офицер и шпион',
-    type: 'Драма',
-    description: `Сотрудник французской спецслужбы капитан Дрейфус объявлен особо опасным преступником.
-    Официальное обвинение — государственная измена и шпионаж в пользу Германии. Бывший наставник Дрейфуса
-    Жорж Пикар ведет собственное расследование:
-    ему необходимо найти таинственную «секретную папку», чтобы доказать невиновность своего подзащитного.
-    Но охотится за ней не только он.`,
-    cinemaId: 1,
-    time: '15:00',
-
+    label: 'dateCode',
+    filterType: 'equal',
+    defaultValue: 'All time',
+    items: [
+      { id: 1, name: 'All time', value: VALUE_ALL },
+      { id: 2, name: 'Day after tomorow', value: DATE_CODE.DAY_AFTER_TOMORROW },
+      { id: 3, name: 'Tomorrow', value: DATE_CODE.TOMORROW },
+    ],
   },
   {
     id: 4,
-    src: '/assets/public/png/parasites.png',
-    name: 'Паразиты',
-    type: 'Драма',
-    description: `Обычное корейское семейство Кимов жизнь не балует. Приходится жить в сыром грязном полуподвале,
-    воровать интернет у соседей и перебиваться случайными подработками. Однажды друг сына семейства, уезжая на
-    стажировку за границу, предлагает тому заменить его и поработать репетитором у старшеклассницы в богатой семье Пак.
-    Подделав диплом о высшем образовании, парень отправляется в шикарный дизайнерский особняк и производит на хозяйку дома
-    хорошее впечатление. Тут же ему в голову приходит необычный план по трудоустройству сестры.`,
-    cinemaId: 2,
-    time: '15:00',
-  },
-];
-
-export const filters = [
-  {
-    id: 1,
-    filter: 'Город',
-  },
-  {
-    id: 2,
-    filter: 'Все кинотеатры',
-  },
-  {
-    id: 3,
-    filter: 'Сегодня',
-  },
-  {
-    id: 4,
-    filter: 'Все сеансы',
+    label: 'hour',
+    filterType: 'inRange',
+    defaultValue: 'All sessions',
+    items: [
+      {
+        id: 1,
+        value: VALUE_ALL,
+        name: 'All sessions',
+      },
+      {
+        id: 2,
+        from: 7,
+        to: 16,
+        name: '07:00 - 16:00',
+      }, {
+        id: 3,
+        from: 16,
+        to: 22,
+        name: '16:00 - 22:00',
+      }],
   },
   {
     id: 5,
-    filter: 'Свободные места',
+    label: 'emptySeats',
+    defaultValue: 'Available seats',
+    filterType: 'less',
+    items: [
+      { id: 1, name: '>=1', value: VALUE_ALL },
+      { id: 2, name: '>4', value: 4 },
+    ],
   },
 ];
-
-export const cinemas = {
-  1: {
-    id: 1,
-    cinemaName: 'Silver Screen cinemas в ТРЦ "Galileo',
-    address: 'г.Минск, ул. Бобруйская, 6',
-  },
-  2: {
-    id: 2,
-    cinemaName: 'VOKA CINEMA by SilverScreen в ТРЦ Dana Mall',
-    address: 'г.Минск, ул. Петра Мстиславца, 11',
-  },
-};
-

@@ -79,8 +79,8 @@ export const FormAddSession = ({
               name="number"
               rules={{ required: true }}
             />
-            {errors.number && 'This field is required'}
           </InputGroup>
+          {errors.number && 'This field is required'}
         </Col>
       </FormGroup>
     </Form>
