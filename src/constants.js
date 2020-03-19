@@ -139,7 +139,7 @@ export const FILTERS = [
     id: 1,
     label: 'cityCode',
     filterType: 'equal',
-    defaultValue: 'City',
+    defaultValue: 'All cities',
     items: [
       { id: 1, name: 'All cities', value: VALUE_ALL },
       { id: 2, name: 'Minsk', value: CITY_CODE.MSK },
@@ -177,7 +177,7 @@ export const FILTERS = [
       {
         id: 1,
         value: VALUE_ALL,
-        name: 'All time',
+        name: 'All sessions',
       },
       {
         id: 2,
