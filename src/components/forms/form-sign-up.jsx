@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'reactstrap';
+import { Form, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { FormElement } from './form-element';
 
@@ -63,6 +63,7 @@ export const FormSignUp = ({
         id, name, label, placeholder, type, errorMessage, rulesValidation,
       }) => (
         <FormElement
+          as={Input}
           id={id}
           rules={rulesValidation}
           key={id}

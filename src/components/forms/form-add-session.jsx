@@ -1,11 +1,51 @@
 import React from 'react';
-import {
-  Form, Input, Label, FormGroup, InputGroupAddon, Col, InputGroupText, InputGroup,
-} from 'reactstrap';
-import { Controller } from 'react-hook-form';
+import { Form, Input, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
+import { FormElement } from './form-element';
 import { CINEMAS, FILMS } from '../../constants';
+import { DollarInput } from './inputs/dollar-input';
+
+const formElementsAddSession = [
+  {
+    id: 1,
+    as: Input,
+    type: 'select',
+    name: 'selectCinema',
+    label: 'Cinema',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+    children: Object.values(CINEMAS).map((cinema) => <option key={cinema.id}>{cinema.cinemaName}</option>),
+  },
+  {
+    id: 2,
+    as: Input,
+    type: 'select',
+    name: 'selectFilm',
+    label: 'Film',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+    children: FILMS.map(film => <option key={film.id}>{film.name}</option>),
+  },
+  {
+    id: 3,
+    as: Input,
+    type: 'time',
+    name: 'time',
+    label: 'Time',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+  },
+  {
+    id: 4,
+    as: DollarInput,
+    type: 'number',
+    name: 'price',
+    label: 'Price',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+  },
+];
 
 export const FormAddSession = ({
   handleSubmit, errors, control,
@@ -14,75 +54,14 @@ export const FormAddSession = ({
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormGroup row>
-        <Label for="selectCinema" sm={2}>Cinema</Label>
-        <Col sm={10}>
-          <Controller
-            as={Input}
-            control={control}
-            type="select"
-            name="selectCinema"
-            id="cinemaSelect"
-            rules={{ required: true }}
-          >
-            { Object.values(CINEMAS).map(cinema => <option key={cinema.id}>{cinema.filterName}</option>)}
-          </Controller>
-          {errors.selectCinema && 'This field is required'}
-        </Col>
-      </FormGroup>
-      <br />
-      <FormGroup row>
-        <Label for="selectFilm" sm={2}>Film</Label>
-        <Col sm={10}>
-          <Controller
-            as={Input}
-            control={control}
-            type="select"
-            name="selectFilm"
-            id="filmSelect"
-            rules={{ required: true }}
-          >
-            { FILMS.map(film => <option key={film.id}>{film.name}</option>)}
-          </Controller>
-          {errors.selectFilm && 'This field is required'}
-        </Col>
-      </FormGroup>
-      <br />
-      <FormGroup row>
-        <Label for="time" sm={2}>Time</Label>
-        <Col sm={10}>
-          <Controller
-            as={Input}
-            control={control}
-            type="time"
-            name="time"
-            id="time"
-            placeholder="time placeholder"
-            rules={{ required: true }}
-          />
-          {errors.time && 'This field is required'}
-        </Col>
-      </FormGroup>
-      <br />
-      <FormGroup row>
-        <Label for="price" sm={2}>price</Label>
-        <Col sm={10}>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">
-              <InputGroupText>$</InputGroupText>
-            </InputGroupAddon>
-            <Controller
-              as={Input}
-              control={control}
-              placeholder="price"
-              type="number"
-              name="number"
-              rules={{ required: true }}
-            />
-          </InputGroup>
-          {errors.number && 'This field is required'}
-        </Col>
-      </FormGroup>
+      {formElementsAddSession.map((formElement) => (
+        <React.Fragment key={formElement.id}>
+          <Col sm={10}>
+            <FormElement row {...formElement} control={control} error={errors[formElement.name]} />
+          </Col>
+          <br />
+        </React.Fragment>
+      ))}
     </Form>
   );
 };

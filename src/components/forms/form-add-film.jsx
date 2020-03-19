@@ -1,9 +1,55 @@
 import React from 'react';
-import {
-  Form, Input, Label, FormGroup, InputGroupAddon, Col, InputGroupText, InputGroup,
-} from 'reactstrap';
+import { Form, Input, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { Controller } from 'react-hook-form';
+
+import { MinutesInput } from './inputs/minutes-input';
+import { FormElement } from './form-element';
+
+const formElementAddFilm = [
+  {
+    id: 1,
+    as: Input,
+    type: 'text',
+    name: 'filmName',
+    label: 'Movie title',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+  },
+  {
+    id: 2,
+    as: MinutesInput,
+    type: 'number',
+    name: 'duration',
+    label: 'Movie duration',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+  },
+  {
+    id: 3,
+    as: Input,
+    type: 'text',
+    name: 'description',
+    label: 'Description',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+  },
+  {
+    id: 4,
+    as: Input,
+    type: 'text',
+    name: 'genre',
+    label: 'Film genre',
+    rules: { required: true },
+    errorMessage: 'This field is required',
+  },
+  {
+    id: 5,
+    as: Input,
+    type: 'file',
+    name: 'file',
+    label: 'File',
+  },
+];
 
 export const FormAddFilm = ({
   handleSubmit, errors, control,
@@ -12,84 +58,14 @@ export const FormAddFilm = ({
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormGroup row>
-        <Label for="filmName" sm={4}>Movie title</Label>
-        <Col sm={10}>
-          <Controller
-            as={Input}
-            control={control}
-            type="text"
-            name="filmName"
-            id="filmName"
-            rules={{ required: true }}
-          />
-          {errors.filmName && 'This field is required'}
-        </Col>
-      </FormGroup>
-      <br />
-      <FormGroup row>
-        <Label for="duration" sm={4}>Movie duration</Label>
-        <Col sm={10}>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">
-              <InputGroupText>minutes</InputGroupText>
-            </InputGroupAddon>
-            <Controller
-              as={Input}
-              control={control}
-              type="number"
-              name="phoneNumber"
-              placeholder="duration"
-              rules={{ required: true }}
-            />
-            {errors.phoneNumber && 'This field is required'}
-          </InputGroup>
-        </Col>
-      </FormGroup>
-      <br />
-      <FormGroup row>
-        <Label for="description" sm={4}>Description</Label>
-        <Col sm={10}>
-          <Controller
-            as={Input}
-            control={control}
-            type="text"
-            name="description"
-            id="description"
-            rules={{ required: true }}
-          />
-          {errors.description && 'This field is required'}
-        </Col>
-      </FormGroup>
-      <br />
-      <FormGroup row>
-        <Label for="type" sm={4}>film genre</Label>
-        <Col sm={10}>
-          <Controller
-            as={Input}
-            control={control}
-            type="type"
-            name="genre"
-            id="genre"
-            rules={{ required: true }}
-          />
-          {errors.genre && 'This field is required'}
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="exampleFile" sm={4}>File</Label>
-        <Col sm={10}>
-          <Controller
-            as={Input}
-            control={control}
-            type="file"
-            name="file"
-            id="exampleFile"
-            rules={{ required: true }}
-          />
-          {errors.file && 'This field is required'}
-        </Col>
-      </FormGroup>
+      {formElementAddFilm.map((formElement) => (
+        <React.Fragment key={formElement.id}>
+          <Col sm={10}>
+            <FormElement row {...formElement} control={control} error={errors[formElement.name]} />
+          </Col>
+          <br />
+        </React.Fragment>
+      ))}
     </Form>
   );
 };
