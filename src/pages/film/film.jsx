@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { HeaderFilm } from '../../components/header-film/header';
 import { FilmDescription } from '../../components/film-description/film-description';
-import { getFilm, getCinema } from '../../helpers';
+import { getFilm, getCinema } from '../../utils/get-item';
 
 export const Film = () => {
   const { filmId } = useParams();
@@ -15,14 +15,14 @@ export const Film = () => {
     type,
     time,
     src,
-    cinemaId,
+    cinema,
     description,
   } = getFilm(filmId);
 
   const {
     cinemaName,
     address,
-  } = getCinema(cinemaId);
+  } = getCinema(cinema);
 
   return (
     <Container>

@@ -3,11 +3,15 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, Button,
+  CardTitle,
 } from 'reactstrap';
 
+import './card-film.scss';
+
 export const CardFilm = ({
-  name, type, src, id,
+  film: {
+    name, type, src, id,
+  },
 }) => (
   <CardBody>
     <Card>
@@ -15,23 +19,24 @@ export const CardFilm = ({
         variant="top"
         alt="img"
         src={src}
+        className="m-auto"
       />
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
-        <Button>
-          <Link to={`/films/${id}`}>
-            Купить
-          </Link>
-        </Button>
+        <Link to={`/films/${id}`}>
+          Buy
+        </Link>
       </CardBody>
     </Card>
   </CardBody>
 );
 
 CardFilm.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  film: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.number,
+    type: PropTypes.string,
+    src: PropTypes.string,
+  }).isRequired,
 };

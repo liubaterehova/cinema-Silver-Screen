@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -29,11 +29,9 @@ export const FilmDescription = ({
             {address}
           </Col>
           <Col>
-            <Button className="time p-3">
-              <Link to={`/select-seat/${id}`}>
-                {time}
-              </Link>
-            </Button>
+            <Link to={`/select-seat/${id}`} className="time p-3">
+              {time}
+            </Link>
           </Col>
         </Row>
       </Col>
