@@ -21,11 +21,7 @@ export const FormElement = ({
     />
     {error && errorMessage}
   </FormGroup>
-<<<<<<< HEAD
-));
-=======
 );
->>>>>>> dev
 
 FormElement.propTypes = {
   errorMessage: PropTypes.string.isRequired,
