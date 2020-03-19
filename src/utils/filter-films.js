@@ -6,7 +6,7 @@ const filterMethods = {
 };
 
 export const filterFilms = (films, filters) => films.filter((film) => !filters.some((filterData) => {
-  const filterMethod = filterMethods[filterData.method];
+  const filterMethod = filterMethods[filterData.filterType];
 
   return filterMethod(film, filterData);
 }));

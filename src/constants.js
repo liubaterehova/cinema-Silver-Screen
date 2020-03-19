@@ -120,14 +120,14 @@ export const FILMS = [
 export const CINEMAS = {
   [CINEMA_CODE.GALILEO]: {
     id: 1,
-    filterName: 'Galileo',
+    label: 'Galileo',
     cinemaName: 'Silver Screen cinemas in "Galileo',
     address: 'city Minsk, str. Bobryiskay, 6',
     cinemaCode: CINEMA_CODE.GALILEO,
   },
   [CINEMA_CODE.VOKA]: {
     id: 2,
-    filterName: 'VOKA CINEMA',
+    label: 'VOKA CINEMA',
     cinemaName: 'VOKA CINEMA by SilverScreen in Dana Mall',
     address: 'сity Vitebsk, str. Mstislavca, 11',
     cinemaCode: CINEMA_CODE.VOKA,
@@ -137,8 +137,8 @@ export const CINEMAS = {
 export const FILTERS = [
   {
     id: 1,
-    filterName: 'cityCode',
-    method: 'equal',
+    label: 'cityCode',
+    filterType: 'equal',
     defaultValue: 'City',
     items: [
       { id: 1, name: 'All cities', value: VALUE_ALL },
@@ -148,8 +148,8 @@ export const FILTERS = [
   },
   {
     id: 2,
-    filterName: 'cinema',
-    method: 'equal',
+    label: 'cinema',
+    filterType: 'equal',
     defaultValue: 'All cinemas',
     items: [
       { id: 1, name: 'All cinemas', value: VALUE_ALL },
@@ -159,8 +159,8 @@ export const FILTERS = [
   },
   {
     id: 3,
-    filterName: 'dateCode',
-    method: 'equal',
+    label: 'dateCode',
+    filterType: 'equal',
     defaultValue: 'All time',
     items: [
       { id: 1, name: 'All time', value: VALUE_ALL },
@@ -170,8 +170,8 @@ export const FILTERS = [
   },
   {
     id: 4,
-    filterName: 'hour',
-    method: 'inRange',
+    label: 'hour',
+    filterType: 'inRange',
     defaultValue: 'All sessions',
     items: [
       {
@@ -193,9 +193,9 @@ export const FILTERS = [
   },
   {
     id: 5,
-    filterName: 'emptySeats',
+    label: 'emptySeats',
     defaultValue: 'Available seats',
-    method: 'less',
+    filterType: 'less',
     items: [
       { id: 1, name: '>=1', value: VALUE_ALL },
       { id: 2, name: '>4', value: 4 },

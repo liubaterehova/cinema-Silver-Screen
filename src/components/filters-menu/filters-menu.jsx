@@ -8,18 +8,18 @@ import { useFilters } from '../../hooks/use-filters';
 export const FiltersMenu = () => {
   const { dispatchAddNewFilter, dispatchRemoveFilter, filters } = useFilters();
 
-  const selectItem = (item, filterName, method) => {
+  const selectItem = (item, label, filterType) => {
     if (item.value === VALUE_ALL) {
-      dispatchRemoveFilter({ type: filterName });
+      dispatchRemoveFilter({ type: label });
     } else {
       dispatchAddNewFilter({
-        item, type: filterName, method,
+        item, type: label, filterType,
       });
     }
   };
 
-  const getFilterValue = (filterName, defaultValue) => {
-    const selectedItem = filters.find(filter => filter.type === filterName);
+  const getFilterValue = (label, defaultValue) => {
+    const selectedItem = filters.find(filter => filter.type === label);
 
     return selectedItem ? selectedItem.item.name : defaultValue;
   };
@@ -35,13 +35,13 @@ export const FiltersMenu = () => {
         <tbody>
           <tr>
             {FILTERS.map(({
-              id, method, filterName, items, defaultValue,
+              id, filterType, label, items, defaultValue,
             }) => (
               <td key={id}>
                 <FilmFilter
                   items={items}
-                  selectItem={(item) => selectItem(item, filterName, method)}
-                  filterValue={getFilterValue(filterName, defaultValue)}
+                  selectItem={(item) => selectItem(item, label, filterType)}
+                  filterValue={getFilterValue(label, defaultValue)}
                 />
               </td>
             ))}
