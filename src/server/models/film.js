@@ -16,5 +16,4 @@ const filmSchema = new Schema({
   emptySeats: Number,
 });
 
-mongoose.set('useCreateIndex', true);
 export const Film = mongoose.model('films', filmSchema, 'films');

@@ -9,10 +9,8 @@ function* getCinemasSaga() {
     const response = yield call([cinemas, cinemas.getCinemas]);
 
     if (response.data) {
-      const allCinemas = response.data;
-
       yield put(
-        getCinemasSuccess({ films: allCinemas }),
+        getCinemasSuccess({ cinemas: response.data }),
       );
     }
   } catch (error) {

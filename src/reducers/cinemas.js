@@ -8,10 +8,9 @@ const defaultState = { cinemas: [], isLoading: false, error: null };
 
 export const cinemas = handleActions(
   {
-    [getCinemas]: (state) =>
-      ({
-        ...state, isLoading: true,
-      }),
+    [getCinemas]: (state) => ({
+      ...state, isLoading: true,
+    }),
     [getCinemasSuccess]: (state, { payload: { cinemas: payloadCinemas } }) =>
       ({
         ...state, cinemas: payloadCinemas, isLoading: false,

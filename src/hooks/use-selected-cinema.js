@@ -1,17 +1,16 @@
-import { useSelector, useEffect, useDispatch } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { getCinemas } from '../actions/cinemas';
 
-export const useSelectedCinema = (cinema) => {
+export const useSelectedCinema = (cinemaCode) => {
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(getCinemas()), [dispatch]);
+  useEffect(() => {
+    dispatch(getCinemas());
+  }, [dispatch]);
 
   const cinemas = useSelector(({ cinemas: { cinemas: c } }) => c);
 
-  const { cinemaName, address } = cinemas[cinema];
-
-  return {
-    cinemaName,
-    address,
-  };
+  return cinemas.find((element) => element.cinemaCode === cinemaCode);
 };

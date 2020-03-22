@@ -24,7 +24,7 @@ export const CardFilm = ({
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
-        <Link to={`/films/${id}`}>
+        <Link to={`/film/${id}`}>
           Buy
         </Link>
       </CardBody>

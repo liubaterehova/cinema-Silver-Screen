@@ -1,18 +1,7 @@
-import { useSelector } from 'react';
+import { useSelector } from 'react-redux';
 
 export const useSelectedFilm = (filmId) => {
   const films = useSelector(({ films: { films: f } }) => f);
-  const {
-    id, name, type, cinema, time, src, description,
-  } = films.find((element) => element.id === +filmId);
 
-  return {
-    id,
-    description,
-    name,
-    type,
-    time,
-    src,
-    cinema,
-  };
+  return films.find((element) => element.id === +filmId);
 };

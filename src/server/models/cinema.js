@@ -8,5 +8,4 @@ const cinemaSchema = new Schema({
   cinemaCode: String,
 });
 
-mongoose.set('useCreateIndex', true);
 export const Cinema = mongoose.model('cinema', cinemaSchema, 'cinemas');

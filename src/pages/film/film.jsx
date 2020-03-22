@@ -16,14 +16,11 @@ export const Film = () => {
     type,
     time,
     src,
-    cinema,
+    cinema: cinemaCode,
     description,
   } = useSelectedFilm(filmId);
 
-  const {
-    cinemaName,
-    address,
-  } = useSelectedCinema(cinema);
+  const cinema = useSelectedCinema(cinemaCode);
 
   return (
     <Container>
@@ -34,8 +31,8 @@ export const Film = () => {
         description={description}
         src={src}
         time={time}
-        cinemaName={cinemaName}
-        address={address}
+        cinemaName={cinema ? cinema.label : ''}
+        address={cinema ? cinema.address : ''}
         id={id}
       />
     </Container>

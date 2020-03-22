@@ -14,8 +14,8 @@ export const useModals = (modalId) => {
     dispatch(closeAllModals());
     dispatch(openModal({ modalId }));
   }, [dispatch, modalId]);
-  const dispatchToggleModal = useCallback(() => dispatch(toggleModal({ modalId })), [dispatch, modalId]);
 
+  const dispatchToggleModal = useCallback(() => dispatch(toggleModal({ modalId })), [dispatch, modalId]);
   const closeAllModalWindows = useCallback(() => dispatch(closeAllModals()), [dispatch]);
 
   return {

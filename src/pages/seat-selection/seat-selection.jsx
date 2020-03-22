@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { SelectedFilmBriefInformation } from '../../components/selected-film-brief-information/selected-film-brief-information';
 import { CinemaHall } from '../../components/cinema-hall/cinema-hall';
-import { getFilm, getCinema } from '../../utils/get-item';
+import { useSelectedFilm } from '../../hooks/use-selected-film';
+import { useSelectedCinema } from '../../hooks/use-selected-cinema';
 
 import './seat-selection.scss';
 
@@ -17,13 +18,10 @@ export const SeatSelection = () => {
     type,
     time,
     src,
-    cinema,
-  } = getFilm(selectedFilmId);
+    cinema: cinemaCode,
+  } = useSelectedFilm(selectedFilmId);
 
-  const {
-    cinemaName,
-    address,
-  } = getCinema(cinema);
+  const cinema = useSelectedCinema(cinemaCode);
 
   return (
     <Container>
@@ -34,8 +32,8 @@ export const SeatSelection = () => {
           src={src}
           time={time}
           id={id}
-          cinemaName={cinemaName}
-          address={address}
+          cinemaName={cinema ? cinema.label : ''}
+          address={cinema ? cinema.address : ''}
         />
         <CinemaHall />
       </div>
