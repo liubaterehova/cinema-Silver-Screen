@@ -8,11 +8,14 @@ const CURRENT_DIRECTORY = path.resolve();
 module.exports = {
   target: 'node',
   mode: 'development',
-  entry: path.join(CURRENT_DIRECTORY, 'src/server/index.js'),
+  entry: {
+    server: path.join(CURRENT_DIRECTORY, 'src/server/index.js'),
+    populate: path.join(CURRENT_DIRECTORY, 'src/server/populate.js'),
+  },
   output: {
     publicPath: '/assets/',
     path: path.resolve('dist'),
-    filename: 'server.js',
+    filename: '[name].js',
   },
   node: {
     __dirname: false,

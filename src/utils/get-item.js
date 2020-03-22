@@ -1,26 +1,28 @@
-import { FILMS, CINEMAS } from '../constants';
+// import { useFilmFiltering } from '../hooks/use-film-filtering';
+// import { useCinemas } from '../hooks/use-cinemas';
 
-export const getFilm = (filmId) => {
-  const {
-    id, name, type, cinema, time, src, description,
-  } = FILMS.find((element) => element.id === +filmId);
+// export const getFilm = (filmId) => {
+//   const { films } = useFilmFiltering();
+//   const {
+//     id, name, type, cinema, time, src, description,
+//   } = films.find((element) => element.id === +filmId);
 
-  return {
-    id,
-    description,
-    name,
-    type,
-    time,
-    src,
-    cinema,
-  };
-};
+//   return {
+//     id,
+//     description,
+//     name,
+//     type,
+//     time,
+//     src,
+//     cinema,
+//   };
+// };
 
-export const getCinema = (cinema) => {
-  const { cinemaName, address } = CINEMAS[cinema];
+// export const getCinema = (cinema) => {
+//   const { cinemaName, address } = cinemas[cinema];
 
-  return {
-    cinemaName,
-    address,
-  };
-};
+//   return {
+//     cinemaName,
+//     address,
+//   };
+// };

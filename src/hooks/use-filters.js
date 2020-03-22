@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useCallback } from 'react';
 
 import {
   addNewFilter, removeFilter,
@@ -9,8 +10,8 @@ export const useFilters = () => {
 
   const dispatch = useDispatch();
 
-  const dispatchAddNewFilter = (filter) => dispatch(addNewFilter({ filter }));
-  const dispatchRemoveFilter = (filter) => dispatch(removeFilter({ filter }));
+  const dispatchAddNewFilter = useCallback((filter) => dispatch(addNewFilter({ filter })), [dispatch]);
+  const dispatchRemoveFilter = useCallback((filter) => dispatch(removeFilter({ filter })), [dispatch]);
 
   return {
     filters,

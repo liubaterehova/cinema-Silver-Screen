@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { HeaderFilm } from '../../components/header-film/header';
 import { FilmDescription } from '../../components/film-description/film-description';
-import { getFilm, getCinema } from '../../utils/get-item';
+import { useSelectedFilm } from '../../hooks/use-selected-film';
+import { useSelectedCinema } from '../../hooks/use-selected-cinema';
 
 export const Film = () => {
   const { filmId } = useParams();
@@ -17,12 +18,12 @@ export const Film = () => {
     src,
     cinema,
     description,
-  } = getFilm(filmId);
+  } = useSelectedFilm(filmId);
 
   const {
     cinemaName,
     address,
-  } = getCinema(cinema);
+  } = useSelectedCinema(cinema);
 
   return (
     <Container>
