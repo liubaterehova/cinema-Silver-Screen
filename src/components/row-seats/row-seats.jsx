@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import * as R from 'ramda';
 import { Col, Button } from 'reactstrap';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { IconSeat } from '../icons/icon-seat';
@@ -11,7 +11,21 @@ const colsNumber = R.range(1, 11);
 
 export const RowSeats = ({ rowNumber }) => {
   const dispatch = useDispatch();
-  const handleClick = col => dispatch(selectSeat({ row: rowNumber, col }));
+
+  const [seats, setSeat] = useState({});
+
+  const handleClick = col => {
+    const seat = `${rowNumber}_${col}`;
+
+    setSeat((state) => {
+      if (seat in state) {
+        return { ...state, [`${rowNumber}_${col}`]: !state[`${rowNumber}_${col}`] };
+      }
+
+      return { ...state, [seat]: true };
+    });
+    dispatch(selectSeat({ row: rowNumber, col }));
+  };
 
   return (colsNumber.map(col => (
     <Col key={col.toString()}>
@@ -20,7 +34,7 @@ export const RowSeats = ({ rowNumber }) => {
         color="link"
         onClick={() => handleClick(col)}
       >
-        <IconSeat />
+        <IconSeat color={seats[`${rowNumber}_${col}`]} />
       </Button>
     </Col>
   )));
