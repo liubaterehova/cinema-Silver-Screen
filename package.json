@@ -13,9 +13,7 @@
   "scripts": {
     "lint": "eslint --ext js,jsx src",
     "build:client:dev": "webpack --config ./resources/webpack/webpack.client.js -w",
-    "build:server:dev": "webpack --config ./resources/webpack/webpack.server.js -w",
-    "start:server": "node ./dist/server.js",
-    "create:database": "node ./dist/populate.js",
+    "start": "webpack-dev-server --config ./resources/webpack/webpack.client.js --open",
     "pm2:start": "pm2 start ./resources/pm2/development.json",
     "pm2:stop": "pm2 stop resources/pm2/development.json",
     "pm2:restart": "yarn pm2:stop && yarn pm2:start",

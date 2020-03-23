@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const http = axios.create();
 
-const BASE_FILMS_URL = '/api/v1/films';
+const BASE_FILMS_URL = 'http://localhost:3010/api/v1/films';
 
 export const makeFilmsApi = () => ({
   getFilms: async () => http.get(BASE_FILMS_URL),
