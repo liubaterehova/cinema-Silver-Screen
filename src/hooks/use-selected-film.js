@@ -1,7 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { getFilm } from '../actions/film';
 
 export const useSelectedFilm = (filmId) => {
-  const films = useSelector(({ films: { films: f } }) => f);
+  const dispatch = useDispatch();
 
-  return films.find((element) => element.id === +filmId);
+  useEffect(() => {
+    dispatch(getFilm({ filmId }));
+  }, [dispatch, filmId]);
+
+  return useSelector(({ film }) => film);
 };

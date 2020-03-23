@@ -1,39 +1,36 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import { Container, Spinner } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 
 import { SelectedFilmBriefInformation } from '../../components/selected-film-brief-information/selected-film-brief-information';
 import { CinemaHall } from '../../components/cinema-hall/cinema-hall';
 import { useSelectedFilm } from '../../hooks/use-selected-film';
-import { useSelectedCinema } from '../../hooks/use-selected-cinema';
-
+import { useCinemas } from '../../hooks/use-cinemas';
 import './seat-selection.scss';
 
 export const SeatSelection = () => {
   const { selectedFilmId } = useParams();
+  const { film, isLoading: isLoadingFilm } = useSelectedFilm(selectedFilmId);
 
-  const {
-    id,
-    name,
-    type,
-    time,
-    src,
-    cinema: cinemaCode,
-  } = useSelectedFilm(selectedFilmId);
+  const { cinemas, isLoading: isLoadingCinemas } = useCinemas();
 
-  const cinema = useSelectedCinema(cinemaCode);
+  if (isLoadingFilm || isLoadingCinemas) {
+    return <Spinner color="primary" />;
+  }
+
+  const { label, address } = cinemas.find((cinema) => cinema.cinemaCode === film.cinema);
 
   return (
     <Container>
       <div className="seat-selection py-5">
         <SelectedFilmBriefInformation
-          name={name}
-          type={type}
-          src={src}
-          time={time}
-          id={id}
-          cinemaName={cinema ? cinema.label : ''}
-          address={cinema ? cinema.address : ''}
+          name={film.name}
+          type={film.type}
+          src={film.src}
+          time={film.time}
+          id={film.id}
+          cinemaName={label}
+          address={address}
         />
         <CinemaHall />
       </div>

@@ -8,7 +8,7 @@ const defaultState = { films: [], isLoading: false, error: null };
 
 export const films = handleActions(
   {
-    [getFilms]: (state) =>
+    [getFilms]: state =>
       ({
         ...state, isLoading: true,
       }),

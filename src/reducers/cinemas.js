@@ -4,11 +4,11 @@ import {
   getCinemas, getCinemasSuccess, getCinemasFailure,
 } from '../actions/cinemas';
 
-const defaultState = { cinemas: [], isLoading: false, error: null };
+const defaultState = { cinemas: [], isLoading: true, error: null };
 
 export const cinemas = handleActions(
   {
-    [getCinemas]: (state) => ({
+    [getCinemas]: state => ({
       ...state, isLoading: true,
     }),
     [getCinemasSuccess]: (state, { payload: { cinemas: payloadCinemas } }) =>

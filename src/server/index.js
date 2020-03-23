@@ -8,6 +8,12 @@ import mongoose from 'mongoose';
 const app = express();
 const port = process.env.PORT || 3010;
 
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use('/assets', express.static(`${__dirname}`));
+
 app.get('/api/v1/films', async (req, response) => {
   await mongoose.connect('mongodb://localhost:27017/lab-project');
 
@@ -15,8 +21,18 @@ app.get('/api/v1/films', async (req, response) => {
 
   connection.collection('films').find({}).toArray((err, result) => {
     if (err) throw err;
-    response.send(result);
+    response.json(result);
   });
+});
+
+app.get('/api/v1/films/:filmId', async (req, response) => {
+  await mongoose.connect('mongodb://localhost:27017/lab-project');
+
+  const { connection } = mongoose;
+
+  const result = await connection.collection('films').findOne({ id: +req.params.filmId });
+
+  response.json(result);
 });
 
 app.get('/api/v1/cinemas', async (req, response) => {
@@ -25,15 +41,9 @@ app.get('/api/v1/cinemas', async (req, response) => {
 
   connection.collection('cinemas').find({}).toArray((err, result) => {
     if (err) throw err;
-    response.send(result);
+    response.json(result);
   });
 });
-
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use('/assets', express.static(`${__dirname}`));
 
 app.get('*', (req, res) => {
   res.header('Cache-Control', 'no-cache, no-store, must-revalidate');

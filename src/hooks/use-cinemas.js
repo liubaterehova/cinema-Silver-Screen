@@ -10,9 +10,5 @@ export const useCinemas = () => {
     dispatch(getCinemas());
   }, [dispatch]);
 
-  const cinemas = useSelector(({ cinemas: { cinemas: c } }) => c);
-
-  return {
-    cinemas,
-  };
+  return useSelector(({ cinemas }) => cinemas);
 };

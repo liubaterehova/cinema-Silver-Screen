@@ -3,6 +3,7 @@ import { makeCinemasApi } from './make-cinemas-api';
 
 export const makeApi = (dependencies = {}) => ({
   films: makeFilmsApi(dependencies),
+  film: makeFilmsApi(dependencies),
   cinemas: makeCinemasApi(dependencies),
 });
 
