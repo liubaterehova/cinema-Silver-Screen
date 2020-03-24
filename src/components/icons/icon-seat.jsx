@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const IconSeat = ({ color }) => {
-  const fill = color ? '#B22222' : '#E6E3DA';
+  let fill;
+
+  if (color === '' || !color) {
+    fill = '#E6E3DA';
+  } else if (color === 'reserved') {
+    fill = 'A89898';
+  }
 
   return (
     <svg x="583" y="1300" width="37" height="45" type="standard" id="seat-7453242">
@@ -17,5 +23,9 @@ export const IconSeat = ({ color }) => {
 };
 
 IconSeat.propTypes = {
-  color: PropTypes.bool.isRequired,
+  color: PropTypes.string,
+};
+
+IconSeat.defaultProps = {
+  color: '',
 };

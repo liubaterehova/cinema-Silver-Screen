@@ -19,10 +19,10 @@ export const RowSeats = ({ rowNumber }) => {
 
     setSeat((state) => {
       if (seat in state) {
-        return { ...state, [`${rowNumber}_${col}`]: !state[`${rowNumber}_${col}`] };
+        return { ...state, [`${rowNumber}_${col}`]: (state[`${rowNumber}_${col}`] === 'selected') ? '' : 'selected' };
       }
 
-      return { ...state, [seat]: true };
+      return { ...state, [seat]: 'selected' };
     });
     dispatch(selectSeat({ row: rowNumber, col }));
   };
@@ -43,4 +43,3 @@ export const RowSeats = ({ rowNumber }) => {
 RowSeats.propTypes = {
   rowNumber: PropTypes.number.isRequired,
 };
-
