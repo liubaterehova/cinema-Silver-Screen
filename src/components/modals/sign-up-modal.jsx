@@ -3,41 +3,40 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
 import { ModalWindow } from './modals';
-import { FormAddSession } from '../forms/form-add-session';
+import { SignUpForm } from '../forms/sign-up-form';
 
-export const ModalAddSession = ({
-  isOpen, toggle, onClose,
+export const SignUpModal = ({
+  isOpen, onClose, toggle,
 }) => {
   const {
-    register, handleSubmit, watch, errors, control, rules, formState,
+    register, errors, handleSubmit, control, formState, watch,
   } = useForm({ mode: 'onBlur' });
 
   return (
     <ModalWindow
       isOpen={isOpen}
       toggleInModal={toggle}
-      header="SESSION"
+      header="Sign up"
       toggleInHeader={onClose}
-      primaryButton="add"
+      primaryButton="Sign up"
       primaryButtonHandleClick={onClose}
-      secondaryButton="close"
+      secondaryButton="Close"
       isPrimaryButtonDisable={!(formState.touched && formState.isValid)}
       secondaryButtonHandleClick={onClose}
     >
-      <FormAddSession
-        rules={rules}
-        control={control}
+      <SignUpForm
+        onSubmit={handleSubmit(() => { })}
         register={register}
-        handleSubmit={handleSubmit}
-        watch={watch}
         errors={errors}
+        control={control}
+        watch={watch}
       />
     </ModalWindow>
   );
 };
 
-ModalAddSession.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+SignUpModal.propTypes = {
   toggle: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
