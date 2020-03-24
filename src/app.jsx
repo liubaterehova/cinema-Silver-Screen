@@ -20,8 +20,8 @@ export const App = () => (
     <Router history={customHistory}>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/films/film" component={Film} />
-        <Route path="/films/admin" component={Admin} />
+        <Route path="/films/:filmId" component={Film} />
+        <Route path="/admin" component={Admin} />
         <Route path="/select-seat/:selectedFilmId" component={SeatSelection} />
       </Switch>
     </Router>
