@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 
 import { useFilmFiltering } from '../../hooks/use-film-filtering';
-import { CardFilm } from '../card-film/card-film';
+import { FilmCard } from '../cards/film-card/film-card';
 
 export const Films = () => {
   const { films } = useFilmFiltering();
@@ -12,7 +12,7 @@ export const Films = () => {
       <Row>
         {films.map((film) => (
           <Col key={film.id}>
-            <CardFilm film={film} />
+            <FilmCard film={film} />
           </Col>
         ))}
       </Row>

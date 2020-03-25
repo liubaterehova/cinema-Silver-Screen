@@ -4,8 +4,8 @@ import {
   Button, Col, Form, Row, NavbarBrand,
 } from 'reactstrap';
 
-import { ModalSignIn } from '../modals/modal-sign-in';
-import { ModalSignUp } from '../modals/modal-sign-up';
+import { SignInModal } from '../modals/sign-in-modal';
+import { SignUpModal } from '../modals/sign-up-modal';
 import { useModals } from '../../hooks/use-modals';
 import { MODAL_WINDOW } from '../../constants';
 
@@ -15,14 +15,14 @@ export const Header = () => {
   const [inputSearch, changeVisibility] = useState(true);
 
   const {
-    isModalOpen: isModalSignInOpen,
+    isModalOpen: isSignInModalOpen,
     dispatchOpenModal: clickSignIn,
     dispatchToggleModal: toggleSignIn,
     closeAllModalWindows,
   } = useModals(MODAL_WINDOW.SIGN_IN);
 
   const {
-    isModalOpen: isModalSignUpOpen,
+    isModalOpen: isSignUpModalOpen,
     dispatchOpenModal: clickSignUp,
     dispatchToggleModal: toggleSignUp,
   } = useModals(MODAL_WINDOW.SIGN_UP);
@@ -37,14 +37,14 @@ export const Header = () => {
         </Col>
         <Col xs={1}>
           <Button color="link" onClick={clickSignIn}>Enter</Button>
-          <ModalSignIn
-            isOpen={isModalSignInOpen}
+          <SignInModal
+            isOpen={isSignInModalOpen}
             toggle={toggleSignIn}
             onClickSignUp={clickSignUp}
             onClose={closeAllModalWindows}
           />
-          <ModalSignUp
-            isOpen={isModalSignUpOpen}
+          <SignUpModal
+            isOpen={isSignUpModalOpen}
             toggle={toggleSignUp}
             onClickSignUp={clickSignUp}
             onClose={closeAllModalWindows}
