@@ -8,6 +8,8 @@ export const IconSeat = ({ color }) => {
     fill = '#E6E3DA';
   } else if (color === 'reserved') {
     fill = 'A89898';
+  } else if (color === 'locked') {
+    fill = '#CD5C5C';
   }
 
   return (

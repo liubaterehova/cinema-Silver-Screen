@@ -5,26 +5,29 @@ import { Col, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import { IconSeat } from '../icons/icon-seat';
-import { selectSeat } from '../../actions/seats';
+import { postSeats } from '../../actions/seats';
 
 const colsNumber = R.range(1, 11);
 
 export const RowSeats = ({ rowNumber }) => {
   const dispatch = useDispatch();
 
-  const [seats, setSeat] = useState({});
+  const [seats, setSeat] = useState({ '2_5': 'locked' });
 
   const handleClick = col => {
-    const seat = `${rowNumber}_${col}`;
+    const seatId = `${rowNumber}_${col}`;
 
     setSeat((state) => {
-      if (seat in state) {
-        return { ...state, [`${rowNumber}_${col}`]: (state[`${rowNumber}_${col}`] === 'selected') ? '' : 'selected' };
+      if (seatId in state) {
+        if (state[seatId] === 'locked') return { ...state };
+
+        return { ...state, [seatId]: (state[seatId] === 'selected') ? '' : 'selected' };
       }
 
-      return { ...state, [seat]: 'selected' };
+      return { ...state, [seatId]: 'selected' };
     });
-    dispatch(selectSeat({ row: rowNumber, col }));
+    if (seats[seatId] === 'locked') return;
+    dispatch(postSeats({ row: rowNumber, col }));
   };
 
   return (colsNumber.map(col => (
