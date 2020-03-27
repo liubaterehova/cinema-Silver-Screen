@@ -4,7 +4,7 @@ import { makeApi } from '../api';
 
 function* getFilmSaga({ payload }) {
   try {
-    const { film: filmApi } = makeApi();
+    const { films: filmApi } = makeApi();
 
     const response = yield call([filmApi, filmApi.getFilm], payload.filmId);
 

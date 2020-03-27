@@ -7,11 +7,11 @@ import {
 } from 'reactstrap';
 
 export const CardFilm = ({
-  name, type, src,
+  name, type, poster,
 }) => (
   <CardBody>
     <Card>
-      <CardImg variant="top" alt="img" src={src} />
+      <CardImg variant="top" alt="img" src={poster} />
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>
@@ -26,5 +26,5 @@ export const CardFilm = ({
 CardFilm.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
 };

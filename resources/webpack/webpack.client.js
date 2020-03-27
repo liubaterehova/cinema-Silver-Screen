@@ -17,6 +17,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve('dist'),
+    publicPath: '/',
   },
   devtool: 'inline-source-map',
   resolve: {
@@ -24,6 +25,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
   },
   module: {
     rules: [

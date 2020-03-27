@@ -10,7 +10,7 @@ import './card-film.scss';
 
 export const CardFilm = ({
   film: {
-    name, type, src, id,
+    name, type, poster, _id,
   },
 }) => (
   <CardBody>
@@ -18,13 +18,13 @@ export const CardFilm = ({
       <CardImg
         variant="top"
         alt="img"
-        src={src}
+        src={poster}
         className="m-auto"
       />
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
-        <Link to={`/film/${id}`}>
+        <Link to={`/film/${_id}`}>
           Buy
         </Link>
       </CardBody>
@@ -34,9 +34,9 @@ export const CardFilm = ({
 
 CardFilm.propTypes = {
   film: PropTypes.shape({
+    _id: PropTypes.string,
     name: PropTypes.string,
-    id: PropTypes.number,
     type: PropTypes.string,
-    src: PropTypes.string,
+    poster: PropTypes.string,
   }).isRequired,
 };

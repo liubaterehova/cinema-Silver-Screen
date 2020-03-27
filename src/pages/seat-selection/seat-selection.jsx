@@ -4,33 +4,22 @@ import { useParams } from 'react-router-dom';
 
 import { SelectedFilmBriefInformation } from '../../components/selected-film-brief-information/selected-film-brief-information';
 import { CinemaHall } from '../../components/cinema-hall/cinema-hall';
-import { useSelectedFilm } from '../../hooks/use-selected-film';
-import { useCinemas } from '../../hooks/use-cinemas';
+import { useSession } from '../../hooks/use-session';
 import './seat-selection.scss';
 
 export const SeatSelection = () => {
-  const { selectedFilmId } = useParams();
-  const { film, isLoading: isLoadingFilm } = useSelectedFilm(selectedFilmId);
+  const { sessionId } = useParams();
+  const { session, isLoading: isLoadingSession } = useSession(sessionId);
 
-  const { cinemas, isLoading: isLoadingCinemas } = useCinemas();
-
-  if (isLoadingFilm || isLoadingCinemas) {
+  if (isLoadingSession) {
     return <Spinner color="primary" />;
   }
-
-  const { label, address } = cinemas.find((cinema) => cinema.cinemaCode === film.cinema);
 
   return (
     <Container>
       <div className="seat-selection py-5">
         <SelectedFilmBriefInformation
-          name={film.name}
-          type={film.type}
-          src={film.src}
-          time={film.time}
-          id={film.id}
-          cinemaName={label}
-          address={address}
+          session={session}
         />
         <CinemaHall />
       </div>

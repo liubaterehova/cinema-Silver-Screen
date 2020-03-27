@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import './film-description.scss';
 
 export const FilmDescription = ({
-  name, type, description, src, cinemaName, address, time, id,
+  name, type, description, poster, sessions,
 }) => (
   <div className="film-description">
     <Row>
@@ -14,7 +14,7 @@ export const FilmDescription = ({
         <Row className="align-items-center pb-5">
           <Col xs="3">
             <div
-              style={{ backgroundImage: `url(${src})` }}
+              style={{ backgroundImage: `url(${poster})` }}
               className="film-img"
             />
           </Col>
@@ -23,17 +23,19 @@ export const FilmDescription = ({
             <p>{type}</p>
           </Col>
         </Row>
-        <Row className="cinema position-relative py-5">
-          <Col>
-            <h4>{cinemaName}</h4>
-            {address}
-          </Col>
-          <Col>
-            <Link to={`/select-seat/${id}`} className="time p-3">
-              {time}
-            </Link>
-          </Col>
-        </Row>
+        { sessions.map(({ cinema: { label, address }, time, _id }) => (
+          <Row key={_id} className="cinema position-relative py-5">
+            <Col>
+              <h4>{label}</h4>
+              {address}
+            </Col>
+            <Col>
+              <Link to={`/select-seat/${_id}`} className="time p-3">
+                {time}
+              </Link>
+            </Col>
+          </Row>
+        ))}
       </Col>
       <Col xs="3">
         <div className="name-film py-2">{name}</div>
@@ -44,11 +46,8 @@ export const FilmDescription = ({
 );
 
 FilmDescription.propTypes = {
-  id: PropTypes.number.isRequired,
-  time: PropTypes.string.isRequired,
-  cinemaName: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  sessions: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  poster: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
