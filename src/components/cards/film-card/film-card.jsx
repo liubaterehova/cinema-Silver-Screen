@@ -6,9 +6,9 @@ import {
   CardTitle,
 } from 'reactstrap';
 
-import './card-film.scss';
+import './film-card.scss';
 
-export const CardFilm = ({
+export const FilmCard = ({
   film: {
     name, type, poster, _id,
   },
@@ -32,7 +32,7 @@ export const CardFilm = ({
   </CardBody>
 );
 
-CardFilm.propTypes = {
+FilmCard.propTypes = {
   film: PropTypes.shape({
     _id: PropTypes.string,
     name: PropTypes.string,

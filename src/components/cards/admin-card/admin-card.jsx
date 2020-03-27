@@ -8,7 +8,7 @@ import {
 
 import { useModals } from '../../../hooks/use-modals';
 
-export const CardAdmin = ({
+export const AdminCard = ({
   id, name, modalId, modalComponent: ModalComponent,
 }) => {
   const {
@@ -36,7 +36,7 @@ export const CardAdmin = ({
   );
 };
 
-CardAdmin.propTypes = {
+AdminCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   modalId: PropTypes.string.isRequired,

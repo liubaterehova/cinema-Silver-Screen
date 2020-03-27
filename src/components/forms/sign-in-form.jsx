@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { FormElement } from './form-element';
 
-const elementsOfFormSignIn = [
+const elementsOfSignInForm = [
   {
     id: 0,
     name: 'signInEmail',
@@ -25,11 +25,11 @@ const elementsOfFormSignIn = [
   },
 ];
 
-export const FormSignIn = ({
+export const SignInForm = ({
   errors, onSubmit, register, control,
 }) => (
   <Form onSubmit={onSubmit}>
-    {elementsOfFormSignIn.map(({
+    {elementsOfSignInForm.map(({
       id, name, label, placeholder, type, rulesValidation, errorMessage,
     }) => (
       <FormElement
@@ -50,10 +50,9 @@ export const FormSignIn = ({
   </Form>
 );
 
-FormSignIn.propTypes = {
+SignInForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.shape({ signInEmail: PropTypes.shape({}), signUpEmail: PropTypes.shape({}) }).isRequired,
   register: PropTypes.func.isRequired,
   control: PropTypes.shape({}).isRequired,
 };
-

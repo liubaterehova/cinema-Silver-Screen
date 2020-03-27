@@ -1,12 +1,13 @@
 import React from 'react';
 import { Form, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
+
 import { FormElement } from './form-element';
 
-export const FormSignUp = ({
+export const SignUpForm = ({
   errors, onSubmit, register, control, watch,
 }) => {
-  const makeElementsOfFormSignUp = () => [
+  const makeElementsOfSignUpForm = () => [
     {
       id: 0,
       name: 'name',
@@ -59,7 +60,7 @@ export const FormSignUp = ({
 
   return (
     <Form onSubmit={onSubmit}>
-      {makeElementsOfFormSignUp(watch).map(({
+      {makeElementsOfSignUpForm(watch).map(({
         id, name, label, placeholder, type, errorMessage, rulesValidation,
       }) => (
         <FormElement
@@ -82,7 +83,7 @@ export const FormSignUp = ({
   );
 };
 
-FormSignUp.propTypes = {
+SignUpForm.propTypes = {
   watch: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   control: PropTypes.shape({}).isRequired,
