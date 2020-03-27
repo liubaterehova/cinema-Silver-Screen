@@ -8,7 +8,7 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/il-itech/lab-project"
+    "url": "https://github.com/liubaterehova/cinema-silver-screen-front"
   },
   "scripts": {
     "lint": "eslint --ext js,jsx src",
