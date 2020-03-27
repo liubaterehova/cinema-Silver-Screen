@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Spinner } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 
-import { HeaderFilm } from '../../components/header-film/header';
+import { FilmHeader } from '../../components/film-header/film-header';
 import { FilmDescription } from '../../components/film-description/film-description';
 import { useSelectedFilm } from '../../hooks/use-selected-film';
 import { useSessionsByFilm } from '../../hooks/use-sessions-by-film';
@@ -24,7 +24,7 @@ export const Film = () => {
         isLoadingFilm || isLoadingSessions ? <Spinner color="primary" />
           : (
             <Container>
-              <HeaderFilm name={film.name} />
+              <FilmHeader name={film.name} />
               <FilmDescription
                 name={film.name}
                 type={film.type}

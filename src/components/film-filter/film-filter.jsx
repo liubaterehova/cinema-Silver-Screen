@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { DropDownMenu } from '../drop-down-menu/drop-down-menu';
-import { IconArrow } from '../icons/icon-arrow';
+import { ArrowIcon } from '../icons/arrow-icon';
 
 export const FilmFilter = ({
   items, selectItem, filterValue,
@@ -20,7 +20,7 @@ export const FilmFilter = ({
       <Col md={4}>
         <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen(value => !value)}>
           <DropdownToggle tag="div">
-            <IconArrow />
+            <ArrowIcon />
           </DropdownToggle>
           <DropDownMenu
             items={items}

@@ -59,7 +59,6 @@ module.exports = {
         }, {
           loader: 'css-loader',
         },
-
         {
           loader: 'postcss-loader',
           options: {
@@ -69,9 +68,11 @@ module.exports = {
               ];
             },
           },
-        }, {
+        },
+        {
           loader: 'sass-loader',
-        }],
+        },
+        ],
       },
     ],
   },

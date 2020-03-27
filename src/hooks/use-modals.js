@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useCallback } from 'react';
+
 import {
   openModal, toggleModal, closeAllModals,
 } from '../actions/modals';

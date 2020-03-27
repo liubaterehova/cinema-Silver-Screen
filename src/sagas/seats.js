@@ -1,4 +1,5 @@
 import { call, takeEvery } from 'redux-saga/effects';
+
 import { postSeats } from '../actions/seats';
 import { makeApi } from '../api';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const IconSeat = ({ color }) => {
+export const SeatIcon = ({ color }) => {
   let fill;
 
   if (color === '' || !color) {
@@ -24,10 +24,10 @@ export const IconSeat = ({ color }) => {
   );
 };
 
-IconSeat.propTypes = {
+SeatIcon.propTypes = {
   color: PropTypes.string,
 };
 
-IconSeat.defaultProps = {
+SeatIcon.defaultProps = {
   color: '',
 };

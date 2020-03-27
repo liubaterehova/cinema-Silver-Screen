@@ -1,11 +1,11 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
+
 import { getCinemas, getCinemasFailure, getCinemasSuccess } from '../actions/cinemas';
 import { makeApi } from '../api';
 
 function* getCinemasSaga() {
   try {
     const { cinemas } = makeApi();
-
     const response = yield call([cinemas, cinemas.getCinemas]);
 
     if (response.data) {

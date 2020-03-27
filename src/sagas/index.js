@@ -8,10 +8,14 @@ import { sessionsSaga } from './sessions';
 import { sessionSaga } from './session';
 
 export function* rootSaga() {
-  yield all([...filmsSagas,
-    ...cinemasSagas,
-    ...filmSaga,
-    ...seatsSaga,
-    ...sessionsSaga,
-    ...sessionSaga]);
+  yield all(
+    [
+      ...filmsSagas,
+      ...cinemasSagas,
+      ...filmSaga,
+      ...seatsSaga,
+      ...sessionsSaga,
+      ...sessionSaga,
+    ],
+  );
 }

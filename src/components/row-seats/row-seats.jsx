@@ -4,7 +4,7 @@ import * as R from 'ramda';
 import { Col, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { IconSeat } from '../icons/icon-seat';
+import { SeatIcon } from '../icons/seat-icon';
 import { postSeats } from '../../actions/seats';
 
 const colsNumber = R.range(1, 11);
@@ -37,7 +37,7 @@ export const RowSeats = ({ rowNumber }) => {
         color="link"
         onClick={() => handleClick(col)}
       >
-        <IconSeat color={seats[`${rowNumber}_${col}`]} />
+        <SeatIcon color={seats[`${rowNumber}_${col}`]} />
       </Button>
     </Col>
   )));
