@@ -1,12 +1,11 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 
 import { getSessions, getSessionsFailure, getSessionsSuccess } from '../actions/sessions';
-import { makeApi } from '../api';
+import { api } from '../api';
 
 function* getSessionsSaga({ payload }) {
   try {
-    const { sessions } = makeApi();
-    const response = yield call([sessions, sessions.getSessions], payload.filmId);
+    const response = yield call([api, api.getSessions], payload.filmId);
 
     if (response.data) {
       yield put(
