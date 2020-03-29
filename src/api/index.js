@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { CONFIG } from '../config';
+
 const BASE_CINEMAS_URL = 'api/v1/cinemas';
 const BASE_FILMS_URL = 'api/v1/films';
 const BASE_SEATS_URL = 'api/v1/seats';
@@ -33,4 +35,4 @@ export class Api {
   getSession = async (sessionId) => this.http.get(`${this.address}/${BASE_SESSION_URL}/${sessionId}`);
 }
 
-export const api = new Api('http://localhost:3010');
+export const api = new Api(CONFIG.backendUrl);
