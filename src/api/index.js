@@ -15,13 +15,13 @@ export class Api {
 
   http = axios.create();
 
-  getFilms = async () => this.http.get(`${this.address}/${BASE_FILMS_URL}`);
+  getFilms = () => this.http.get(`${this.address}/${BASE_FILMS_URL}`);
 
-  getFilm = async (filmId) => this.http.get(`${this.address}/${BASE_FILMS_URL}/${filmId}`);
+  getFilm = (filmId) => this.http.get(`${this.address}/${BASE_FILMS_URL}/${filmId}`);
 
-  getCinemas = async () => this.http.get(`${this.address}/${BASE_CINEMAS_URL}`);
+  getCinemas = () => this.http.get(`${this.address}/${BASE_CINEMAS_URL}`);
 
-  postSeats = async (seats) => this.http.post(`${this.address}/${BASE_SEATS_URL}`,
+  postSeats = (seats) => this.http.post(`${this.address}/${BASE_SEATS_URL}`,
     {
       headers: {
         Accept: 'appliccation/json',
@@ -30,9 +30,9 @@ export class Api {
       body: JSON.stringify({ seats }),
     });
 
-  getSessions = async (filmId) => this.http.get(`${this.address}/${BASE_SESSIONS_URL}/${filmId}`);
+  getSessions = (filmId) => this.http.get(`${this.address}/${BASE_SESSIONS_URL}/${filmId}`);
 
-  getSession = async (sessionId) => this.http.get(`${this.address}/${BASE_SESSION_URL}/${sessionId}`);
+  getSession = (sessionId) => this.http.get(`${this.address}/${BASE_SESSION_URL}/${sessionId}`);
 }
 
 export const api = new Api(CONFIG.backendUrl);
