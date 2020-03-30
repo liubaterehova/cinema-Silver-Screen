@@ -1,3 +1,3 @@
 export const CONFIG = {
-  backendUrl: 'http://localhost:3010',
+  BASE_URL: 'http://localhost:3010/',
 };

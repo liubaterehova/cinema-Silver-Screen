@@ -1,11 +1,15 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
-import { getCinemas, getCinemasFailure, getCinemasSuccess } from '../actions/cinemas';
 
-import { api } from '../api';
+import { getCinemas, getCinemasFailure, getCinemasSuccess } from '../actions/cinemas';
+import { http } from '../api';
+
+const BASE_CINEMAS_URL = 'api/v1/cinemas';
+
+const loadCinemas = () => http.get(BASE_CINEMAS_URL);
 
 function* getCinemasSaga() {
   try {
-    const response = yield call([api, api.getCinemas]);
+    const response = yield call(loadCinemas);
 
     if (response.data) {
       yield put(

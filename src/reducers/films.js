@@ -4,7 +4,7 @@ import {
   getFilms, getFilmsSuccess, getFilmsFailure,
 } from '../actions/films';
 
-const defaultState = { films: [], isLoading: false, error: null };
+const defaultState = { list: [], isLoading: false, error: null };
 
 export const films = handleActions(
   {
@@ -14,7 +14,7 @@ export const films = handleActions(
       }),
     [getFilmsSuccess]: (state, { payload: { films: payloadFilms } }) =>
       ({
-        ...state, films: payloadFilms, isLoading: false,
+        ...state, list: payloadFilms, isLoading: false,
       }),
     [getFilmsFailure]: (state, { payload: { error } }) =>
       ({

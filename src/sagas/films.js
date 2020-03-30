@@ -1,11 +1,15 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 
 import { getFilms, getFilmsFailure, getFilmsSuccess } from '../actions/films';
-import { api } from '../api';
+import { http } from '../api';
+
+const BASE_FILMS_URL = 'api/v1/films';
+
+const loadFilms = () => http.get(BASE_FILMS_URL);
 
 function* getFilmsSaga() {
   try {
-    const response = yield call([api, api.getFilms]);
+    const response = yield call(loadFilms);
 
     if (response.data) {
       yield put(

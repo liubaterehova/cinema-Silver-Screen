@@ -11,7 +11,7 @@ export const useFilmFiltering = () => {
     dispatch(getFilms());
   }, [dispatch]);
 
-  const filteredFilms = useSelector(({ films: { films }, filters }) => filterFilms(films, filters));
+  const filteredFilms = useSelector(({ films: { list }, filters }) => filterFilms(list, filters));
 
   return {
     films: filteredFilms,
