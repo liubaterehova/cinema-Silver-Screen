@@ -14,14 +14,7 @@ function* updateSeatsSaga({ payload }) {
 }
 
 function updateSeats(seats) {
-  return http.post(BASE_SEATS_URL,
-    {
-      headers: {
-        Accept: 'appliccation/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ seats }),
-    });
+  return http.post(BASE_SEATS_URL, { seats });
 }
 
 export const seatsSagas = [takeEvery(postSeats, updateSeatsSaga)];

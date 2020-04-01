@@ -54,24 +54,26 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: [{
-          loader: 'style-loader',
-        }, {
-          loader: 'css-loader',
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            plugins() {
-              return [
-                autoprefixer,
-              ];
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins() {
+                return [
+                  autoprefixer,
+                ];
+              },
             },
           },
-        },
-        {
-          loader: 'sass-loader',
-        },
+          {
+            loader: 'sass-loader',
+          },
         ],
       },
     ],

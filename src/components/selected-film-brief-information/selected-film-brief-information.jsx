@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import './selected-film-brief-information.scss';
 
-export const SelectedFilmBriefInformation = ({
-  session,
-}) => {
-  const { film: { name, poster }, cinema: { label, address }, time } = session;
+export const SelectedFilmBriefInformation = ({ session }) => {
+  const { film, cinema, time } = session;
+  const { name, poster } = film;
+  const { label, address } = cinema;
 
   return (
     <div className="selected-film position-relative">
