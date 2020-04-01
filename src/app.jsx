@@ -20,7 +20,7 @@ export const App = () => (
     <Router history={customHistory}>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/film/:filmId" component={Film} />
+        <Route path="/films/:filmId" component={Film} />
         <Route path="/films/admin" component={Admin} />
         <Route path="/select-seat/:sessionId" component={SeatSelection} />
       </Switch>
