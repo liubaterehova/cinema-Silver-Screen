@@ -16,7 +16,6 @@ export function* rootSaga() {
       ...seatsSagas,
       ...sessionsSagas,
       ...sessionSagas,
-      ...usersSagas,
     ],
   );
 }
