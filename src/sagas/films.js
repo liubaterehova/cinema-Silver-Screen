@@ -5,10 +5,6 @@ import { http } from '../api';
 
 const BASE_FILMS_URL = 'films';
 
-function fetchFilms() {
-  return http.get(BASE_FILMS_URL);
-}
-
 function* loadFilmsSaga() {
   try {
     const response = yield call(fetchFilms);
@@ -21,6 +17,10 @@ function* loadFilmsSaga() {
   } catch (error) {
     yield put(getFilmsFailure({ error }));
   }
+}
+
+function fetchFilms() {
+  return http.get(BASE_FILMS_URL);
 }
 
 export const filmsSagas = [takeEvery(getFilms, loadFilmsSaga)];
