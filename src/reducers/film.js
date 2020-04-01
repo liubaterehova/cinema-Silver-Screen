@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 
 import { getFilm, getFilmSuccess, getFilmFailure } from '../actions/film';
 
-const defaultState = { film: null, isLoading: true, error: null };
+const defaultState = { film: null, isLoading: false, error: null };
 
 export const film = handleActions(
   {
@@ -17,4 +17,3 @@ export const film = handleActions(
     }),
   }, defaultState,
 );
-

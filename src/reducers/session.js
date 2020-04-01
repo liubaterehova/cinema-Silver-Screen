@@ -4,7 +4,7 @@ import {
   getSession, getSessionSuccess, getSessionFailure,
 } from '../actions/session';
 
-const defaultState = { session: [], isLoading: true, error: null };
+const defaultState = { session: null, isLoading: false, error: null };
 
 export const session = handleActions(
   {

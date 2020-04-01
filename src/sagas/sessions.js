@@ -3,13 +3,15 @@ import { put, call, takeEvery } from 'redux-saga/effects';
 import { getSessions, getSessionsFailure, getSessionsSuccess } from '../actions/sessions';
 import { http } from '../api';
 
-const BASE_SESSIONS_URL = 'api/v1/sessions';
+const BASE_SESSIONS_URL = 'sessions';
 
-const loadSessions = (filmId) => http.get(`${BASE_SESSIONS_URL}/`, { params: { filmId } });
+function fetchSessions(filmId) {
+  return http.get(BASE_SESSIONS_URL, { params: { filmId } });
+}
 
-function* getSessionsSaga({ payload }) {
+function* loadSessionsSaga({ payload }) {
   try {
-    const response = yield call(loadSessions, payload.filmId);
+    const response = yield call(fetchSessions, payload.filmId);
 
     if (response.data) {
       yield put(
@@ -21,4 +23,4 @@ function* getSessionsSaga({ payload }) {
   }
 }
 
-export const sessionsSaga = [takeEvery(getSessions, getSessionsSaga)];
+export const sessionsSagas = [takeEvery(getSessions, loadSessionsSaga)];

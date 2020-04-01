@@ -10,11 +10,10 @@ import { useSessionsByFilm } from '../../hooks/use-sessions-by-film';
 export const Film = () => {
   const { filmId } = useParams();
 
+  const { sessions, isLoading: isLoadingSessions } = useSessionsByFilm(filmId);
   const { film, isLoading: isLoadingFilm } = useSelectedFilm(filmId);
 
-  const { sessions, isLoading: isLoadingSessions } = useSessionsByFilm(filmId);
-
-  if (isLoadingFilm || isLoadingSessions) {
+  if (isLoadingFilm || isLoadingSessions || film == null) {
     return <Spinner color="primary" />;
   }
 

@@ -44,5 +44,4 @@ SelectedFilmBriefInformation.propTypes = {
     }),
     time: PropTypes.string,
   }).isRequired,
-
 };

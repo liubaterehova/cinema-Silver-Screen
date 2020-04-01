@@ -12,7 +12,7 @@ export const SeatSelection = () => {
   const { sessionId } = useParams();
   const { session, isLoading: isLoadingSession } = useSession(sessionId);
 
-  if (isLoadingSession) {
+  if (isLoadingSession || session == null) {
     return <Spinner color="primary" />;
   }
 

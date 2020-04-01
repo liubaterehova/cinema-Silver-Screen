@@ -4,7 +4,7 @@ import {
   getCinemas, getCinemasSuccess, getCinemasFailure,
 } from '../actions/cinemas';
 
-const defaultState = { cinemas: [], isLoading: true, error: null };
+const defaultState = { cinemas: [], isLoading: false, error: null };
 
 export const cinemas = handleActions(
   {

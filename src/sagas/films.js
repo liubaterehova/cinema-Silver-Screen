@@ -3,13 +3,15 @@ import { put, call, takeEvery } from 'redux-saga/effects';
 import { getFilms, getFilmsFailure, getFilmsSuccess } from '../actions/films';
 import { http } from '../api';
 
-const BASE_FILMS_URL = 'api/v1/films';
+const BASE_FILMS_URL = 'films';
 
-const loadFilms = () => http.get(BASE_FILMS_URL);
+function fetchFilms() {
+  return http.get(BASE_FILMS_URL);
+}
 
-function* getFilmsSaga() {
+function* loadFilmsSaga() {
   try {
-    const response = yield call(loadFilms);
+    const response = yield call(fetchFilms);
 
     if (response.data) {
       yield put(
@@ -21,4 +23,4 @@ function* getFilmsSaga() {
   }
 }
 
-export const filmsSagas = [takeEvery(getFilms, getFilmsSaga)];
+export const filmsSagas = [takeEvery(getFilms, loadFilmsSaga)];
