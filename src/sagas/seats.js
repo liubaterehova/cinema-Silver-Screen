@@ -5,6 +5,14 @@ import { http } from '../api';
 
 const BASE_SEATS_URL = 'seats';
 
+function* updateSeatsSaga({ payload }) {
+  try {
+    yield call([http, updateSeats], payload.seats);
+  } catch (error) {
+    throw new Error('error in post seats saga');
+  }
+}
+
 function updateSeats(seats) {
   return http.post(BASE_SEATS_URL,
     {
@@ -14,14 +22,6 @@ function updateSeats(seats) {
       },
       body: JSON.stringify({ seats }),
     });
-}
-
-function* updateSeatsSaga({ payload }) {
-  try {
-    yield call([http, updateSeats], payload.seats);
-  } catch (error) {
-    throw new Error('error in post seats saga');
-  }
 }
 
 export const seatsSagas = [takeEvery(postSeats, updateSeatsSaga)];

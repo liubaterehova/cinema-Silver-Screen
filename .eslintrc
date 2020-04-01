@@ -108,6 +108,12 @@
         "array": false
       }
     ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false
+      }
+    ],
     "react/destructuring-assignment": 0,
     "react/state-in-constructor": 0,
     "react/static-property-placement": 0,

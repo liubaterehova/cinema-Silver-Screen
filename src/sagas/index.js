@@ -6,7 +6,6 @@ import { filmSagas } from './film';
 import { seatsSagas } from './seats';
 import { sessionsSagas } from './sessions';
 import { sessionSagas } from './session';
-import { usersSagas } from './users';
 
 export function* rootSaga() {
   yield all(
@@ -17,7 +16,6 @@ export function* rootSaga() {
       ...seatsSagas,
       ...sessionsSagas,
       ...sessionSagas,
-      ...usersSagas,
     ],
   );
 }
