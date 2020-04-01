@@ -7,6 +7,7 @@ import {
 import { SignInModal } from '../modals/sign-in-modal';
 import { SignUpModal } from '../modals/sign-up-modal';
 import { useModals } from '../../hooks/use-modals';
+import { useRegistration } from '../../hooks/use-registration';
 import { MODAL_WINDOW } from '../../constants';
 
 import './header.scss';
@@ -27,7 +28,13 @@ export const Header = () => {
     dispatchToggleModal: toggleSignUp,
   } = useModals(MODAL_WINDOW.SIGN_UP);
 
+  const { dispatchCreateUser } = useRegistration();
+
   const toggleshowInput = () => changeVisibility((visibleInput) => !visibleInput);
+
+  const onSignUp = (informationRegistration) => {
+    dispatchCreateUser(informationRegistration);
+  };
 
   return (
     <div className="header-main-page">
@@ -48,6 +55,7 @@ export const Header = () => {
             toggle={toggleSignUp}
             onClickSignUp={clickSignUp}
             onClose={closeAllModalWindows}
+            onSignUp={onSignUp}
           />
         </Col>
         <Col xs={2} className={classNames({ 'd-none': inputSearch })}>

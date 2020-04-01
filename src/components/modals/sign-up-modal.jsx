@@ -6,7 +6,7 @@ import { ModalWindow } from './modals';
 import { SignUpForm } from '../forms/sign-up-form';
 
 export const SignUpModal = ({
-  isOpen, onClose, toggle,
+  isOpen, onClose, toggle, onSignUp,
 }) => {
   const {
     register, errors, handleSubmit, control, formState, watch,
@@ -19,13 +19,13 @@ export const SignUpModal = ({
       header="Sign up"
       toggleInHeader={onClose}
       primaryButton="Sign up"
-      primaryButtonHandleClick={onClose}
+      primaryButtonHandleClick={() => onSignUp(watch())}
       secondaryButton="Close"
       isPrimaryButtonDisable={!(formState.touched && formState.isValid)}
       secondaryButtonHandleClick={onClose}
     >
       <SignUpForm
-        onSubmit={handleSubmit(() => { })}
+        onSubmit={handleSubmit(() => {})}
         register={register}
         errors={errors}
         control={control}
@@ -36,6 +36,7 @@ export const SignUpModal = ({
 };
 
 SignUpModal.propTypes = {
+  onSignUp: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
