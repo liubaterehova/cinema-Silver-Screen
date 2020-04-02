@@ -1,6 +1,7 @@
-import { call, takeEvery } from 'redux-saga/effects';
+import { call, takeEvery, put } from 'redux-saga/effects';
 
-import { createUser as createUserAction } from '../actions/create-user';
+import { createUser as createUserAction, createUserSuccess, createUserFailure } from '../actions/users';
+import { closeAllModals } from '../actions/modals';
 import { http } from '../api';
 
 const BASE_CREATE_USER_URL = 'users';
@@ -16,9 +17,20 @@ function createUser(user) {
 
 function* createUserSaga({ payload }) {
   try {
-    yield call(createUser, payload.informationRegistration);
+    const response = yield call(createUser, payload.informationRegistration);
+
+    if (response.data) {
+      yield put(
+        createUserSuccess({ user: response.data }),
+      );
+      yield put(
+        closeAllModals(),
+      );
+    }
   } catch (error) {
-    throw new Error('error in post create User saga');
+    yield put(
+      createUserFailure({ error }),
+    );
   }
 }
 

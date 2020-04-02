@@ -18,10 +18,11 @@ export const FormElement = ({
       id={id}
       placeholder={placeholder}
       rules={rules}
+      invalid={!!error}
     >
       {children}
     </Controller>
-    {error && errorMessage}
+    {(error) ? errorMessage : null}
   </FormGroup>
 );
 

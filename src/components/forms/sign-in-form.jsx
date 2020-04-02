@@ -26,9 +26,9 @@ const elementsOfSignInForm = [
 ];
 
 export const SignInForm = ({
-  errors, onSubmit, register, control,
+  errors, register, control,
 }) => (
-  <Form onSubmit={onSubmit}>
+  <Form>
     {elementsOfSignInForm.map(({
       id, name, label, placeholder, type, rulesValidation, errorMessage,
     }) => (
@@ -51,7 +51,6 @@ export const SignInForm = ({
 );
 
 SignInForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.shape({ signInEmail: PropTypes.shape({}), signUpEmail: PropTypes.shape({}) }).isRequired,
   register: PropTypes.func.isRequired,
   control: PropTypes.shape({}).isRequired,

@@ -1,36 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Modal, ModalHeader, ModalBody, ModalFooter,
+  Button, Modal, ModalHeader, ModalBody, ModalFooter, Spinner,
 } from 'reactstrap';
+
+import { useUser } from '../../hooks/use-user';
 
 export const ModalWindow = ({
   isOpen, toggleInModal, header, toggleInHeader, primaryButton,
   secondaryButton, primaryButtonHandleClick, secondaryButtonHandleClick, children, isPrimaryButtonDisable,
-}) => (
-  <Modal isOpen={isOpen} toggle={toggleInModal}>
-    <ModalHeader toggle={toggleInHeader}>{header}</ModalHeader>
-    <ModalBody>
-      {children}
-    </ModalBody>
-    <ModalFooter>
-      <Button
-        color="primary"
-        type="submit"
-        onClick={primaryButtonHandleClick}
-        disabled={isPrimaryButtonDisable}
-      >
-        {primaryButton}
-      </Button>
-      <Button
-        color="secondary"
-        onClick={secondaryButtonHandleClick}
-      >
-        {secondaryButton}
-      </Button>
-    </ModalFooter>
-  </Modal>
-);
+}) => {
+  const { isLoading } = useUser();
+
+  return (
+    <Modal isOpen={isOpen} toggle={toggleInModal}>
+      <ModalHeader toggle={toggleInHeader}>{header}</ModalHeader>
+      <ModalBody>
+        {children}
+      </ModalBody>
+      <ModalFooter>
+        {(isLoading) ? <Spinner /> : (
+          <Button
+            color="primary"
+            type="submit"
+            onClick={primaryButtonHandleClick}
+            disabled={isPrimaryButtonDisable}
+          >
+            {primaryButton}
+          </Button>
+        )}
+        <Button
+          color="secondary"
+          onClick={secondaryButtonHandleClick}
+        >
+          {secondaryButton}
+        </Button>
+      </ModalFooter>
+    </Modal>
+  );
+};
 
 ModalWindow.propTypes = {
   isPrimaryButtonDisable: PropTypes.bool,

@@ -8,7 +8,8 @@ import { cinemas } from './cinemas';
 import { film } from './film';
 import { sessions } from './sessions';
 import { session } from './session';
+import { user } from './user';
 
 export const rootReducer = combineReducers({
-  modals, seats, filters, films, cinemas, film, sessions, session,
+  modals, seats, filters, films, cinemas, film, sessions, session, user,
 });

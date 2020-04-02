@@ -9,7 +9,7 @@ export const SignInModal = ({
   isOpen, toggle, onClickSignUp, onClose,
 }) => {
   const {
-    register, errors, handleSubmit, control, formState,
+    register, errors, control, formState,
   } = useForm({ mode: 'onChange' });
 
   return (
@@ -25,7 +25,6 @@ export const SignInModal = ({
       secondaryButtonHandleClick={onClickSignUp}
     >
       <SignInForm
-        onSubmit={handleSubmit(() => { })}
         register={register}
         errors={errors}
         control={control}

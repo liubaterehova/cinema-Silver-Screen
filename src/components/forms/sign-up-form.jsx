@@ -3,10 +3,13 @@ import { Form, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import { FormElement } from './form-element';
+import { useUser } from '../../hooks/use-user';
 
 export const SignUpForm = ({
-  errors, onSubmit, register, control, watch,
+  errors, register, control, watch,
 }) => {
+  const { user: { error } } = useUser();
+
   const makeElementsOfSignUpForm = () => [
     {
       id: 0,
@@ -59,26 +62,30 @@ export const SignUpForm = ({
   ];
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form>
       {makeElementsOfSignUpForm(watch).map(({
         id, name, label, placeholder, type, errorMessage, rulesValidation,
-      }) => (
-        <FormElement
-          as={Input}
-          id={id}
-          rules={rulesValidation}
-          key={id}
-          name={name}
-          label={label}
-          placeholder={placeholder}
-          type={type}
-          error={errors[name]}
-          errorMessage={errorMessage}
-          register={register}
-          control={control}
-          watch={watch}
-        />
-      ))}
+      }) => {
+        const invalid = error && error.data.error === name;
+
+        return (
+          <FormElement
+            as={Input}
+            id={id}
+            rules={rulesValidation}
+            key={id}
+            name={name}
+            label={label}
+            placeholder={placeholder}
+            type={type}
+            error={errors[name] || invalid}
+            errorMessage={invalid ? 'the data is already exist' : errorMessage}
+            register={register}
+            control={control}
+            watch={watch}
+          />
+        );
+      })}
     </Form>
   );
 };
@@ -87,6 +94,5 @@ SignUpForm.propTypes = {
   watch: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   control: PropTypes.shape({}).isRequired,
-  onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.shape({ signInEmail: PropTypes.shape({}), signUpEmail: PropTypes.shape({}) }).isRequired,
 };
