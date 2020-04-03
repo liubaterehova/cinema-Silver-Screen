@@ -13,7 +13,7 @@ export const SignUpForm = ({
   const makeElementsOfSignUpForm = () => [
     {
       id: 0,
-      name: 'name',
+      name: 'userName',
       label: 'Your name',
       placeholder: 'name',
       type: 'text',

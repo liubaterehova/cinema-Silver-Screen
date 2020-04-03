@@ -1,7 +1,9 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { logOff, cleanError, createUser } from '../actions/users';
+import {
+  logOff, cleanError, createUser, logIn,
+} from '../actions/users';
 
 export const useUser = () => {
   const dispatch = useDispatch();
@@ -12,8 +14,11 @@ export const useUser = () => {
   const dispatchCreateUser = useCallback((informationRegistration) => {
     dispatch(createUser({ informationRegistration }));
   }, [dispatch]);
+  const dispatchLogIn = useCallback((informationLogIn) => {
+    dispatch(logIn({ informationLogIn }));
+  }, [dispatch]);
 
   return {
-    user, dispatchLogOff, dispatchCleanError, dispatchCreateUser,
+    user, dispatchLogOff, dispatchCleanError, dispatchCreateUser, dispatchLogIn,
   };
 };

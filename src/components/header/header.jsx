@@ -28,7 +28,9 @@ export const Header = () => {
     dispatchToggleModal: toggleSignUp,
   } = useModals(MODAL_WINDOW.SIGN_UP);
 
-  const { user: { user }, dispatchLogOff, dispatchCreateUser } = useUser();
+  const {
+    user: { user }, dispatchLogOff, dispatchCreateUser, dispatchLogIn,
+  } = useUser();
   const toggleshowInput = () => changeVisibility((visibleInput) => !visibleInput);
 
   const onClickEnterButton = (user)
@@ -37,6 +39,10 @@ export const Header = () => {
 
   const onSignUp = (informationRegistration) => {
     dispatchCreateUser(informationRegistration);
+  };
+
+  const onSignIn = (informationSignIn) => {
+    dispatchLogIn(informationSignIn);
   };
 
   const enterButtonText = user
@@ -49,7 +55,7 @@ export const Header = () => {
         <Col xs={7}>
           <NavbarBrand href="#home" />
         </Col>
-        <Col>{user ? `Hallo ${user.name}` : null}</Col>
+        <Col>{user ? `Hallo ${user.userName}` : null}</Col>
         <Col xs={1}>
           <Button color="link" onClick={onClickEnterButton}>{enterButtonText}</Button>
           <SignInModal
@@ -57,6 +63,7 @@ export const Header = () => {
             toggle={toggleSignIn}
             onClickSignUp={clickSignUp}
             onClose={closeAllModalWindows}
+            onSignIn={onSignIn}
           />
           <SignUpModal
             isOpen={isSignUpModalOpen}

@@ -6,10 +6,10 @@ import { ModalWindow } from './modals';
 import { SignInForm } from '../forms/sign-in-form';
 
 export const SignInModal = ({
-  isOpen, toggle, onClickSignUp, onClose,
+  isOpen, toggle, onClickSignUp, onClose, onSignIn,
 }) => {
   const {
-    register, errors, control, formState,
+    register, errors, control, formState, watch,
   } = useForm({ mode: 'onChange' });
 
   return (
@@ -19,7 +19,7 @@ export const SignInModal = ({
       header="Sign in"
       toggleInHeader={onClose}
       primaryButton="Sign in"
-      primaryButtonHandleClick={onClose}
+      primaryButtonHandleClick={() => { onSignIn(watch()); }}
       secondaryButton="Sign up"
       isPrimaryButtonDisable={!(formState.touched && formState.isValid)}
       secondaryButtonHandleClick={onClickSignUp}
@@ -34,6 +34,7 @@ export const SignInModal = ({
 };
 
 SignInModal.propTypes = {
+  onSignIn: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
   onClickSignUp: PropTypes.func.isRequired,

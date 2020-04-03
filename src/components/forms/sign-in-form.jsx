@@ -3,20 +3,21 @@ import { Form, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import { FormElement } from './form-element';
+import { useUser } from '../../hooks/use-user';
 
 const elementsOfSignInForm = [
   {
     id: 0,
-    name: 'signInEmail',
-    label: 'Email',
-    placeholder: 'email',
-    type: 'email',
-    rulesValidation: { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ },
-    errorMessage: 'Please enter correct email',
+    name: 'userName',
+    label: 'Username',
+    placeholder: 'username',
+    type: 'text',
+    rulesValidation: { required: true },
+    errorMessage: 'Please enter userName',
   },
   {
     id: 1,
-    name: 'signInPassword',
+    name: 'password',
     label: 'Password',
     placeholder: 'password',
     type: 'password',
@@ -27,28 +28,36 @@ const elementsOfSignInForm = [
 
 export const SignInForm = ({
   errors, register, control,
-}) => (
-  <Form>
-    {elementsOfSignInForm.map(({
-      id, name, label, placeholder, type, rulesValidation, errorMessage,
-    }) => (
-      <FormElement
-        as={Input}
-        id={id}
-        rules={rulesValidation}
-        key={id}
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        type={type}
-        error={errors[name]}
-        register={register}
-        control={control}
-        errorMessage={errorMessage}
-      />
-    ))}
-  </Form>
-);
+}) => {
+  const { user: { error } } = useUser();
+
+  return (
+    <Form>
+      {elementsOfSignInForm.map(({
+        id, name, label, placeholder, type, rulesValidation, errorMessage,
+      }) => {
+        const invalid = error && error.data.error === name;
+
+        return (
+          <FormElement
+            as={Input}
+            id={id}
+            rules={rulesValidation}
+            key={id}
+            name={name}
+            label={label}
+            placeholder={placeholder}
+            type={type}
+            error={errors[name] || invalid}
+            register={register}
+            control={control}
+            errorMessage={invalid ? 'Login or password is not correct' : errorMessage}
+          />
+        );
+      })}
+    </Form>
+  );
+};
 
 SignInForm.propTypes = {
   errors: PropTypes.shape({ signInEmail: PropTypes.shape({}), signUpEmail: PropTypes.shape({}) }).isRequired,
