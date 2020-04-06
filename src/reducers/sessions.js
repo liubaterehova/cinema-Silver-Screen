@@ -1,19 +1,19 @@
 import { handleActions } from 'redux-actions';
 
-import { getSessions, getSessionsSuccess, getSessionsFailure } from '../actions/sessions';
+import { loadSessions, loadSessionsSuccess, loadSessionsFailure } from '../actions/sessions';
 
 const defaultState = { sessions: [], isLoading: false, error: null };
 
 export const sessions = handleActions(
   {
-    [getSessions]: state => ({
+    [loadSessions]: state => ({
       ...state, isLoading: true,
     }),
-    [getSessionsSuccess]: (state, { payload: { sessions: payloadSessions } }) =>
+    [loadSessionsSuccess]: (state, { payload: { sessions: payloadSessions } }) =>
       ({
         ...state, sessions: payloadSessions, isLoading: false,
       }),
-    [getSessionsFailure]: (state, { payload: { error } }) =>
+    [loadSessionsFailure]: (state, { payload: { error } }) =>
       ({
         ...state, isLoading: false, error,
       }),

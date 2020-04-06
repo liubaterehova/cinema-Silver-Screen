@@ -12,7 +12,7 @@
   },
   "scripts": {
     "lint": "eslint --ext js,jsx src",
-    "build:client:dev": "webpack --config ./resources/webpack/webpack.client.js -w",
+    "build": "webpack --config ./resources/webpack/webpack.client.js -w",
     "start": "webpack-dev-server --config ./resources/webpack/webpack.client.js --open",
     "pm2:start": "pm2 start ./resources/pm2/development.json",
     "pm2:stop": "pm2 stop resources/pm2/development.json",

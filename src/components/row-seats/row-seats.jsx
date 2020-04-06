@@ -5,7 +5,7 @@ import { Col, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import { SeatIcon } from '../icons/seat-icon';
-import { postSeats } from '../../actions/seats';
+import { updateSeats } from '../../actions/seats';
 
 const colsNumber = R.range(1, 11);
 
@@ -27,7 +27,7 @@ export const RowSeats = ({ rowNumber }) => {
       return { ...state, [seatId]: 'selected' };
     });
     if (seats[seatId] === 'locked') return;
-    dispatch(postSeats({ row: rowNumber, col }));
+    dispatch(updateSeats({ row: rowNumber, col }));
   };
 
   return (colsNumber.map(col => (

@@ -1,9 +1,9 @@
 import { createActions } from 'redux-actions';
 
 export const {
-  addNewFilter,
+  createFilter,
   removeFilter,
 } = createActions(
-  'ADD_NEW_FILTER',
+  'CREATE_FILTER',
   'REMOVE_FILTER',
 );

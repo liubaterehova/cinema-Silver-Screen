@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getSessions } from '../actions/sessions';
+import { loadSessions } from '../actions/sessions';
 
 export const useSessionsByFilm = (filmId) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSessions({ filmId }));
+    dispatch(loadSessions({ filmId }));
   }, [dispatch, filmId]);
 
   return useSelector(({ sessions }) => sessions);

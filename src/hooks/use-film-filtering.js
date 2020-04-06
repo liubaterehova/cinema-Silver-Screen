@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { filterFilms } from '../utils/filter-films';
-import { getFilms } from '../actions/films';
+import { loadFilms } from '../actions/films';
 
 export const useFilmFiltering = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFilms());
+    dispatch(loadFilms());
   }, [dispatch]);
 
   const filteredFilms = useSelector(({ films: { list }, filters }) => filterFilms(list, filters));

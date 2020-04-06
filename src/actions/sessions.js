@@ -1,11 +1,11 @@
 import { createActions } from 'redux-actions';
 
 export const {
-  getSessions,
-  getSessionsSuccess,
-  getSessionsFailure,
+  loadSessions,
+  loadSessionsSuccess,
+  loadSessionsFailure,
 } = createActions(
-  'GET_SESSIONS',
-  'GET_SESSIONS_SUCCESS',
-  'GET_SESSIONS_FAILURE',
+  'LOAD_SESSIONS',
+  'LOAD_SESSIONS_SUCCESS',
+  'LOAD_SESSIONS_FAILURE',
 );

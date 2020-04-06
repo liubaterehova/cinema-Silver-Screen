@@ -1,20 +1,20 @@
 import { handleActions } from 'redux-actions';
 
-import { getFilms, getFilmsSuccess, getFilmsFailure } from '../actions/films';
+import { loadFilms, loadFilmsSuccess, loadFilmsFailure } from '../actions/films';
 
 const defaultState = { list: [], isLoading: false, error: null };
 
 export const films = handleActions(
   {
-    [getFilms]: state =>
+    [loadFilms]: state =>
       ({
         ...state, isLoading: true,
       }),
-    [getFilmsSuccess]: (state, { payload: { films: payloadFilms } }) =>
+    [loadFilmsSuccess]: (state, { payload: { films: payloadFilms } }) =>
       ({
         ...state, list: payloadFilms, isLoading: false,
       }),
-    [getFilmsFailure]: (state, { payload: { error } }) =>
+    [loadFilmsFailure]: (state, { payload: { error } }) =>
       ({
         ...state, isLoading: false, error,
       }),

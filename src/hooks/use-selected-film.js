@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getFilm } from '../actions/film';
+import { loadFilm } from '../actions/film';
 
 export const useSelectedFilm = (filmId) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFilm({ filmId }));
+    dispatch(loadFilm({ filmId }));
   }, [dispatch, filmId]);
 
   return useSelector(({ film }) => film);

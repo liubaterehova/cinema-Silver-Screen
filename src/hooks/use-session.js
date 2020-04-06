@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getSession } from '../actions/session';
+import { loadSession } from '../actions/session';
 
 export const useSession = (sessionId) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSession({ sessionId }));
+    dispatch(loadSession({ sessionId }));
   }, [dispatch, sessionId]);
 
   return useSelector(({ session }) => session);

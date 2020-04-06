@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { addNewFilter, removeFilter } from '../actions/film-filters';
+import { createFilter, removeFilter } from '../actions/film-filters';
 
 const defaultState = [];
 
@@ -26,7 +26,7 @@ const removeFilterReducer = (filters, { type }) => {
 
 export const filters = handleActions(
   {
-    [addNewFilter]: (state, { payload: { filter } }) =>
+    [createFilter]: (state, { payload: { filter } }) =>
       addFilterReducer(state, filter),
     [removeFilter]: (state, { payload: { filter } }) =>
       removeFilterReducer(state, filter),
