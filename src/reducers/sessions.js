@@ -1,8 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import {
-  getSessions, getSessionsSuccess, getSessionsFailure,
-} from '../actions/sessions';
+import { getSessions, getSessionsSuccess, getSessionsFailure } from '../actions/sessions';
 
 const defaultState = { sessions: [], isLoading: false, error: null };
 

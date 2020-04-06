@@ -1,9 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useCallback } from 'react';
 
-import {
-  addNewFilter, removeFilter,
-} from '../actions/film-filters';
+import { addNewFilter, removeFilter } from '../actions/film-filters';
 
 export const useFilters = () => {
   const filters = useSelector(({ filters: f }) => f);

@@ -1,8 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import {
-  getFilms, getFilmsSuccess, getFilmsFailure,
-} from '../actions/films';
+import { getFilms, getFilmsSuccess, getFilmsFailure } from '../actions/films';
 
 const defaultState = { list: [], isLoading: false, error: null };
 

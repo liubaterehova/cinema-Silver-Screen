@@ -1,8 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import {
-  getCinemas, getCinemasSuccess, getCinemasFailure,
-} from '../actions/cinemas';
+import { getCinemas, getCinemasSuccess, getCinemasFailure } from '../actions/cinemas';
 
 const defaultState = { cinemas: [], isLoading: false, error: null };
 

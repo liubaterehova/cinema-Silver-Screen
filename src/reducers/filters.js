@@ -1,8 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import {
-  addNewFilter, removeFilter,
-} from '../actions/film-filters';
+import { addNewFilter, removeFilter } from '../actions/film-filters';
 
 const defaultState = [];
 
