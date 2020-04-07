@@ -24,9 +24,7 @@ export const SelectedFilmBriefInformation = ({
           </Row>
           <Row>{label} {address}</Row>
         </Col>
-        <Col xs="5">
-          {time}
-        </Col>
+        <Col xs="5">{time} </Col>
       </Row>
     </div>
   );

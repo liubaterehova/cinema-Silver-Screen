@@ -9,13 +9,11 @@ export const cinemas = handleActions(
     [loadCinemas]: state => ({
       ...state, isLoading: true,
     }),
-    [loadCinemasSuccess]: (state, { payload: { cinemas: payloadCinemas } }) =>
-      ({
-        ...state, cinemas: payloadCinemas, isLoading: false,
-      }),
-    [loadCinemasFailure]: (state, { payload: { error } }) =>
-      ({
-        ...state, isLoading: false, error,
-      }),
+    [loadCinemasSuccess]: (state, { payload: { cinemas: payloadCinemas } }) => ({
+      ...state, cinemas: payloadCinemas, isLoading: false,
+    }),
+    [loadCinemasFailure]: (state, { payload: { error } }) => ({
+      ...state, isLoading: false, error,
+    }),
   }, defaultState,
 );

@@ -9,13 +9,11 @@ export const session = handleActions(
     [loadSession]: state => ({
       ...state, isLoading: true,
     }),
-    [loadSessionSuccess]: (state, { payload: { session: payloadSession } }) =>
-      ({
-        ...state, session: payloadSession, isLoading: false,
-      }),
-    [loadSessionFailure]: (state, { payload: { error } }) =>
-      ({
-        ...state, isLoading: false, error,
-      }),
+    [loadSessionSuccess]: (state, { payload: { session: payloadSession } }) => ({
+      ...state, session: payloadSession, isLoading: false,
+    }),
+    [loadSessionFailure]: (state, { payload: { error } }) => ({
+      ...state, isLoading: false, error,
+    }),
   }, defaultState,
 );
