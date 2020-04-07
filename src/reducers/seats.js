@@ -1,11 +1,11 @@
 import { handleActions } from 'redux-actions';
-import { postSeats } from '../actions/seats';
+import { updateSeatsRequest } from '../actions/seats';
 
 const defaultState = {};
 
 export const seats = handleActions(
   {
-    [postSeats]: (state, { payload: { row, col } }) => ({
+    [updateSeatsRequest]: (state, { payload: { row, col } }) => ({
       ...state,
       [`${row}_${col}`]: !state[`${row}_${col}`],
     }),

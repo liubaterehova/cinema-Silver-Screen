@@ -18,23 +18,16 @@ export const Film = () => {
   }
 
   return (
-    <>
-      {
-        isLoadingFilm || isLoadingSessions ? <Spinner color="primary" />
-          : (
-            <Container>
-              <FilmHeader name={film.name} />
-              <FilmDescription
-                name={film.name}
-                type={film.type}
-                description={film.description}
-                poster={film.poster}
-                time={film.time}
-                sessions={sessions}
-              />
-            </Container>
-          )
-      }
-    </>
+    <Container>
+      <FilmHeader name={film.name} />
+      <FilmDescription
+        name={film.name}
+        type={film.type}
+        description={film.description}
+        poster={film.poster}
+        time={film.time}
+        sessions={sessions}
+      />
+    </Container>
   );
 };

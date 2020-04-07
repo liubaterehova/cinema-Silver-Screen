@@ -1,6 +1,6 @@
 import { call, takeEvery } from 'redux-saga/effects';
 
-import { postSeats } from '../actions/seats';
+import { updateSeatsRequest } from '../actions/seats';
 import { http } from '../api';
 
 const BASE_SEATS_URL = 'seats';
@@ -17,4 +17,4 @@ function updateSeats(seats) {
   return http.post(BASE_SEATS_URL, { seats });
 }
 
-export const seatsSagas = [takeEvery(postSeats, updateSeatsSaga)];
+export const seatsSagas = [takeEvery(updateSeatsRequest, updateSeatsSaga)];

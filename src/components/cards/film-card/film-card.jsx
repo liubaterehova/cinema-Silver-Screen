@@ -2,8 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle,
+  Card, CardImg, CardText, CardBody, CardTitle,
 } from 'reactstrap';
 
 import './film-card.scss';

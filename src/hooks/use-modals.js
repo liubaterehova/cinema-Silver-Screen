@@ -1,9 +1,7 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  openModal, toggleModal, closeAllModals,
-} from '../actions/modals';
+import { openModal, toggleModal, closeAllModals } from '../actions/modals';
 
 export const useModals = (modalId) => {
   const isModalOpen = useSelector(({ modals: { [modalId]: isOpen } }) => isOpen || false);

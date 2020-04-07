@@ -1,11 +1,11 @@
 import { createActions } from 'redux-actions';
 
 export const {
-  getCinemas,
-  getCinemasSuccess,
-  getCinemasFailure,
+  loadCinemasRequest,
+  loadCinemasSuccess,
+  loadCinemasFailure,
 } = createActions(
-  'GET_CINEMAS',
-  'GET_CINEMAS_SUCCESS',
-  'GET_CINEMAS_FAILURE',
+  'LOAD_REQUEST',
+  'LOAD_CINEMAS_SUCCESS',
+  'LOAD_CINEMAS_FAILURE',
 );

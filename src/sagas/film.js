@@ -1,6 +1,6 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 
-import { getFilm, getFilmSuccess, getFilmFailure } from '../actions/film';
+import { loadFilmRequest, loadFilmSuccess, loadFilmFailure } from '../actions/film';
 import { http } from '../api';
 
 const BASE_FILMS_URL = 'films';
@@ -11,13 +11,13 @@ function* loadFilmSaga({ payload }) {
 
     if (response.data) {
       yield put(
-        getFilmSuccess({ film: response.data }),
+        loadFilmSuccess({ film: response.data }),
       );
     } else {
-      yield put(getFilmFailure({ error: 'No data' }));
+      yield put(loadFilmFailure({ error: 'No data' }));
     }
   } catch (error) {
-    yield put(getFilmFailure({ error }));
+    yield put(loadFilmFailure({ error }));
   }
 }
 
@@ -25,4 +25,4 @@ function fetchFilm(filmId) {
   return http.get(`${BASE_FILMS_URL}/${filmId}`);
 }
 
-export const filmSagas = [takeEvery(getFilm, loadFilmSaga)];
+export const filmSagas = [takeEvery(loadFilmRequest, loadFilmSaga)];
