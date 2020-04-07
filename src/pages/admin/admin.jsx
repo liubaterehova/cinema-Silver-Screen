@@ -34,7 +34,13 @@ export const Admin = () => (
     {cards.map(({
       id, name, modalId, modalComponent,
     }) => (
-      <AdminCard key={id} id={id} name={name} modalId={modalId} modalComponent={modalComponent} />
+      <AdminCard
+        key={id}
+        id={id}
+        name={name}
+        modalId={modalId}
+        modalComponent={modalComponent}
+      />
     ))}
   </Row>
 );

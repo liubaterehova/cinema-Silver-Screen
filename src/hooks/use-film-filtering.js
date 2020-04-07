@@ -1,10 +1,17 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { FILMS } from '../constants';
 import { filterFilms } from '../utils/filter-films';
+import { loadFilmsRequest } from '../actions/films';
 
 export const useFilmFiltering = () => {
-  const filteredFilms = useSelector(({ filters }) => filterFilms(FILMS, filters));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadFilmsRequest());
+  }, [dispatch]);
+
+  const filteredFilms = useSelector(({ films: { list }, filters }) => filterFilms(list, filters));
 
   return {
     films: filteredFilms,

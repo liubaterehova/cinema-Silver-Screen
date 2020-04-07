@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormGroup, Label,
-} from 'reactstrap';
+import { FormGroup, Label } from 'reactstrap';
 import { Controller } from 'react-hook-form';
 
 export const FormElement = ({

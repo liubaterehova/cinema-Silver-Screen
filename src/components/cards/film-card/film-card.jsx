@@ -2,15 +2,14 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle,
+  Card, CardImg, CardText, CardBody, CardTitle,
 } from 'reactstrap';
 
 import './film-card.scss';
 
 export const FilmCard = ({
   film: {
-    name, type, src, id,
+    name, type, poster, _id,
   },
 }) => (
   <CardBody>
@@ -18,13 +17,13 @@ export const FilmCard = ({
       <CardImg
         variant="top"
         alt="img"
-        src={src}
+        src={poster}
         className="m-auto"
       />
       <CardBody className="text-center">
         <CardTitle className="my-5">{name}</CardTitle>
         <CardText>{type}</CardText>
-        <Link to={`/films/${id}`}>
+        <Link to={`/films/${_id}`}>
           Buy
         </Link>
       </CardBody>
@@ -34,9 +33,9 @@ export const FilmCard = ({
 
 FilmCard.propTypes = {
   film: PropTypes.shape({
+    _id: PropTypes.string,
     name: PropTypes.string,
-    id: PropTypes.number,
     type: PropTypes.string,
-    src: PropTypes.string,
+    poster: PropTypes.string,
   }).isRequired,
 };

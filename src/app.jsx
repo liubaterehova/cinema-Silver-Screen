@@ -1,10 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import {
-  Switch,
-  Route,
-  Router,
-} from 'react-router-dom';
+import { Switch, Route, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import { store } from './store/store';
@@ -21,8 +17,8 @@ export const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/films/:filmId" component={Film} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/select-seat/:selectedFilmId" component={SeatSelection} />
+        <Route path="/films/admin" component={Admin} />
+        <Route path="/select-seat/:sessionId" component={SeatSelection} />
       </Switch>
     </Router>
   </Provider>

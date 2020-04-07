@@ -1,21 +1,20 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useCallback } from 'react';
 
-import {
-  openModal, toggleModal, closeAllModals,
-} from '../actions/modals';
+import { openModal, toggleModal, closeAllModals } from '../actions/modals';
 
 export const useModals = (modalId) => {
   const isModalOpen = useSelector(({ modals: { [modalId]: isOpen } }) => isOpen || false);
 
   const dispatch = useDispatch();
 
-  const dispatchOpenModal = () => {
+  const dispatchOpenModal = useCallback(() => {
     dispatch(closeAllModals());
     dispatch(openModal({ modalId }));
-  };
-  const dispatchToggleModal = () => dispatch(toggleModal({ modalId }));
+  }, [dispatch, modalId]);
 
-  const closeAllModalWindows = () => dispatch(closeAllModals());
+  const dispatchToggleModal = useCallback(() => dispatch(toggleModal({ modalId })), [dispatch, modalId]);
+  const closeAllModalWindows = useCallback(() => dispatch(closeAllModals()), [dispatch]);
 
   return {
     isModalOpen,

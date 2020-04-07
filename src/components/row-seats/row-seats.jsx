@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import * as R from 'ramda';
 import { Col, Button } from 'reactstrap';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { IconSeat } from '../icons/icon-seat';
-import { selectSeat } from '../../actions/seats';
+import { SeatIcon } from '../icons/seat-icon';
+import { updateSeatsRequest } from '../../actions/seats';
 
 const colsNumber = R.range(1, 11);
 
 export const RowSeats = ({ rowNumber }) => {
   const dispatch = useDispatch();
-  const handleClick = col => dispatch(selectSeat({ row: rowNumber, col }));
+
+  const [seats, setSeat] = useState({ '2_5': 'locked' });
+
+  const handleClick = col => {
+    const seatId = `${rowNumber}_${col}`;
+
+    setSeat((state) => {
+      if (seatId in state) {
+        if (state[seatId] === 'locked') return { ...state };
+
+        return { ...state, [seatId]: (state[seatId] === 'selected') ? '' : 'selected' };
+      }
+
+      return { ...state, [seatId]: 'selected' };
+    });
+    if (seats[seatId] === 'locked') return;
+    dispatch(updateSeatsRequest({ row: rowNumber, col }));
+  };
 
   return (colsNumber.map(col => (
     <Col key={col.toString()}>
@@ -20,7 +37,7 @@ export const RowSeats = ({ rowNumber }) => {
         color="link"
         onClick={() => handleClick(col)}
       >
-        <IconSeat />
+        <SeatIcon color={seats[`${rowNumber}_${col}`]} />
       </Button>
     </Col>
   )));
@@ -29,4 +46,3 @@ export const RowSeats = ({ rowNumber }) => {
 RowSeats.propTypes = {
   rowNumber: PropTypes.number.isRequired,
 };
-

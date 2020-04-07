@@ -1,42 +1,25 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import { Container, Spinner } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 
 import { SelectedFilmBriefInformation } from '../../components/selected-film-brief-information/selected-film-brief-information';
 import { CinemaHall } from '../../components/cinema-hall/cinema-hall';
-import { getFilm, getCinema } from '../../utils/get-item';
+import { useSession } from '../../hooks/use-session';
 
 import './seat-selection.scss';
 
 export const SeatSelection = () => {
-  const { selectedFilmId } = useParams();
+  const { sessionId } = useParams();
+  const { session, isLoading: isLoadingSession } = useSession(sessionId);
 
-  const {
-    id,
-    name,
-    type,
-    time,
-    src,
-    cinema,
-  } = getFilm(selectedFilmId);
-
-  const {
-    cinemaName,
-    address,
-  } = getCinema(cinema);
+  if (isLoadingSession || session == null) {
+    return <Spinner color="primary" />;
+  }
 
   return (
     <Container>
       <div className="seat-selection py-5">
-        <SelectedFilmBriefInformation
-          name={name}
-          type={type}
-          src={src}
-          time={time}
-          id={id}
-          cinemaName={cinemaName}
-          address={address}
-        />
+        <SelectedFilmBriefInformation session={session} />
         <CinemaHall />
       </div>
     </Container>

@@ -1,8 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const CURRENT_DIRECTORY = path.resolve();
 
 module.exports = {
   target: 'web',
@@ -12,12 +16,16 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    publicPath: '/assets/',
     path: path.resolve('dist'),
+    publicPath: '/',
   },
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  devServer: {
+    contentBase: './dist',
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -34,6 +42,13 @@ module.exports = {
         ],
       },
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          publicPath: 'assets',
+        },
+      },
+      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
@@ -43,7 +58,8 @@ module.exports = {
           loader: 'style-loader',
         }, {
           loader: 'css-loader',
-        }, {
+        },
+        {
           loader: 'postcss-loader',
           options: {
             plugins() {
@@ -52,13 +68,16 @@ module.exports = {
               ];
             },
           },
-        }, {
+        },
+        {
           loader: 'sass-loader',
-        }],
+        },
+        ],
       },
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Output Management',
       template: path.resolve('resources/templates/index.html'),
@@ -68,5 +87,9 @@ module.exports = {
       ignoreOrder: false,
     }),
     new ExtractTextPlugin({ filename: 'style.css' }),
+    new CopyWebpackPlugin([{
+      from: path.join(CURRENT_DIRECTORY, 'public'),
+      to: path.join(CURRENT_DIRECTORY, 'dist/public'),
+    }]),
   ],
 };

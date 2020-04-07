@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import './header.scss';
+import './film-header.scss';
 
-export const HeaderFilm = ({ name }) => (
+export const FilmHeader = ({ name }) => (
   <div className="d-flex justify-content-around align-items-center py-5">
     <div className="center-block">
       <Button color="link">
@@ -27,7 +27,6 @@ export const HeaderFilm = ({ name }) => (
   </div>
 );
 
-HeaderFilm.propTypes = {
+FilmHeader.propTypes = {
   name: PropTypes.string.isRequired,
 };
-
