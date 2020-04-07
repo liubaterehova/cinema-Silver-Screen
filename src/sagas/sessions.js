@@ -10,9 +10,7 @@ function* loadSessionsSaga({ payload }) {
     const response = yield call(fetchSessions, payload.filmId);
 
     if (response.data) {
-      yield put(
-        loadSessionsSuccess({ sessions: response.data }),
-      );
+      yield put(loadSessionsSuccess({ sessions: response.data }));
     }
   } catch (error) {
     yield put(loadSessionsFailure({ error }));

@@ -1,14 +1,14 @@
 import { handleActions } from 'redux-actions';
 
 import {
-  createUser, createUserSuccess, createUserFailure, cleanError, logOff,
+  createUserRequest, createUserSuccess, createUserFailure, cleanError, logOut,
 } from '../actions/users';
 
 const defaultState = { user: null, isLoading: false, error: null };
 
 export const user = handleActions(
   {
-    [createUser]: state => ({
+    [createUserRequest]: state => ({
       ...state, isLoading: true,
     }),
     [createUserSuccess]: (state, { payload: { user: { user: payloadUsers } } }) =>
@@ -21,7 +21,7 @@ export const user = handleActions(
     [cleanError]: (state) => ({
       ...state, isLoading: false, error: null,
     }),
-    [logOff]: (state) => ({
+    [logOut]: (state) => ({
       ...state, isLoading: false, user: null, error: null,
     }),
   }, defaultState,

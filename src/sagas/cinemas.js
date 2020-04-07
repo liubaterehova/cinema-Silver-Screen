@@ -10,9 +10,7 @@ function* loadCinemasSaga() {
     const response = yield call(fetchCinemas);
 
     if (response.data) {
-      yield put(
-        loadCinemasSuccess({ cinemas: response.data }),
-      );
+      yield put(loadCinemasSuccess({ cinemas: response.data }));
     }
   } catch (error) {
     yield put(loadCinemasFailure({ error }));

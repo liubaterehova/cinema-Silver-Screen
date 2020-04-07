@@ -10,9 +10,7 @@ function* loadFilmsSaga() {
     const response = yield call(fetchFilms);
 
     if (response.data) {
-      yield put(
-        loadFilmsSuccess({ films: response.data }),
-      );
+      yield put(loadFilmsSuccess({ films: response.data }));
     }
   } catch (error) {
     yield put(loadFilmsFailure({ error }));

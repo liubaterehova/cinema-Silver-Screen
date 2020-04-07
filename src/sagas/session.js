@@ -10,9 +10,7 @@ function* loadSessionSaga({ payload }) {
     const response = yield call(fetchSession, payload.sessionId);
 
     if (response.data) {
-      yield put(
-        loadSessionSuccess({ session: response.data }),
-      );
+      yield put(loadSessionSuccess({ session: response.data }));
     }
   } catch (error) {
     yield put(loadSessionFailure({ error }));

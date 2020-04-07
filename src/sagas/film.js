@@ -10,9 +10,7 @@ function* loadFilmSaga({ payload }) {
     const response = yield call(fetchFilm, payload.filmId);
 
     if (response.data) {
-      yield put(
-        loadFilmSuccess({ film: response.data }),
-      );
+      yield put(loadFilmSuccess({ film: response.data }));
     } else {
       yield put(loadFilmFailure({ error: 'No data' }));
     }

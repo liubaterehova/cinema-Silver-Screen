@@ -1,17 +1,17 @@
 import { createActions } from 'redux-actions';
 
 export const {
-  createUser,
+  createUserRequest,
   createUserSuccess,
   createUserFailure,
   cleanError,
-  logOff,
+  logOut,
   logIn,
 } = createActions(
-  'CREATE_USER',
+  'CREATE_USER_REQUEST',
   'CREATE_USER_SUCCESS',
   'CREATE_USER_FAILURE',
   'CLEAN_ERROR',
-  'LOG_OFF',
+  'LOG_OUT',
   'LOG_IN',
 );
