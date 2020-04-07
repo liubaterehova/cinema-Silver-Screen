@@ -3,14 +3,17 @@ import { Form, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import { FormElement } from './form-element';
+import { useUser } from '../../hooks/use-user';
 
 export const SignUpForm = ({
-  errors, onSubmit, register, control, watch,
+  errors, register, control, watch,
 }) => {
+  const { user: { error } } = useUser();
+
   const makeElementsOfSignUpForm = () => [
     {
       id: 0,
-      name: 'name',
+      name: 'userName',
       label: 'Your name',
       placeholder: 'name',
       type: 'text',
@@ -19,7 +22,7 @@ export const SignUpForm = ({
     },
     {
       id: 1,
-      name: 'number',
+      name: 'phone',
       label: 'Phone number',
       placeholder: 'number',
       type: 'number',
@@ -28,7 +31,7 @@ export const SignUpForm = ({
     },
     {
       id: 2,
-      name: 'signUpEmail',
+      name: 'email',
       label: 'Email',
       placeholder: 'email',
       type: 'email',
@@ -37,48 +40,52 @@ export const SignUpForm = ({
     },
     {
       id: 3,
-      name: 'signUpPassword',
+      name: 'password',
       label: 'Password',
       placeholder: 'password',
       type: 'password',
-      rulesValidation: { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/ },
+      rulesValidation: { required: true },
       errorMessage: 'Please enter password that contain at least 1 lowercase, 1 uppercase, 1 numeric, minimum  8 symbols',
     },
     {
       id: 4,
-      name: 'signUpPasswordRepeat',
+      name: 'passwordRepeat',
       label: 'Repeat password',
       placeholder: 'repeat password',
       type: 'password',
       rulesValidation: {
         required: true,
-        validate: value => value === watch('signUpPassword'),
+        validate: value => value === watch('password'),
       },
       errorMessage: 'Please repeat password',
     },
   ];
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form>
       {makeElementsOfSignUpForm(watch).map(({
         id, name, label, placeholder, type, errorMessage, rulesValidation,
-      }) => (
-        <FormElement
-          as={Input}
-          id={id}
-          rules={rulesValidation}
-          key={id}
-          name={name}
-          label={label}
-          placeholder={placeholder}
-          type={type}
-          error={errors[name]}
-          errorMessage={errorMessage}
-          register={register}
-          control={control}
-          watch={watch}
-        />
-      ))}
+      }) => {
+        const invalid = error && error.data.error === name;
+
+        return (
+          <FormElement
+            as={Input}
+            id={id}
+            rules={rulesValidation}
+            key={id}
+            name={name}
+            label={label}
+            placeholder={placeholder}
+            type={type}
+            error={errors[name] || invalid}
+            errorMessage={invalid ? 'the data is already exist' : errorMessage}
+            register={register}
+            control={control}
+            watch={watch}
+          />
+        );
+      })}
     </Form>
   );
 };
@@ -87,6 +94,5 @@ SignUpForm.propTypes = {
   watch: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   control: PropTypes.shape({}).isRequired,
-  onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.shape({ signInEmail: PropTypes.shape({}), signUpEmail: PropTypes.shape({}) }).isRequired,
 };

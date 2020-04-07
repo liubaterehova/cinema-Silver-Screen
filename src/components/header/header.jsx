@@ -8,6 +8,7 @@ import { SignInModal } from '../modals/sign-in-modal';
 import { SignUpModal } from '../modals/sign-up-modal';
 import { useModals } from '../../hooks/use-modals';
 import { MODAL_WINDOW } from '../../constants';
+import { useUser } from '../../hooks/use-user';
 
 import './header.scss';
 
@@ -27,7 +28,26 @@ export const Header = () => {
     dispatchToggleModal: toggleSignUp,
   } = useModals(MODAL_WINDOW.SIGN_UP);
 
+  const {
+    user: { user }, dispatchLogOff, dispatchCreateUser, dispatchLogIn,
+  } = useUser();
   const toggleshowInput = () => changeVisibility((visibleInput) => !visibleInput);
+
+  const onClickEnterButton = (user)
+    ? dispatchLogOff
+    : clickSignIn;
+
+  const onSignUp = (informationRegistration) => {
+    dispatchCreateUser(informationRegistration);
+  };
+
+  const onSignIn = (informationSignIn) => {
+    dispatchLogIn(informationSignIn);
+  };
+
+  const enterButtonText = user
+    ? 'Exit'
+    : 'Enter';
 
   return (
     <div className="header-main-page">
@@ -35,19 +55,22 @@ export const Header = () => {
         <Col xs={7}>
           <NavbarBrand href="#home" />
         </Col>
+        <Col>{user ? `Hallo ${user.userName}` : null}</Col>
         <Col xs={1}>
-          <Button color="link" onClick={clickSignIn}>Enter</Button>
+          <Button color="link" onClick={onClickEnterButton}>{enterButtonText}</Button>
           <SignInModal
             isOpen={isSignInModalOpen}
             toggle={toggleSignIn}
             onClickSignUp={clickSignUp}
             onClose={closeAllModalWindows}
+            onSignIn={onSignIn}
           />
           <SignUpModal
             isOpen={isSignUpModalOpen}
             toggle={toggleSignUp}
             onClickSignUp={clickSignUp}
             onClose={closeAllModalWindows}
+            onSignUp={onSignUp}
           />
         </Col>
         <Col xs={2} className={classNames({ 'd-none': inputSearch })}>

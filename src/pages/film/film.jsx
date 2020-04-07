@@ -1,41 +1,32 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import { Container, Spinner } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 
-import { HeaderFilm } from '../../components/header-film/header';
+import { FilmHeader } from '../../components/film-header/film-header';
 import { FilmDescription } from '../../components/film-description/film-description';
-import { getFilm, getCinema } from '../../utils/get-item';
+import { useSelectedFilm } from '../../hooks/use-selected-film';
+import { useSessionsByFilm } from '../../hooks/use-sessions-by-film';
 
 export const Film = () => {
   const { filmId } = useParams();
 
-  const {
-    id,
-    name,
-    type,
-    time,
-    src,
-    cinema,
-    description,
-  } = getFilm(filmId);
+  const { sessions, isLoading: isLoadingSessions } = useSessionsByFilm(filmId);
+  const { film, isLoading: isLoadingFilm } = useSelectedFilm(filmId);
 
-  const {
-    cinemaName,
-    address,
-  } = getCinema(cinema);
+  if (isLoadingFilm || isLoadingSessions || film == null) {
+    return <Spinner color="primary" />;
+  }
 
   return (
     <Container>
-      <HeaderFilm name={name} />
+      <FilmHeader name={film.name} />
       <FilmDescription
-        name={name}
-        type={type}
-        description={description}
-        src={src}
-        time={time}
-        cinemaName={cinemaName}
-        address={address}
-        id={id}
+        name={film.name}
+        type={film.type}
+        description={film.description}
+        poster={film.poster}
+        time={film.time}
+        sessions={sessions}
       />
     </Container>
   );

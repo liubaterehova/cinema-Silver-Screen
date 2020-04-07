@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import { CITY_CODE, CINEMA_CODE, DATE_CODE } from '../constants';
 
 export const cityFilterType = PropTypes.exact({
@@ -31,4 +32,3 @@ export const seatsFilterType = PropTypes.exact({
   name: PropTypes.string,
   number: PropTypes.number,
 });
-

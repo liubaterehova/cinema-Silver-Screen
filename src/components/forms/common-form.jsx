@@ -11,7 +11,12 @@ export const CommonForm = ({
     {elements.map((formElement) => (
       <React.Fragment key={formElement.id}>
         <Col sm={10}>
-          <FormElement row {...formElement} control={control} error={errors[formElement.name]} />
+          <FormElement
+            row
+            {...formElement}
+            control={control}
+            error={errors[formElement.name]}
+          />
         </Col>
         <br />
       </React.Fragment>
