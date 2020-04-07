@@ -1,6 +1,6 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 
-import { loadFilms, loadFilmsFailure, loadFilmsSuccess } from '../actions/films';
+import { loadFilmsRequest, loadFilmsFailure, loadFilmsSuccess } from '../actions/films';
 import { http } from '../api';
 
 const BASE_FILMS_URL = 'films';
@@ -23,4 +23,4 @@ function fetchFilms() {
   return http.get(BASE_FILMS_URL);
 }
 
-export const filmsSagas = [takeEvery(loadFilms, loadFilmsSaga)];
+export const filmsSagas = [takeEvery(loadFilmsRequest, loadFilmsSaga)];

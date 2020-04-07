@@ -1,11 +1,11 @@
 import { createActions } from 'redux-actions';
 
 export const {
-  loadSession,
+  loadSessionRequest,
   loadSessionSuccess,
   loadSessionFailure,
 } = createActions(
-  'LOAD_SESSION',
+  'LOAD_SESSION_REQUEST',
   'LOAD_SESSION_SUCCESS',
   'LOAD_SESSION_FAILURE',
 );

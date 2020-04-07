@@ -1,12 +1,12 @@
 import { handleActions } from 'redux-actions';
 
-import { loadCinemas, loadCinemasSuccess, loadCinemasFailure } from '../actions/cinemas';
+import { loadCinemasRequest, loadCinemasSuccess, loadCinemasFailure } from '../actions/cinemas';
 
 const defaultState = { cinemas: [], isLoading: false, error: null };
 
 export const cinemas = handleActions(
   {
-    [loadCinemas]: state => ({
+    [loadCinemasRequest]: state => ({
       ...state, isLoading: true,
     }),
     [loadCinemasSuccess]: (state, { payload: { cinemas: payloadCinemas } }) => ({

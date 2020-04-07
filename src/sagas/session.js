@@ -1,6 +1,6 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 
-import { loadSession, loadSessionFailure, loadSessionSuccess } from '../actions/session';
+import { loadSessionRequest, loadSessionFailure, loadSessionSuccess } from '../actions/session';
 import { http } from '../api';
 
 const BASE_SESSIONS_URL = 'sessions';
@@ -23,4 +23,4 @@ function fetchSession(sessionId) {
   return http.get(`${BASE_SESSIONS_URL}/${sessionId}`);
 }
 
-export const sessionSagas = [takeEvery(loadSession, loadSessionSaga)];
+export const sessionSagas = [takeEvery(loadSessionRequest, loadSessionSaga)];
